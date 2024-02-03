@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
 
-export default function SignUpForm() {
+export default function SignUpForm({ setNewUser }) {
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
+
+  const handleClick = () => {
+    setNewUser(false);
+  };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -92,12 +96,12 @@ export default function SignUpForm() {
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                <span
+                  className="font-medium text-jade-500 cursor-pointer"
+                  onClick={handleClick}
                 >
                   Login here
-                </a>
+                </span>
               </p>
             </form>
           </div>
