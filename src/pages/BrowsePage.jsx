@@ -1,3 +1,5 @@
+import ItemCard from "../components/ItemCard";
+
 export default function BrowsePage() {
-  return <h1>Browse</h1>;
+  return <ItemCard />;
 }

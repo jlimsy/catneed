@@ -1,3 +1,5 @@
+import PostForm from "../components/PostForm";
+
 export default function DonatePage() {
-  return <h1>Donate Page</h1>;
+  return <PostForm />;
 }

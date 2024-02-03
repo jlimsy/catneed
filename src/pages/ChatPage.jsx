@@ -1,3 +1,9 @@
+import ChatTable from "../components/ChatPage/ChatTable";
+
 export default function ChatPage() {
-  return <h1>Chats</h1>;
+  return (
+    <section className="flex justify-center">
+      <ChatTable />
+    </section>
+  );
 }
