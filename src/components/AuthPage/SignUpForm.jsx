@@ -12,8 +12,8 @@ export default function SignUpForm({ setNewUser }) {
 
   const onSubmit = async (event) => {
     try {
-      const { username, email, password, postal } = event;
-      const formData = { username, email, password, postal };
+      const { username, email, password } = event;
+      const formData = { username, email, password };
 
       const user = await signUp(formData);
       console.log("client", formData);
@@ -103,7 +103,7 @@ export default function SignUpForm({ setNewUser }) {
                 {errors.confirm && <p>{errors.confirm.message}</p>}
               </div>
 
-              <div>
+              {/* <div>
                 <label htmlFor="postal">Postal Code</label>
                 <input
                   type="text"
@@ -120,7 +120,7 @@ export default function SignUpForm({ setNewUser }) {
                   })}
                 />
                 {errors.postal && <p>{errors.postal.message}</p>}
-              </div>
+              </div> */}
 
               <button type="submit">Submit</button>
 
