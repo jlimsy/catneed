@@ -9,16 +9,15 @@ export default function SignUpForm({ setNewUser }) {
     setNewUser(false);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (event) => {
     try {
-      console.log(data);
+      const { username, email, password } = event;
+      const formData = { username, email, password };
+      console.log(formData);
     } catch (error) {
       console.log("Unable to sign-up", error);
     }
   };
-
-  console.log(watch("password"));
-  // console.log(watch("username"));
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
