@@ -13,6 +13,12 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
 
+// ===== ROUTES ===== //
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 // ===== LISTEN BLOCK ===== //
 const port = process.env.PORT || 3000;
 
