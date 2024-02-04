@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 export default function SignUpForm({ setNewUser }) {
   const form = useForm();
   const { register, handleSubmit, watch, formState } = form;
-  const password = watch("password", "");
   const { errors } = formState;
 
   const handleClick = () => {
@@ -17,6 +16,10 @@ export default function SignUpForm({ setNewUser }) {
       console.log("Unable to sign-up", error);
     }
   };
+
+  console.log(watch("password"));
+  // console.log(watch("username"));
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -86,10 +89,11 @@ export default function SignUpForm({ setNewUser }) {
                   {...register("confirm", {
                     required: {
                       value: true,
-                      message: "Passwords do not match.",
+                      message: "Please confirm your password.",
                     },
-                    validate: (value) => {
-                      value === password && "Passwords do not match.";
+                    validate: {
+                      value: (value) =>
+                        value === watch("password") || "Password must match.",
                     },
                   })}
                 />
