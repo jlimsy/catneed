@@ -30,6 +30,7 @@ const userSchema = new Schema(
       required: true,
     },
     postal: [postalSchema],
+    isAdmin: { type: Boolean, default: false },
   },
   {
     timestamps: true,
