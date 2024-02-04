@@ -5,7 +5,7 @@ async function create(req, res) {
   try {
     const user = await User.create(req.body);
     const token = createJWT(user);
-    console.log(token);
+    // console.log(token);
 
     res.json(token);
   } catch (error) {

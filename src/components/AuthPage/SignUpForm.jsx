@@ -16,6 +16,7 @@ export default function SignUpForm({ setNewUser }) {
       const formData = { username, email, password };
 
       const user = await signUp(formData);
+
       console.log("client", formData);
       console.log("server", user);
     } catch (error) {
