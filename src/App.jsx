@@ -25,7 +25,7 @@ function App() {
             <Route path="/request" element={<RequestPage />} />
             <Route path="/listings" element={<ListingsPage />} />
             <Route path="/chat" element={<ChatPage />} />
-            {admin && <Route path="/admin" element={<AdminPage />} />}
+            {admin && <Route path="/dashboard" element={<AdminPage />} />}
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </>

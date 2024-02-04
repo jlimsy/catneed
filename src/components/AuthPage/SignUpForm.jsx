@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 
 export default function SignUpForm({ setNewUser }) {
   const form = useForm();
-  const { register, handleSubmit, formState } = form;
+  const { register, handleSubmit, watch, formState } = form;
+  const password = watch("password", "");
   const { errors } = formState;
 
   const handleClick = () => {
@@ -10,7 +11,11 @@ export default function SignUpForm({ setNewUser }) {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    try {
+      console.log(data);
+    } catch (error) {
+      console.log("Unable to sign-up", error);
+    }
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -74,6 +79,24 @@ export default function SignUpForm({ setNewUser }) {
               </div>
 
               <div>
+                <label htmlFor="confirm">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirm"
+                  {...register("confirm", {
+                    required: {
+                      value: true,
+                      message: "Passwords do not match.",
+                    },
+                    validate: (value) => {
+                      value === password && "Passwords do not match.";
+                    },
+                  })}
+                />
+                {errors.confirm && <p>{errors.confirm.message}</p>}
+              </div>
+
+              <div>
                 <label htmlFor="postal">Postal Code</label>
                 <input
                   type="text"
@@ -92,7 +115,7 @@ export default function SignUpForm({ setNewUser }) {
                 {errors.postal && <p>{errors.postal.message}</p>}
               </div>
 
-              <button>Submit</button>
+              <button type="submit">Submit</button>
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
