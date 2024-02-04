@@ -3,7 +3,7 @@ import ScrollDisplay from "../components/AuthPage/ScrollDisplay";
 import SignUpForm from "../components/AuthPage/SignUpForm";
 import { useState } from "react";
 
-export default function AuthPage() {
+export default function AuthPage({ setUser }) {
   const [newUser, setNewUser] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ export default function AuthPage() {
       </div>
       <div className="md:col-span-1">
         {newUser ? (
-          <SignUpForm setNewUser={setNewUser} />
+          <SignUpForm setNewUser={setNewUser} setUser={setUser} />
         ) : (
           <LoginForm setNewUser={setNewUser} />
         )}

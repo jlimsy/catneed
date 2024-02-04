@@ -3,7 +3,7 @@ import * as usersAPI from "./users-api";
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
   localStorage.setItem("token", token);
-  return token;
+  return getUser();
 }
 
 export function getToken() {
@@ -24,6 +24,21 @@ export function getToken() {
 
 export function getUser() {
   const token = getToken();
-
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
+
+  // if (!token) {
+  //   return { username: null, isAdmin: null };
+  // }
+  // const decodedToken = JSON.parse(atob(token.split(".")[1]));
+  // return { username: decodedToken.username, isAdmin: decodedToken.isAdmin };
+}
+
+// export function checkIsAdmin() {
+//   const token = getToken();
+
+//   return token ? JSON.parse(atob(token.split(".")[1])).isAdmin : null;
+// }
+
+export function logOut() {
+  localStorage.removeItem("token");
 }

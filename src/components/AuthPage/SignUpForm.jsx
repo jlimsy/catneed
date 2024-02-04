@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { signUp } from "../../utilities/users-service";
 
-export default function SignUpForm({ setNewUser }) {
+export default function SignUpForm({ setNewUser, setUser }) {
   const form = useForm();
   const { register, handleSubmit, watch, formState } = form;
   const { errors } = formState;
@@ -19,6 +19,8 @@ export default function SignUpForm({ setNewUser }) {
 
       console.log("client", formData);
       console.log("server", user);
+
+      setUser(user);
     } catch (error) {
       console.log("Unable to sign-up", error);
     }

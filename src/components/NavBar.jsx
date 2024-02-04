@@ -1,20 +1,30 @@
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import * as userService from "../utilities/users-service";
 
-export default function NavBar({ admin }) {
+export default function NavBar({ user, setUser, admin }) {
+  const handleLogOut = () => {
+    userService.logOut();
+    setUser(null);
+  };
+
   return (
     <header className="w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div>
           <NavLink to="/">CatNeed</NavLink>
-        </div>
-        {admin && <NavLink to="/dashboard">Admin </NavLink>}
+        </div>{" "}
         <NavLink to="/browse">Browse </NavLink>
         <NavLink to="/donate">Donate </NavLink>
         <NavLink to="/request">Request </NavLink>
         <NavLink to="/listings">My Listings </NavLink>
         <NavLink to="/chat">Chat </NavLink>
+        {admin && <NavLink to="/dashboard">Dashboard</NavLink>}
         <NavLink to="/about">About </NavLink>
+        <p>Welcome, {user.username}!</p>
+        <NavLink to="/" onClick={handleLogOut}>
+          Log Out{" "}
+        </NavLink>
         <button>
           <FaTimes />
         </button>
