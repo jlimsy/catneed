@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
 
 // ===== ROUTES ===== //
-
+app.use("/api/users", require("./routes/api/usersRouter"));
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { signUp } from "../../utilities/users-service";
 
 export default function SignUpForm({ setNewUser }) {
   const form = useForm();
@@ -9,11 +10,14 @@ export default function SignUpForm({ setNewUser }) {
     setNewUser(false);
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     try {
-      const { username, email, password } = event;
-      const formData = { username, email, password };
-      console.log(formData);
+      const { username, email, password, postal } = event;
+      const formData = { username, email, password, postal };
+
+      const user = await signUp(formData);
+      console.log("client", formData);
+      console.log("server", user);
     } catch (error) {
       console.log("Unable to sign-up", error);
     }
