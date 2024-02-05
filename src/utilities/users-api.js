@@ -27,3 +27,10 @@ export async function login(userData) {
     throw new Error("Invalid Login");
   }
 }
+
+export async function updatePostal(postalCode) {
+  const res = await fetch(BASE_URL, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  });
+}

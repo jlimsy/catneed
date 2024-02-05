@@ -12,6 +12,10 @@ export async function login(userData) {
   return getUser();
 }
 
+export async function updatePostal(postalCode) {
+  await usersAPI.updatePostal(postalCode);
+}
+
 export function getToken() {
   const token = localStorage.getItem("token");
 

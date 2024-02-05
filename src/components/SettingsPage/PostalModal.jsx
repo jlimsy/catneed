@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { updatePostal } from "../../utilities/users-service";
 
 export default function PostalModal() {
   const form = useForm();
@@ -9,6 +10,8 @@ export default function PostalModal() {
     const { postal } = event;
     const formData = { postal };
     console.log("postal code", formData);
+
+    const postal = await updatePostal(formData);
   };
 
   return (
