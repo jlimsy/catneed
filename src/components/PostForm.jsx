@@ -3,6 +3,13 @@ export default function PostForm() {
     <section>
       <form className="max-w-sm mx-auto">
         <div className="mb-5">
+          <label htmlFor="photo">Upload photo of your item:</label>
+
+          <input type="file" id="photo" name="photo" accept="image/*" />
+          <button>Upload</button>
+        </div>
+
+        <div className="mb-5">
           <label
             htmlFor="large-input"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
