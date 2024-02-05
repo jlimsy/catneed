@@ -18,10 +18,12 @@ async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) throw new Error();
+    // Error: User does not exist
 
     const match = await bcrypt.compare(req.body.password, user.password);
 
     if (!match) throw new Error();
+    // Error: Incorrect password
 
     res.json(createJWT(user));
   } catch (error) {

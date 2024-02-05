@@ -109,25 +109,6 @@ export default function SignUpForm({ setNewUser, setUser }) {
                 {errors.confirm && <p>{errors.confirm.message}</p>}
               </div>
 
-              {/* <div>
-                <label htmlFor="postal">Postal Code</label>
-                <input
-                  type="text"
-                  id="postal"
-                  {...register("postal", {
-                    required: {
-                      value: true,
-                      message: "Postal code is required.",
-                    },
-                    pattern: {
-                      value: /\d{6}$/,
-                      message: "Postal code must be 6-digits.",
-                    },
-                  })}
-                />
-                {errors.postal && <p>{errors.postal.message}</p>}
-              </div> */}
-
               <button type="submit">Submit</button>
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">

@@ -5,5 +5,6 @@ const usersCtrl = require("../../controllers/api/usersController");
 // POST /api/users
 router.post("/", usersCtrl.create);
 router.post("/login", usersCtrl.login);
+router.post("/admin");
 
 module.exports = router;

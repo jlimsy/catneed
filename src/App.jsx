@@ -7,6 +7,7 @@ import RequestPage from "./pages/RequestPage";
 import ListingsPage from "./pages/ListingsPage";
 import ChatPage from "./pages/ChatPage";
 import DashboardPage from "./pages/DashboardPage";
+import SettingsPage from "./pages/SettingsPage";
 import AboutPage from "./pages/AboutPage";
 import { useState } from "react";
 import { getUser } from "./utilities/users-service";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/listings" element={<ListingsPage />} />
             <Route path="/chat" element={<ChatPage />} />
             {admin && <Route path="/dashboard" element={<DashboardPage />} />}
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </>

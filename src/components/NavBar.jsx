@@ -13,17 +13,22 @@ export default function NavBar({ user, setUser, admin }) {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div>
           <NavLink to="/">CatNeed</NavLink>
-        </div>{" "}
+        </div>
+        <p>Welcome, {user.username}!</p>
         <NavLink to="/browse">Browse </NavLink>
         <NavLink to="/donate">Donate </NavLink>
         <NavLink to="/request">Request </NavLink>
         <NavLink to="/listings">My Listings </NavLink>
         <NavLink to="/chat">Chat </NavLink>
         {admin && <NavLink to="/dashboard">Dashboard</NavLink>}
-        <NavLink to="/about">About </NavLink>
-        <p>Welcome, {user.username}!</p>
+        {user ? (
+          <NavLink to="/settings">Settings</NavLink>
+        ) : (
+          <NavLink to="/about">About </NavLink>
+        )}
+
         <NavLink to="/" onClick={handleLogOut}>
-          Log Out{" "}
+          Log Out
         </NavLink>
         <button>
           <FaTimes />
