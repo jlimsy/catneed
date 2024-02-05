@@ -4,14 +4,15 @@ meta {
   seq: 3
 }
 
-get {
-  url: http://localhost:3000/api/image/upload
+post {
+  url: http://localhost:3000/api/users/login
   body: json
   auth: none
 }
 
 body:json {
-  {
-    "test": "test"
+  { 
+    "email": "woof@woof.com",
+    "password": "123456"
   }
 }

@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { signUp } from "../../utilities/users-service";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm({ setNewUser, setUser }) {
   const form = useForm();
   const { register, handleSubmit, watch, formState } = form;
   const { errors } = formState;
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setNewUser(false);
@@ -21,6 +23,7 @@ export default function SignUpForm({ setNewUser, setUser }) {
       console.log("server", user);
 
       setUser(user);
+      navigate("/browse");
     } catch (error) {
       console.log("Unable to sign-up", error);
     }

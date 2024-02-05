@@ -1,3 +1,5 @@
+import UsersTable from "../components/DashboardPage/UsersTable";
+
 export default function DashboardPage() {
-  return <h1>Welcome Admin</h1>;
+  return <UsersTable />;
 }

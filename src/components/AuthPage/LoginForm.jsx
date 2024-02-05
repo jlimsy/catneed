@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { login } from "../../utilities/users-service";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({ setNewUser, setUser }) {
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
+  const navigate = useNavigate();
 
   const onSubmit = async (event) => {
     try {
@@ -13,6 +15,8 @@ export default function LoginForm({ setNewUser, setUser }) {
 
       const user = await login(formData);
       setUser(user);
+
+      navigate("/browse");
     } catch (error) {
       console.log("Unable to login", error);
     }
