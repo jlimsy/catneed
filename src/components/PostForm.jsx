@@ -18,6 +18,7 @@ export default function PostForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
   };
+
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
 

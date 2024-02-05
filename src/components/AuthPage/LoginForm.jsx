@@ -1,12 +1,22 @@
 import { useForm } from "react-hook-form";
+import { login } from "../../utilities/users-service";
 
-export default function LoginForm({ setNewUser }) {
+export default function LoginForm({ setNewUser, setUser }) {
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (event) => {
+    try {
+      const { email, password } = event;
+      const formData = { email, password };
+
+      const user = await login(formData);
+      setUser(user);
+    } catch (error) {
+      console.log("Unable to login", error);
+    }
+    console.log(event);
   };
 
   const handleClick = () => {
@@ -26,18 +36,18 @@ export default function LoginForm({ setNewUser }) {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Email</label>
                 <input
-                  type="text"
-                  id="username"
-                  {...register("username", {
+                  type="email"
+                  id="email"
+                  {...register("email", {
                     required: {
                       value: true,
-                      message: "Username is required.",
+                      message: "Valid email is required.",
                     },
                   })}
                 />
-                {errors.username && <p>{errors.username.message}</p>}
+                {errors.email && <p>{errors.email.message}</p>}
               </div>
 
               <div>
@@ -59,7 +69,7 @@ export default function LoginForm({ setNewUser }) {
                 {errors.password && <p>{errors.password.message}</p>}
               </div>
 
-              <button>Submit</button>
+              <button>Login</button>
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}

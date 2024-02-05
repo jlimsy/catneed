@@ -15,7 +15,7 @@ export default function AuthPage({ setUser }) {
         {newUser ? (
           <SignUpForm setNewUser={setNewUser} setUser={setUser} />
         ) : (
-          <LoginForm setNewUser={setNewUser} />
+          <LoginForm setNewUser={setNewUser} setUser={setUser} />
         )}
       </div>
     </div>
