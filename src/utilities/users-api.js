@@ -28,9 +28,16 @@ export async function login(userData) {
   }
 }
 
-export async function updatePostal(postalCode) {
+export async function updatePostal(postalData) {
   const res = await fetch(BASE_URL, {
-    method: "PUT",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ postalData }),
   });
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("Invalid Postal Code");
+  }
 }

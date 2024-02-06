@@ -10,7 +10,7 @@ async function create(req, res) {
 
     res.json(token);
   } catch (error) {
-    res.status(400).json(error);
+    res.status(500).json(error);
   }
 }
 
@@ -27,7 +27,28 @@ async function login(req, res) {
 
     res.json(createJWT(user));
   } catch (error) {
-    res.status(400).json(error);
+    res.status(500).json(error);
+  }
+}
+
+async function readProfile(req, res) {
+  res.json({ msg: "user data goes here" });
+}
+
+async function updatePostal(req, res) {
+  const userId = req.user.id;
+  const { postalCode } = req.body;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      postal: postalCode,
+    });
+    if (!updatedUser) throw new Error();
+    // Error: User does not exist
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json(error);
   }
 }
 
@@ -42,4 +63,4 @@ function createJWT(user) {
   );
 }
 
-module.exports = { create, login };
+module.exports = { create, login, readProfile, updatePostal };

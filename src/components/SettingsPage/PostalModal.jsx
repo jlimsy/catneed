@@ -7,11 +7,14 @@ export default function PostalModal() {
   const { errors } = formState;
 
   const onSubmit = async (event) => {
-    const { postal } = event;
-    const formData = { postal };
-    console.log("postal code", formData);
-
-    const postal = await updatePostal(formData);
+    try {
+      const { postal } = event;
+      const formData = { postal };
+      const postalCode = await updatePostal(formData);
+      console.log("postal code", postalCode);
+    } catch (error) {
+      console.log("Unable to update postal code", error);
+    }
   };
 
   return (

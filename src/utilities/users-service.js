@@ -1,4 +1,5 @@
 import * as usersAPI from "./users-api";
+const jwt = require("jsonwebtoken");
 
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
@@ -12,8 +13,11 @@ export async function login(userData) {
   return getUser();
 }
 
-export async function updatePostal(postalCode) {
-  await usersAPI.updatePostal(postalCode);
+export async function updatePostal(postalData) {
+  const postalCode = await usersAPI.updatePostal(postalData);
+  console.log("users-service | postal code:", postalCode);
+
+  return postalCode;
 }
 
 export function getToken() {

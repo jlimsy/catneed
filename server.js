@@ -12,11 +12,15 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
+// app.use(require("./config/checkToken"));
 
 // ===== ROUTES ===== //
 app.use("/api/users", require("./routes/api/usersRouter"));
-app.use("/api/image", require("./routes/api/imagesRouter"));
 
+//! Protected routes
+// app.use("/api/image", require("./routes/api/imagesRouter"));
+
+//! Catch all route
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });

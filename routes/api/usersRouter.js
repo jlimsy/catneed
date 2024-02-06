@@ -3,8 +3,15 @@ const router = express.Router();
 const usersCtrl = require("../../controllers/api/usersController");
 
 // POST /api/users
+
+//* signup
 router.post("/", usersCtrl.create);
+
+//* login
 router.post("/login", usersCtrl.login);
-router.post("/admin");
+
+//* get user data
+router.get("/profile", usersCtrl.readProfile);
+router.patch("/profile", usersCtrl.updatePostal);
 
 module.exports = router;
