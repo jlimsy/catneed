@@ -41,6 +41,19 @@ export async function userProfile(userData) {
   }
 }
 
+export async function allUsers() {
+  const res = await fetch(BASE_URL + "/all", {
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(),
+  });
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("users-api: Invalid fetchAllUsers");
+  }
+}
+
 export async function updatePostal(postalData) {
   const res = await fetch(BASE_URL, {
     method: "PATCH",

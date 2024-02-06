@@ -38,6 +38,13 @@ async function readProfile(req, res) {
   res.json(user);
 }
 
+async function index(req, res) {
+  // console.log("REQUEST", req.body);
+
+  const user = await User.find({});
+  res.json(user);
+}
+
 async function updatePostal(req, res) {
   const userId = req.user.id;
   const { postalCode } = req.body;
@@ -66,4 +73,4 @@ function createJWT(user) {
   );
 }
 
-module.exports = { create, login, readProfile, updatePostal };
+module.exports = { create, login, readProfile, updatePostal, index };

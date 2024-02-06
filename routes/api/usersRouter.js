@@ -11,6 +11,8 @@ router.post("/", usersCtrl.create);
 const { checkToken } = require("../../config/checkToken");
 router.post("/login", usersCtrl.login);
 
+router.get("/all", usersCtrl.index);
+
 //* get user data, protected routes
 router.get("/profile", checkToken, usersCtrl.readProfile);
 router.patch("/profile", usersCtrl.updatePostal);
