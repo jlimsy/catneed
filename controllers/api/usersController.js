@@ -10,7 +10,7 @@ async function create(req, res) {
 
     res.json(token);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ msg: "sign up failed" });
   }
 }
 
@@ -27,7 +27,7 @@ async function login(req, res) {
 
     res.json(createJWT(user));
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ msg: "log in failed" });
   }
 }
 

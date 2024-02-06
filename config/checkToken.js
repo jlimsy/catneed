@@ -7,8 +7,9 @@ const checkToken = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    const { _id } = decodedToken.user;
-    console.log("id", _id), next();
+    const { _id, isAdmin } = decodedToken.user;
+    console.log("id", _id, "isAdmin", isAdmin);
+    next();
   } catch (error) {
     res.status(403).json({ msg: "wrong token" });
   }

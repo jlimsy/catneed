@@ -8,10 +8,11 @@ const usersCtrl = require("../../controllers/api/usersController");
 router.post("/", usersCtrl.create);
 
 //* login
+const { checkToken } = require("../../config/checkToken");
 router.post("/login", usersCtrl.login);
 
-//* get user data
-router.get("/profile", usersCtrl.readProfile);
+//* get user data, protected routes
+router.get("/profile", checkToken, usersCtrl.readProfile);
 router.patch("/profile", usersCtrl.updatePostal);
 
 module.exports = router;
