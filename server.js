@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 // ===== ROUTES ===== //
 app.use("/api/users", require("./routes/api/usersRouter"));
+app.use("/api/donate", require("./routes/api/donateRouter"));
 
-//! Protected routes
 // app.use("/api/image", require("./routes/api/imagesRouter"));
 
 //! Catch all route
