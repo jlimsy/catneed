@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const usersCtrl = require("../../controllers/api/usersController");
+const { checkToken } = require("../../config/checkToken");
 
 // POST /api/users
 
@@ -8,7 +9,6 @@ const usersCtrl = require("../../controllers/api/usersController");
 router.post("/", usersCtrl.create);
 
 //* login
-const { checkToken } = require("../../config/checkToken");
 router.post("/login", usersCtrl.login);
 
 router.get("/all", usersCtrl.index);

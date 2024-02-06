@@ -32,9 +32,9 @@ async function login(req, res) {
 }
 
 async function readProfile(req, res) {
-  // console.log("REQUEST", req.body);
-
+  console.log("REQUEST", req.body);
   const user = await User.findById(req.body._id);
+  console.log("REQUEST", req.body);
   res.json(user);
 }
 

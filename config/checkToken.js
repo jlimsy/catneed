@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const checkToken = (req, res, next) => {
   console.log("checkToken middleware");
   const token = req.get("Authorization").split(" ")[1];
-  console.log(token);
+  console.log("token", token);
 
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET);

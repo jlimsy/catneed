@@ -1,3 +1,5 @@
+import { getToken } from "./users-service";
+
 const BASE_URL = "/api/users";
 
 export async function signUp(userData) {
@@ -29,8 +31,13 @@ export async function login(userData) {
 }
 
 export async function userProfile(userData) {
+  const token = getToken();
   const res = await fetch(BASE_URL + "/profile", {
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+
     body: JSON.stringify(userData),
   });
 

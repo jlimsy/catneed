@@ -14,6 +14,8 @@ export async function login(userData) {
 
 export async function userProfile(userData) {
   const user = await usersAPI.userProfile(userData);
+  JSON.stringify(user);
+
   console.log("userProfile", user);
 
   return user;
