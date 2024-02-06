@@ -32,7 +32,10 @@ async function login(req, res) {
 }
 
 async function readProfile(req, res) {
-  res.json({ msg: "user data goes here" });
+  // console.log("REQUEST", req.body);
+
+  const user = await User.findById(req.body._id);
+  res.json(user);
 }
 
 async function updatePostal(req, res) {

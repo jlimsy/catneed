@@ -7,14 +7,13 @@ const checkToken = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET);
+    req.body = decodedToken.user;
     const { _id, isAdmin } = decodedToken.user;
-    console.log("id", _id, "isAdmin", isAdmin);
+    console.log("req.body:", req.body, "id:", _id, "isAdmin:", isAdmin);
     next();
   } catch (error) {
     res.status(403).json({ msg: "wrong token" });
   }
-
-  res.json({ msg: "checkToken" });
 };
 
 module.exports = { checkToken };

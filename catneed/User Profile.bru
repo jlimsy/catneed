@@ -7,7 +7,11 @@ meta {
 get {
   url: http://localhost:3000/api/users/profile
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlzQWRtaW4iOmZhbHNlLCJfaWQiOiI2NWJmODQ1ZDczYmM4ZGZlNTNkNWQ1YjYiLCJ1c2VybmFtZSI6ImpvZXkiLCJlbWFpbCI6ImpvZXlAam9leS5jb20iLCJwb3N0YWwiOltdLCJjcmVhdGVkQXQiOiIyMDI0LTAyLTA0VDEyOjM0OjM3LjcxOVoiLCJ1cGRhdGVkQXQiOiIyMDI0LTAyLTA0VDEyOjM0OjM3LjcxOVoiLCJfX3YiOjB9LCJpYXQiOjE3MDcxOTA4ODAsImV4cCI6MTcwNzI3NzI4MH0.YQPxTkIyighnvxKjTP5vuirdEQ6D7hql9wykwmBj2SI
 }
 
 body:json {
