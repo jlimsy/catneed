@@ -12,6 +12,13 @@ export async function login(userData) {
   return getUser();
 }
 
+export async function userProfile(userData) {
+  const user = await usersAPI.userProfile(userData);
+  console.log("userProfile", user);
+
+  return user;
+}
+
 export async function updatePostal(postalData) {
   const postalCode = await usersAPI.updatePostal(postalData);
   console.log("users-service | postal code:", postalCode);

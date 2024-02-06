@@ -24,7 +24,20 @@ export async function login(userData) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Invalid Login");
+    throw new Error("users-api: Invalid Login");
+  }
+}
+
+export async function userProfile(userData) {
+  const res = await fetch(BASE_URL + "/profile", {
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  });
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("users-api: Invalid Profile");
   }
 }
 
@@ -38,6 +51,6 @@ export async function updatePostal(postalData) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Invalid Postal Code");
+    throw new Error("users-api: Invalid Postal Code");
   }
 }
