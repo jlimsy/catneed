@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const donateCtrl = require("../../controllers/api/donateController");
 
-// POST /api/donates
+// POST /api/donate
 
-//* post an item
-router.post("/", donateCtrl.create);
+router.post("/", donateCtrl.create); //* post an item
 
 //! private access
 router.get("/", donateCtrl.userDonations);
+
+module.exports = router;

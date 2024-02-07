@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { postDonate } from "../utilities/donate-service";
 import categories from "../assets/categories";
 import conditions from "../assets/conditions";
 import planningAreas from "../assets/planningAreas";
@@ -32,7 +33,14 @@ export default function PostForm({ user }) {
       user: user._id,
     };
 
-    console.log(formData);
+    try {
+      const donateItem = await postDonate(formData);
+      console.log("PostForm.jsx | donateItem", donateItem);
+
+      console.log(formData);
+    } catch (error) {
+      console.log("PostForm.jsx:", error);
+    }
   };
 
   useEffect(() => {
@@ -92,11 +100,11 @@ export default function PostForm({ user }) {
 
         <input
           type="file"
-          id="photo"
-          name="photo"
+          id="image"
+          name="image"
           accept="image/*"
           onChange={onImageChange}
-          {...register("photo")}
+          {...register("image")}
         />
 
         <button onClick={handleClick}>Add</button>
