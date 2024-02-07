@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import categories from "../assets/categories";
 import conditions from "../assets/conditions";
@@ -7,11 +7,12 @@ import planningAreas from "../assets/planningAreas";
 const BASE_URL = "/api/image/upload";
 
 export default function PostForm() {
-  const form = useForm({ defaultValues: { image: "" } });
+  const form = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = form;
   const [images, setImages] = useState([]);
 
@@ -49,6 +50,10 @@ export default function PostForm() {
 
     console.log(formData);
   };
+
+  useEffect(() => {
+    setValue("status", "Available"); // Set the default value of status to "Available"
+  }, [setValue]);
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
@@ -185,19 +190,24 @@ export default function PostForm() {
 
       <div className="flex mb-5">
         <input
-          {...register("condition", { required: true })}
+          {...register("condition", {
+            required: "Please indicate condition of your item.",
+          })}
           type="radio"
           value="New"
         />
         <label htmlFor="New">New</label>
         <input
-          {...register("condition", { required: true })}
+          {...register("condition", {
+            required: "Please indicate condition of your item.",
+          })}
           type="radio"
           value=" Used"
         />
         <label htmlFor="Used" className="block mb-2 font-medium text-gray-900">
           Used
         </label>
+        <div> {errors.condition && <p>{errors.condition.message}</p>}</div>
       </div>
 
       <div className="mb-5">
