@@ -17,12 +17,16 @@ async function create(req, res) {
 async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
-    if (!user) throw new Error();
+    if (!user) {
+      res.status(404).json({ msg: "user not found" });
+    }
     // Error: User does not exist
 
     const match = await bcrypt.compare(req.body.password, user.password);
 
-    if (!match) throw new Error();
+    if (!match) {
+      res.status(403).json({ msg: "incorrect password" });
+    }
     // Error: Incorrect password
 
     res.json(createJWT(user));

@@ -13,7 +13,7 @@ export async function signUp(userData) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Invalid Sign Up");
+    throw new Error("users-api: Invalid Sign Up");
   }
 }
 
