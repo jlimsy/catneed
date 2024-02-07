@@ -14,7 +14,7 @@ export default function NavBar({ user, setUser, admin }) {
         <div>
           <NavLink to="/">CatNeed</NavLink>
         </div>
-        <p>Welcome, {user.username}!</p>
+        <h1>Welcome, {user.username}!</h1>
         <NavLink to="/browse">Browse </NavLink>
         <NavLink to="/donate">Donate </NavLink>
         <NavLink to="/request">Request </NavLink>

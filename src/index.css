@@ -16,6 +16,9 @@
   input{
     @apply bg-neptune-50 border border-neptune-300 text-neptune-900 sm:text-sm rounded-lg focus:ring-neptune-600 focus:border-neptune-600 block w-full p-2.5;
   }
+  p {
+    @apply text-sm
+  }
 }
 
 
