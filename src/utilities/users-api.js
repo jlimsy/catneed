@@ -1,4 +1,5 @@
 import { getToken } from "./users-service";
+import sendRequest from "./send-request";
 
 const BASE_URL = "/api/users";
 
@@ -30,16 +31,18 @@ export async function login(userData) {
   }
 }
 
+//! Protected routes
 export async function userProfile(userData) {
-  const token = getToken();
-  const res = await fetch(BASE_URL + "/profile", {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+  const res = await sendRequest(BASE_URL + "/profile", "GET", userData);
+  // const token = getToken();
+  // const res = await fetch(BASE_URL + "/profile", {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer ${token}`,
+  //   },
 
-    body: JSON.stringify(userData),
-  });
+  //   body: JSON.stringify(userData),
+  // });
 
   if (res.ok) {
     return res.json();
