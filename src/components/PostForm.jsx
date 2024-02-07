@@ -1,6 +1,7 @@
 import { useState } from "react";
 import categories from "../assets/categories";
 import conditions from "../assets/conditions";
+import planningAreas from "../assets/planningAreas";
 
 const BASE_URL = "/api/image/upload";
 
@@ -176,6 +177,15 @@ export default function PostForm() {
           >
             Location:
           </label>
+
+          <select
+            id="planning-areas"
+            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            {planningAreas.map((area) => (
+              <option key={area}> {area} </option>
+            ))}
+          </select>
         </div>
       </form>
     </section>
