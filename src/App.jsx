@@ -28,7 +28,7 @@ function App() {
           <NavBar user={user} setUser={setUser} admin={admin} />
           <Routes>
             <Route path="/browse" element={<BrowsePage />} />
-            <Route path="/donate" element={<DonatePage />} />
+            <Route path="/donate" element={<DonatePage user={user} />} />
             <Route path="/request" element={<RequestPage />} />
             <Route path="/listings" element={<ListingsPage />} />
             <Route path="/chat" element={<ChatPage />} />

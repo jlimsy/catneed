@@ -6,7 +6,7 @@ import planningAreas from "../assets/planningAreas";
 
 const BASE_URL = "/api/image/upload";
 
-export default function PostForm() {
+export default function PostForm({ user }) {
   const form = useForm();
   const {
     register,
@@ -26,26 +26,10 @@ export default function PostForm() {
     console.log("add more images?");
   };
 
-  const onSubmit = async (event) => {
-    const {
-      name,
-      category,
-      image,
-      description,
-      expiry,
-      condition,
-      location,
-      status,
-    } = event;
+  const onSubmit = async (data) => {
     const formData = {
-      name,
-      category,
-      image,
-      description,
-      expiry,
-      condition,
-      location,
-      status,
+      ...data,
+      user: user._id,
     };
 
     console.log(formData);
