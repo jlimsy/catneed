@@ -1,5 +1,6 @@
 import * as usersAPI from "./users-api";
 
+// ===== AUTHENTICATION ===== //
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
   localStorage.setItem("token", token);
@@ -12,26 +13,8 @@ export async function login(userData) {
   return getUser();
 }
 
-export async function userProfile(userData) {
-  const user = await usersAPI.userProfile(userData);
-  JSON.stringify(user);
-
-  console.log("userProfile", user);
-
-  return user;
-}
-
-export async function allUsers() {
-  const user = await usersAPI.allUsers();
-  console.log("allUsers", user);
-  return user;
-}
-
-export async function updatePostal(postalData) {
-  const postalCode = await usersAPI.updatePostal(postalData);
-  console.log("users-service | postal code:", postalCode);
-
-  return postalCode;
+export function logOut() {
+  localStorage.removeItem("token");
 }
 
 export function getToken() {
@@ -55,6 +38,33 @@ export function getUser() {
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
 }
 
-export function logOut() {
-  localStorage.removeItem("token");
+// ===== USER PROFILES ===== //
+export async function userProfile(userData) {
+  const user = await usersAPI.userProfile(userData);
+  JSON.stringify(user);
+
+  console.log("userProfile", user);
+
+  return user;
+}
+
+export async function updatePostal(postalData) {
+  const postalCode = await usersAPI.updatePostal(postalData);
+  console.log("users-service | postal code:", postalCode);
+
+  return postalCode;
+}
+
+// ===== ADMIN ===== //
+//! Admin-access routes
+
+export function getAdmin() {
+  const token = getToken();
+  return token ? JSON.parse(atob(token.split(".")[1])).user : null;
+}
+
+export async function allUsers() {
+  const user = await usersAPI.allUsers();
+  console.log("allUsers", user);
+  return user;
 }

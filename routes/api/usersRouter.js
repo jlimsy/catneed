@@ -2,19 +2,21 @@ const express = require("express");
 const router = express.Router();
 const usersCtrl = require("../../controllers/api/usersController");
 const { checkToken } = require("../../config/checkToken");
+const { checkAdmin } = require("../../config/checkAdmin");
 
 // POST /api/users
 
-//* signup
-router.post("/", usersCtrl.create);
+// ===== PUBLIC ROUTES ===== //
 
-//* login
-router.post("/login", usersCtrl.login);
+router.post("/", usersCtrl.create); //* signup
+router.post("/login", usersCtrl.login); //* login
 
-router.get("/all", usersCtrl.index);
-
-//* get user data, protected routes
+// ===== PROTECTED ROUTES ===== //
 router.get("/profile", checkToken, usersCtrl.readProfile);
 router.patch("/profile", usersCtrl.updatePostal);
+
+//! admin-access only
+//? if all admins view the same thing, do i still need a checkToken?
+router.get("/all", checkToken, checkAdmin, usersCtrl.index); //view all users
 
 module.exports = router;
