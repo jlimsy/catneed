@@ -9,12 +9,17 @@ import ChatPage from "./pages/ChatPage";
 import DashboardPage from "./pages/DashboardPage";
 import SettingsPage from "./pages/SettingsPage";
 import AboutPage from "./pages/AboutPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getUser, getAdmin } from "./utilities/users-service";
 
 function App() {
   const [user, setUser] = useState(getUser());
   const [admin, setAdmin] = useState(getAdmin());
+
+  // Retrieve admin status without needing to refresh page
+  useEffect(() => {
+    setAdmin(getAdmin());
+  }, [user]);
 
   return (
     <main>
