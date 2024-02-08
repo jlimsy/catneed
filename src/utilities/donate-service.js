@@ -1,12 +1,23 @@
+import debug from "debug";
 import * as donateAPI from "./donate-api";
 
+const log = debug("catneed:utilities:donate-service");
+localStorage.debug = "catneed:*";
+
 export async function postDonate(donateData) {
-  console.log("donate-service.js | donateData", donateData);
+  log("donateData %o", donateData);
 
   const donateItem = await donateAPI.postItem(donateData);
-  // this part not working because anything below does not appear
 
   JSON.stringify(donateItem);
-  console.log("donate-service.js | postDonate", donateItem);
+  log("donateItem %o", donateItem);
   return donateItem;
+}
+
+export async function getDonate() {
+  const donateListings = await donateAPI.getAll();
+  log("donateListings %o", donateListings);
+
+  JSON.stringify(donateListings);
+  return donateListings;
 }

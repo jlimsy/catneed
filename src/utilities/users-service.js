@@ -64,12 +64,6 @@ export async function updatePostal(postalData) {
 
 export function getAdmin() {
   const token = getToken();
-
-  // console.log(
-  //   "getAdmin JSON.parse token:",
-  //   JSON.parse(atob(token.split(".")[1])).user.isAdmin
-  // );
-
   return token ? JSON.parse(atob(token.split(".")[1])).user.isAdmin : null;
 }
 

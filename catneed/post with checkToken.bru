@@ -1,0 +1,29 @@
+meta {
+  name: post with checkToken
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:3000/api/donate/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YzMwNDViMjBlODhlM2FhYzM2MDE1YyIsInVzZXJuYW1lIjoiam9leSIsImVtYWlsIjoiam9leUBqb2V5LmNvbSIsImlzQWRtaW4iOnRydWUsInBvc3RhbCI6W10sImNyZWF0ZWRBdCI6IjIwMjQtMDItMDdUMDQ6MTc6MzEuNDAzWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDItMDdUMDQ6MTc6MzEuNDAzWiIsIl9fdiI6MH0sImlhdCI6MTcwNzM4MTU2OCwiZXhwIjoxNzA3NDY3OTY4fQ.uehpF3RRs5fBjnrXLW1YNl07CppRBfh0ZeMJkZJEr9w
+}
+
+body:json {
+  {
+    "user": "65c3045b20e88e3aac36015c",
+    "name": "Tofu Litter",
+    "image": {},
+    "category": "Grooming Supplies",
+    "description": "Peach-scented",
+    "expiry": "",
+    "condition": "New",
+    "location": "Bishan",
+    "status": "Available"
+  }
+}

@@ -1,9 +1,13 @@
+import debug from "debug";
 import sendRequest from "./send-request";
+
+const log = debug("catneed:utilities:donate-api");
+localStorage.debug = "catneed:*";
 
 const BASE_URL = "/api/donate";
 
 export async function postItem(donateData) {
-  console.log("donate-api | before fetch ", donateData);
+  log("donateData %o", donateData);
   const res = await sendRequest(BASE_URL, "POST", donateData);
 
   //   const res = await fetch(BASE_URL, {
@@ -12,11 +16,23 @@ export async function postItem(donateData) {
   //     body: JSON.stringify(donateData),
   //   });
 
-  console.log("donate-api | after fetch", res);
+  log("res %o", res);
 
   if (res.ok) {
     return res.json();
   } else {
     throw new Error("donate-api: Unable to post item");
+  }
+}
+
+export async function getAll() {
+  const res = await sendRequest(BASE_URL, "GET");
+
+  log("res %o", res);
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("donate-api: Unable to get listings");
   }
 }

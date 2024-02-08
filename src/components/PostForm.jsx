@@ -1,9 +1,13 @@
+import debug from "debug";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { postDonate } from "../utilities/donate-service";
 import categories from "../assets/categories";
 import conditions from "../assets/conditions";
 import planningAreas from "../assets/planningAreas";
+
+const log = debug("catneed:components:PostForm");
+localStorage.debug = "catneed:*";
 
 const BASE_URL = "/api/image/upload";
 
@@ -37,7 +41,7 @@ export default function PostForm({ user }) {
 
     try {
       const donateItem = await postDonate(formData);
-      console.log("PostForm.jsx | donateItem", donateItem);
+      log("donateItem %o", donateItem);
 
       console.log(formData);
     } catch (error) {

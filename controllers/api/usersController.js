@@ -1,3 +1,4 @@
+const log = require("debug")("catneed:controllers:usersController");
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -35,16 +36,16 @@ async function login(req, res) {
   }
 }
 
+//! User access
 async function readProfile(req, res) {
-  console.log("REQUEST", req.body);
+  log("req.body %o", req.body);
   const user = await User.findById(req.body._id);
-  console.log("REQUEST", req.body);
+  log("req.body %o", req.body._id);
   res.json(user);
 }
 
+//! Admin-access only
 async function index(req, res) {
-  // console.log("REQUEST", req.body);
-
   const user = await User.find({});
   res.json(user);
 }

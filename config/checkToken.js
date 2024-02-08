@@ -1,15 +1,18 @@
 const jwt = require("jsonwebtoken");
+const log = require("debug")("catneed:config:checkToken");
 
 const checkToken = (req, res, next) => {
-  console.log("checkToken middleware");
   const token = req.get("Authorization").split(" ")[1];
-  console.log("token", token);
 
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET);
     req.body = decodedToken.user;
+    log("req.body %o", req.body);
+
     const { _id, isAdmin } = decodedToken.user;
-    console.log("req.body:", req.body, "id:", _id, "isAdmin:", isAdmin);
+    log("decodedToken.user %o", decodedToken.user);
+    log("_id %o", _id);
+
     next();
   } catch (error) {
     res.status(403).json({ msg: "wrong token" });
