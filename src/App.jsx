@@ -11,10 +11,17 @@ import SettingsPage from "./pages/SettingsPage";
 import AboutPage from "./pages/AboutPage";
 import { useEffect, useState } from "react";
 import { getUser, getAdmin } from "./utilities/users-service";
+import debug from "debug";
+
+const log = debug("catneed:pages:app");
+localStorage.debug = "catneed:*";
 
 function App() {
   const [user, setUser] = useState(getUser());
+  log("user %o", user);
+
   const [admin, setAdmin] = useState(getAdmin());
+  log("admin %o", admin);
 
   // Retrieve admin status without needing to refresh page
   useEffect(() => {

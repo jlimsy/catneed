@@ -2,6 +2,8 @@
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
+const debug = require("debug")("catneed:server");
+
 //* Database
 require("dotenv").config();
 require("./config/database");
@@ -15,6 +17,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 // app.use(require("./config/checkToken"));
 
 // ===== ROUTES ===== //
+
 app.use("/api/users", require("./routes/api/usersRouter"));
 app.use("/api/donate", require("./routes/api/donateRouter"));
 app.use("/api/test", require("./routes/api/testRouter"));

@@ -4,6 +4,7 @@ const donateCtrl = require("../../controllers/api/donateController");
 
 // POST /api/donate
 
+//! Protected routes because you don't want public to be able to post to your DB
 router.post("/", donateCtrl.create); //* post an item
 
 //! private access

@@ -1,7 +1,7 @@
 const Donate = require("../../models/donate");
 
 async function create(req, res) {
-  // userId
+  // extract userId from jwt token
   try {
     console.log("donateController.js | req.body", req.body);
     const donateItem = await Donate.create(req.body);

@@ -1,4 +1,8 @@
+import debug from "debug";
 import * as usersAPI from "./users-api";
+
+const log = debug("catneed:utilities:users-service");
+localStorage.debug = "catneed:*";
 
 // ===== AUTHENTICATION ===== //
 export async function signUp(userData) {
@@ -23,7 +27,7 @@ export function getToken() {
   if (!token) return null;
 
   const payload = JSON.parse(atob(token.split(".")[1]));
-  console.log("payload", payload);
+  log("payload %o", payload);
 
   if (payload.exp < Date.now() / 1000) {
     localStorage.removeItem("token");
