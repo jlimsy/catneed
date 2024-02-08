@@ -5,7 +5,7 @@
 @layer base {
 
   body {
-    @apply min-h-screen w-screen bg-ice-100 text-onyx-800 text-sm text-center;
+    @apply min-h-screen w-screen font-Nunito bg-ice-100 text-onyx-800 text-sm text-center;
   }
   h1 {
     @apply text-xl text-onyx-800;

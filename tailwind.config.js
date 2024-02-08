@@ -69,7 +69,11 @@ export default {
         950: "#1b2731",
       },
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        Nunito: ["Nunito"],
+      },
+    },
   },
   plugins: [],
 };
