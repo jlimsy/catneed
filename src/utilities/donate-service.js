@@ -6,6 +6,9 @@ localStorage.debug = "catneed:*";
 
 export async function getAll() {
   const allDonateListings = await donateAPI.getAll();
+  log("allDonateListings %o", allDonateListings);
+  log("allDonateListings date %o", allDonateListings[0].updatedAt);
+
   //   JSON.stringify(allDonateListings);
   return allDonateListings;
 }

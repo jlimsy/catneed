@@ -5,6 +5,7 @@ async function index(req, res) {
   try {
     const allListings = await Donate.find();
     res.json(allListings);
+    log("listings %o", allListings);
   } catch (error) {
     res.status(500).json({ msg: "unable to retrieve donate listings" });
   }

@@ -12,7 +12,7 @@ export default function NavBar({ user, setUser, admin }) {
     <header className="w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div>
-          <NavLink to="/">CatNeed</NavLink>
+          <NavLink to="/browse">CatNeed</NavLink>
         </div>
         <h1>Welcome, {user.username}!</h1>
         <NavLink to="/browse">Browse </NavLink>

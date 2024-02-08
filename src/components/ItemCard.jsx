@@ -21,18 +21,20 @@ export default function ItemCard({ donateItem, browseItem }) {
         </p>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        <span className="inline-block bg-copperfield-200 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
           {donateItem?.status}
           {browseItem?.status}
         </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2">
           {donateItem?.location}
           {browseItem?.location}
         </span>
-        Posted on:
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          {ISOToReadable(donateItem?.updatedAt)}
-          {ISOToReadable(browseItem?.updatedAt)}
+
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
+          Posted on:{" "}
+          {browseItem
+            ? ISOToReadable(browseItem?.updatedAt)
+            : ISOToReadable(donateItem?.createdAt)}
         </span>
       </div>
     </div>

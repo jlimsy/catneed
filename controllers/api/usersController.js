@@ -19,20 +19,20 @@ async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      res.status(404).json({ msg: "user not found" });
+      return res.status(404).json({ msg: "user not found" });
     }
     // Error: User does not exist
 
     const match = await bcrypt.compare(req.body.password, user.password);
 
     if (!match) {
-      res.status(403).json({ msg: "incorrect password" });
+      return res.status(403).json({ msg: "incorrect password" });
     }
     // Error: Incorrect password
 
-    res.json(createJWT(user));
+    return res.json(createJWT(user));
   } catch (error) {
-    res.status(500).json({ msg: "log in failed" });
+    return res.status(500).json({ msg: "log in failed" });
   }
 }
 

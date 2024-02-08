@@ -21,11 +21,7 @@ export default function BrowsePage() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3">
       {browseItems.map((browseItem) => (
-        <ItemCard
-          key={browseItem._id}
-          browseItem={browseItem}
-          donateItem={null}
-        />
+        <ItemCard key={browseItem._id} browseItem={browseItem} />
       ))}
       ;
     </div>

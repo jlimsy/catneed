@@ -23,7 +23,7 @@ export default function ListingsPage() {
       <h1>My Requests</h1>
       <ItemCard />
       <h1>My Donations</h1>
-      <div className="flex">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {donateListings.map((donateItem) => (
           <ItemCard key={donateItem._id} donateItem={donateItem} />
         ))}
