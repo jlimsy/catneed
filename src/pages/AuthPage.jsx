@@ -29,6 +29,9 @@ export default function AuthPage({ setUser }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
       <div className="md:col-span-1">
+        <div>
+          <h1>Welcome to Catneed</h1>
+        </div>
         <ScrollDisplay browseItems={browseItems} />
       </div>
       <div className="md:col-span-1">

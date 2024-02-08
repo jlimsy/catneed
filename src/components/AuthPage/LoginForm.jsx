@@ -28,66 +28,64 @@ export default function LoginForm({ setNewUser, setUser }) {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Login
-            </h1>
-            <form
-              className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Valid email is required.",
-                    },
-                  })}
-                />
-                {errors.email && <p>{errors.email.message}</p>}
-              </div>
+    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div className="bg-rust-400 p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Login
+          </h1>
+          <form
+            className="space-y-4 md:space-y-6"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Valid email is required.",
+                  },
+                })}
+              />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
 
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: "Password is required.",
-                    },
-                    minLength: {
-                      value: 6,
-                      message: "Password of minimum 6 chars is required.",
-                    },
-                  })}
-                />
-                {errors.password && <p>{errors.password.message}</p>}
-              </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password is required.",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Password of minimum 6 chars is required.",
+                  },
+                })}
+              />
+              {errors.password && <p>{errors.password.message}</p>}
+            </div>
 
-              <button>Login</button>
+            <button>Login</button>
 
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
-                <span
-                  className="font-medium text-jade-500 cursor-pointer"
-                  onClick={handleClick}
-                >
-                  Sign up
-                </span>
-              </p>
-            </form>
-          </div>
+            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              Don’t have an account yet?{" "}
+              <span
+                className="font-medium text-jade-500 cursor-pointer"
+                onClick={handleClick}
+              >
+                Sign up
+              </span>
+            </p>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

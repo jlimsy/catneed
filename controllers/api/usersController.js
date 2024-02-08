@@ -41,13 +41,13 @@ async function readProfile(req, res) {
   log("req.body %o", req.body);
   const user = await User.findById(req.body._id);
   log("req.body %o", req.body._id);
-  res.json(user);
+  return res.json(user);
 }
 
 //! Admin-access only
 async function index(req, res) {
   const user = await User.find({});
-  res.json(user);
+  return res.json(user);
 }
 
 async function updatePostal(req, res) {
@@ -61,9 +61,9 @@ async function updatePostal(req, res) {
     if (!updatedUser) throw new Error();
     // Error: User does not exist
 
-    res.json(updatedUser);
+    return res.json(updatedUser);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 }
 

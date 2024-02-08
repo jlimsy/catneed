@@ -5,16 +5,16 @@
 @layer base {
 
   body {
-    @apply min-h-screen w-screen bg-neptune-50 text-neptune-500 text-center;
+    @apply min-h-screen w-screen bg-ice-100 text-sage-950 text-center;
   }
   h1 {
-    @apply text-xl text-neptune-500;
+    @apply text-xl text-sage-500;
   }
   label {
     @apply block mb-2 text-sm font-medium;
   }
   input{
-    @apply bg-neptune-50 border border-neptune-300 text-neptune-900 sm:text-sm rounded-lg focus:ring-neptune-600 focus:border-neptune-600 block w-full p-2.5;
+    @apply bg-sage-50 border border-sage-300 text-sage-900 sm:text-sm rounded-lg focus:ring-sage-600 focus:border-sage-600 block w-full p-2.5;
   }
   p {
     @apply text-sm

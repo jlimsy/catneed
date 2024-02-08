@@ -21,7 +21,7 @@ export default function ItemCard({ donateItem, browseItem }) {
         </p>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <span className="inline-block bg-copperfield-200 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
+        <span className="inline-block bg-rust-200 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
           {donateItem?.status}
           {browseItem?.status}
         </span>
