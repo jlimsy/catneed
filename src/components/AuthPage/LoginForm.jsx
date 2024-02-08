@@ -29,9 +29,9 @@ export default function LoginForm({ setNewUser, setUser }) {
 
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-        <div className="bg-rust-400 p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+      <div className="w-full bg-sage-300 border rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
             Login
           </h1>
           <form
@@ -72,12 +72,17 @@ export default function LoginForm({ setNewUser, setUser }) {
               {errors.password && <p>{errors.password.message}</p>}
             </div>
 
-            <button>Login</button>
+            <button
+              type="submit"
+              className="bg-drab-800 text-ice-100 hover:bg-rust-400 focus:ring-rust-500"
+            >
+              Login
+            </button>
 
-            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+            <p className="font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet?{" "}
               <span
-                className="font-medium text-jade-500 cursor-pointer"
+                className="font-medium text-jade-500 cursor-pointer hover:text-rust-400"
                 onClick={handleClick}
               >
                 Sign up

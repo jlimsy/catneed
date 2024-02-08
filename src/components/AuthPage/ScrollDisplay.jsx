@@ -8,10 +8,12 @@ localStorage.debug = "catneed:*";
 export default function ScrollDisplay({ browseItems }) {
   log("browseItems %o", browseItems);
   return (
-    <div className="flex">
+    <div className="flex h-dvh">
       <Marquee autoFill pauseOnHover>
         {browseItems.map((browseItem) => (
-          <ItemCard key={browseItem._id} browseItem={browseItem} />
+          <div className="m-5" key={browseItem._id}>
+            <ItemCard browseItem={browseItem} />
+          </div>
         ))}
       </Marquee>
     </div>

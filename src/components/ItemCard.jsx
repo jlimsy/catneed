@@ -2,7 +2,7 @@ import ISOToReadable from "../../controllers/api/dateConverter";
 
 export default function ItemCard({ donateItem, browseItem }) {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm rounded-lg border overflow-hidden shadow-lg">
       <img
         className="w-full"
         src="/img/card-top.jpg"
@@ -13,15 +13,17 @@ export default function ItemCard({ donateItem, browseItem }) {
           {donateItem?.name}
           {browseItem?.name}
         </div>
-        <p className="text-gray-700 text-base">
+        <p>
           {donateItem?.description} {browseItem?.description}
         </p>
-        <p className="text-gray-700 text-base">
-          {donateItem?.category} {browseItem?.category}
-        </p>
+        <div>
+          <p className="text-xs text-onyx-400 my-2">
+            {donateItem?.category} {browseItem?.category}
+          </p>
+        </div>
       </div>
-      <div className="px-6 pt-4 pb-2">
-        <span className="inline-block bg-rust-200 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
+      <div className="px-6 pt-4 pb-2 bg-ice-200">
+        <span className="inline-block bg-sage-300 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
           {donateItem?.status}
           {browseItem?.status}
         </span>

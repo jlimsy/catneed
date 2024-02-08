@@ -27,14 +27,15 @@ export default function AuthPage({ setUser }) {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
-      <div className="md:col-span-1">
+    <div className="grid grid-cols-1 md:grid-cols-2 ">
+      <div className="md:col-span-1 bg-ice-100">
         <div>
           <h1>Welcome to Catneed</h1>
         </div>
+
         <ScrollDisplay browseItems={browseItems} />
       </div>
-      <div className="md:col-span-1">
+      <div className="md:col-span-1 bg-gradient-to-r from-sage-200 to-rust-200">
         {newUser ? (
           <SignUpForm setNewUser={setNewUser} setUser={setUser} />
         ) : (

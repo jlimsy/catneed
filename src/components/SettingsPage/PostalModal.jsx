@@ -18,7 +18,7 @@ export default function PostalModal() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="postal">Postal Code</label>
         <input
@@ -37,7 +37,12 @@ export default function PostalModal() {
         />
         {errors.postal && <p>{errors.postal.message}</p>}
 
-        <button type="submit">Update postal code</button>
+        <button
+          type="submit"
+          className="bg-rust-400 text-ice-100 hover:bg-sage-300 hover:text-onyx-950 focus:ring-sage-400 my-2"
+        >
+          Update postal code
+        </button>
       </form>
     </div>
   );

@@ -15,12 +15,12 @@ export default function SettingsPage() {
   }, []);
 
   return (
-    <>
+    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
       <h1>Personal Info</h1>
-      <div>{profile.username}</div>
-      <div>{profile.email}</div>
-      <div>{profile.isAdmin ? "Admin" : ""}</div>
+      <p>Username: {profile.username}</p>
+      <p>Email: {profile.email}</p>
+      <p>{profile.isAdmin ? "Admin" : ""}</p>
       <PostalModal />
-    </>
+    </div>
   );
 }
