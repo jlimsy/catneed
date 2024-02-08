@@ -1,6 +1,15 @@
 const Donate = require("../../models/donate");
 const log = require("debug")("catneed:controllers:donateController");
 
+async function index(req, res) {
+  try {
+    const allListings = await Donate.find();
+    res.json(allListings);
+  } catch (error) {
+    res.status(500).json({ msg: "unable to retrieve donate listings" });
+  }
+}
+
 async function create(req, res) {
   // extract userId from jwt token
   try {
@@ -13,7 +22,7 @@ async function create(req, res) {
   }
 }
 
-async function index(req, res) {
+async function getListings(req, res) {
   try {
     const listings = await Donate.find({ user: req.body._id });
     log("req.body._id %o", req.body._id);
@@ -24,4 +33,4 @@ async function index(req, res) {
   }
 }
 
-module.exports = { create, index };
+module.exports = { create, getListings };

@@ -26,7 +26,7 @@ export async function postItem(donateData) {
 }
 
 export async function getAll() {
-  const res = await sendRequest(BASE_URL, "GET");
+  const res = await sendRequest(BASE_URL + "/listings", "GET");
 
   log("res %o", res);
 

@@ -5,8 +5,10 @@ const { checkToken } = require("../../config/checkToken");
 
 // POST /api/donate
 
+// router.get("/", donateCtrl.index); //* browse all donations
+
 //! Protected routes because you don't want public to be able to post to your DB
 router.post("/", checkToken, donateCtrl.create); //* post an item
-router.get("/", checkToken, donateCtrl.index); //* get all your donations
+router.get("/listings", checkToken, donateCtrl.getListings); //* get all your donations
 
 module.exports = router;
