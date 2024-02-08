@@ -6,6 +6,16 @@ localStorage.debug = "catneed:*";
 
 const BASE_URL = "/api/donate";
 
+export async function getAll() {
+  const res = await sendRequest(BASE_URL, "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("donate-api: Unable to get listings");
+  }
+}
+
 export async function postItem(donateData) {
   log("donateData %o", donateData);
   const res = await sendRequest(BASE_URL, "POST", donateData);
@@ -25,7 +35,7 @@ export async function postItem(donateData) {
   }
 }
 
-export async function getAll() {
+export async function getListings() {
   const res = await sendRequest(BASE_URL + "/listings", "GET");
 
   log("res %o", res);

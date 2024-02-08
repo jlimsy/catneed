@@ -33,4 +33,4 @@ async function getListings(req, res) {
   }
 }
 
-module.exports = { create, getListings };
+module.exports = { create, getListings, index };

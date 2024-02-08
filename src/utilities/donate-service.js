@@ -4,6 +4,12 @@ import * as donateAPI from "./donate-api";
 const log = debug("catneed:utilities:donate-service");
 localStorage.debug = "catneed:*";
 
+export async function getAll() {
+  const allDonateListings = await donateAPI.getAll();
+  //   JSON.stringify(allDonateListings);
+  return allDonateListings;
+}
+
 export async function postDonate(donateData) {
   log("donateData %o", donateData);
 
@@ -15,7 +21,7 @@ export async function postDonate(donateData) {
 }
 
 export async function getDonate() {
-  const donateListings = await donateAPI.getAll();
+  const donateListings = await donateAPI.getListings();
   log("donateListings %o", donateListings);
 
   JSON.stringify(donateListings);

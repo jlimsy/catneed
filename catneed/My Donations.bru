@@ -1,0 +1,15 @@
+meta {
+  name: My Donations
+  type: http
+  seq: 10
+}
+
+get {
+  url: http://localhost:3000/api/donate
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YzBiZDI1MGQ0MDRkYWY2ZTEwZDhiOCIsInVzZXJuYW1lIjoicXVhY2siLCJlbWFpbCI6InF1YWNrQHF1YWNrLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJwb3N0YWwiOltdLCJjcmVhdGVkQXQiOiIyMDI0LTAyLTA1VDEwOjQ5OjA5Ljk5MVoiLCJ1cGRhdGVkQXQiOiIyMDI0LTAyLTA1VDEwOjQ5OjA5Ljk5MVoiLCJfX3YiOjB9LCJpYXQiOjE3MDczOTQzMDIsImV4cCI6MTcwNzQ4MDcwMn0.YyeP258p8mYusMN5BLIESDD3xxqNNwo4a6O3s5PHMPQ
+}
