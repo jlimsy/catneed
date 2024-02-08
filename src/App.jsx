@@ -21,6 +21,8 @@ function App() {
     setAdmin(getAdmin());
   }, [user]);
 
+  // console.log(user._id);
+
   return (
     <main>
       {user ? (

@@ -8,6 +8,8 @@ import planningAreas from "../assets/planningAreas";
 const BASE_URL = "/api/image/upload";
 
 export default function PostForm({ user }) {
+  // console.log("PostForm | user", user);
+
   const form = useForm();
   const {
     register,
@@ -17,11 +19,11 @@ export default function PostForm({ user }) {
   } = form;
   const [images, setImages] = useState([]);
 
-  const onImageChange = (event) => {
-    const selectedImages = event.target.files;
-    setImages(selectedImages);
-    console.log(selectedImages);
-  };
+  // const onImageChange = (event) => {
+  //   const selectedImages = event.target.files;
+  //   setImages(selectedImages);
+  //   console.log(selectedImages);
+  // };
 
   const handleClick = () => {
     console.log("add more images?");
@@ -98,14 +100,16 @@ export default function PostForm({ user }) {
       <div className="mb-5">
         <label htmlFor="photo">Upload photo of your item:</label>
 
-        <input
+        <input type="string" id="image" name="image" {...register("image")} />
+
+        {/* <input
           type="file"
           id="image"
           name="image"
           accept="image/*"
           onChange={onImageChange}
           {...register("image")}
-        />
+        /> */}
 
         <button onClick={handleClick}>Add</button>
       </div>

@@ -24,6 +24,8 @@ export async function login(userData) {
     body: JSON.stringify(userData),
   });
 
+  console.log("users-api | res.body", res, res.body);
+
   if (res.ok) {
     return res.json();
   } else {
