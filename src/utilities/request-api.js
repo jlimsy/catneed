@@ -6,7 +6,7 @@ localStorage.debug = "catneed:*";
 
 const BASE_URL = "/api/request";
 
-export async function getAll() {
+export async function getListings() {
   const res = await sendRequest(BASE_URL, "GET");
   log("res %o", res);
 
