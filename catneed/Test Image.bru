@@ -1,0 +1,42 @@
+meta {
+  name: Test Image
+  type: http
+  seq: 14
+}
+
+post {
+  url: http://localhost:3000/api/image/upload
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "images": [
+      {
+        "name": "image1.jpg",
+        "type": "image/jpeg",
+        "size": 12345,
+        "blob": "base64-encoded-image-data"
+      },
+      {
+        "name": "image2.png",
+        "type": "image/png",
+        "size": 23456,
+        "blob": "base64-encoded-image-data"
+      }
+    ]
+  }
+}
+
+body:form-urlencoded {
+  s3Images: 
+}
+
+body:multipart-form {
+  s3Images: file.png
+}

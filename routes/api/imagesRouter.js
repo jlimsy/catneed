@@ -1,6 +1,6 @@
 const express = require("express");
-const router = express.Router();
 const multer = require("multer");
+const router = express.Router();
 const multerS3 = require("multer-s3");
 const AWS = require("aws-sdk");
 
@@ -32,21 +32,21 @@ const uploadWithMulter = () =>
         cb(null, file.originalname);
       },
     }),
-  }).array("s3Images", 5);
+  }).array("s3Images", 2);
 
 const uploadToAws = (req, res) => {
   const upload = uploadWithMulter();
 
-  upload((req, res, error) => {
+  upload(req, res, (error) => {
     if (error) {
-      console.log(error);
       res.json({ error, msg: "Error occurred while uploading images." });
       return;
     }
-    return res.json({ msg: "Files uploaded successfully.", files: req.files });
+    res.json({ msg: "Files uploaded successfully.", files: req.files });
   });
 };
 
-router.post("/upload", uploadToAws);
-
 module.exports = router;
+
+router.post("/upload", uploadToAws);
+router.get("/", (req, res) => res.send({ mesgg: "meow" }));
