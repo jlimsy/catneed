@@ -17,4 +17,14 @@ async function create(req, res) {
   }
 }
 
-module.exports = { create };
+async function getListings(req, res) {
+  try {
+    const listings = await Request.find({ user: req.user._id });
+    log("req.user._id %o", req.user._id);
+    return res.json(listings);
+  } catch (error) {
+    res.status(500).json({ msg: "unable to retrieve Request listings" });
+  }
+}
+
+module.exports = { create, getListings };

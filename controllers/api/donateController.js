@@ -29,8 +29,8 @@ async function create(req, res) {
 
 async function getListings(req, res) {
   try {
-    const listings = await Donate.find({ user: req.body._id });
-    log("req.body._id %o", req.body._id);
+    const listings = await Donate.find({ user: req.user._id });
+    log("req.body._id %o", req.user._id);
     res.json(listings);
     log("listings %o", listings);
   } catch (error) {

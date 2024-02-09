@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import ItemCard from "../components/ItemCard";
 import { getDonate } from "../utilities/donate-service";
+import { getRequest } from "../utilities/request-service";
 
 export default function ListingsPage() {
   const [donateListings, setDonateListings] = useState([]);
+  const [requestListings, setRequestListings] = useState([]);
 
   useEffect(() => {
     const fetchDonateListings = async () => {
@@ -15,6 +17,16 @@ export default function ListingsPage() {
       }
     };
 
+    const fetchRequestListings = async () => {
+      try {
+        const listings = await getRequest();
+        setRequestListings(listings);
+      } catch (error) {
+        console.error("Error fetching Request listings:", error);
+      }
+    };
+
+    fetchRequestListings(); // Call the function to fetch donate listings when the component mounts
     fetchDonateListings(); // Call the function to fetch donate listings when the component mounts
   }, []);
 
