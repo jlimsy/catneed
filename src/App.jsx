@@ -38,7 +38,7 @@ function App() {
           <Routes>
             <Route path="/browse" element={<BrowsePage />} />
             <Route path="/donate" element={<DonatePage user={user} />} />
-            <Route path="/request" element={<RequestPage />} />
+            <Route path="/request" element={<RequestPage user={user} />} />
             <Route path="/listings" element={<ListingsPage />} />
             <Route path="/chat" element={<ChatPage />} />
             {admin && <Route path="/dashboard" element={<DashboardPage />} />}

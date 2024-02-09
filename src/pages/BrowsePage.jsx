@@ -19,11 +19,12 @@ export default function BrowsePage() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3">
-      {browseItems.map((browseItem) => (
-        <DonateCard key={browseItem._id} browseItem={browseItem} />
-      ))}
-      ;
+    <div className="flex justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5">
+        {browseItems.map((browseItem) => (
+          <DonateCard key={browseItem._id} browseItem={browseItem} />
+        ))}
+      </div>
     </div>
   );
 }

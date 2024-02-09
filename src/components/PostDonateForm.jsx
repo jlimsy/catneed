@@ -6,13 +6,13 @@ import categories from "../assets/categories";
 import conditions from "../assets/conditions";
 import planningAreas from "../assets/planningAreas";
 
-const log = debug("catneed:components:PostForm");
+const log = debug("catneed:components:PostDonateForm");
 localStorage.debug = "catneed:*";
 
 const BASE_URL = "/api/image/upload";
 
-export default function PostForm({ user }) {
-  // console.log("PostForm | user", user);
+export default function PostDonateForm({ user }) {
+  // console.log("PostDonateForm | user", user);
 
   const form = useForm();
   const {
@@ -40,7 +40,7 @@ export default function PostForm({ user }) {
 
       console.log(data);
     } catch (error) {
-      console.log("PostForm.jsx:", error);
+      console.log("PostDonateForm.jsx:", error);
     }
   };
 
@@ -232,7 +232,12 @@ export default function PostForm({ user }) {
         </select>
       </div>
 
-      <button type="submit">Post</button>
+      <button
+        type="submit"
+        className="bg-drab-800 text-ice-100 hover:bg-rust-400 focus:ring-rust-500"
+      >
+        Donate
+      </button>
     </form>
   );
 }
