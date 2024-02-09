@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ItemCard from "../components/ItemCard";
+import DonateCard from "../components/DonateCard";
 import { getAll } from "../utilities/donate-service";
 
 export default function BrowsePage() {
@@ -21,7 +21,7 @@ export default function BrowsePage() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3">
       {browseItems.map((browseItem) => (
-        <ItemCard key={browseItem._id} browseItem={browseItem} />
+        <DonateCard key={browseItem._id} browseItem={browseItem} />
       ))}
       ;
     </div>

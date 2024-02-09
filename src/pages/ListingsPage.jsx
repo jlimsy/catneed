@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import ItemCard from "../components/ItemCard";
+import DonateCard from "../components/DonateCard";
 import { getDonate } from "../utilities/donate-service";
 import { getRequest } from "../utilities/request-service";
+import RequestCard from "../components/RequestCard";
 
 export default function ListingsPage() {
   const [donateListings, setDonateListings] = useState([]);
@@ -33,11 +34,15 @@ export default function ListingsPage() {
   return (
     <>
       <h1>My Requests</h1>
-      <ItemCard />
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+        {requestListings.map((requestItem) => (
+          <RequestCard key={requestItem._id} requestItem={requestItem} />
+        ))}
+      </div>
       <h1>My Donations</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {donateListings.map((donateItem) => (
-          <ItemCard key={donateItem._id} donateItem={donateItem} />
+          <DonateCard key={donateItem._id} donateItem={donateItem} />
         ))}
       </div>
     </>

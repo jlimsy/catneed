@@ -38,7 +38,6 @@ async function login(req, res) {
 
 //! User access
 async function readProfile(req, res) {
-  log("req.body %o", req.body);
   const user = await User.findById(req.user._id);
   log("req.body %o", req.user._id);
   return res.json(user);

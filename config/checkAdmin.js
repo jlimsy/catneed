@@ -1,10 +1,10 @@
 const checkAdmin = (req, res, next) => {
   try {
-    if (req.body.isAdmin) {
+    if (req.user.isAdmin) {
       next();
     }
 
-    if (!req.body.isAdmin) {
+    if (!req.user.isAdmin) {
       res.status(403).json({ msg: "Unauthorised" });
     }
   } catch (error) {

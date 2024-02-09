@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import ItemCard from "../ItemCard";
+import DonateCard from "../DonateCard";
 import debug from "debug";
 
 const log = debug("catneed:component:ScrollDisplay");
@@ -12,7 +12,7 @@ export default function ScrollDisplay({ browseItems }) {
       <Marquee autoFill pauseOnHover>
         {browseItems.map((browseItem) => (
           <div className="m-5" key={browseItem._id}>
-            <ItemCard browseItem={browseItem} />
+            <DonateCard browseItem={browseItem} />
           </div>
         ))}
       </Marquee>

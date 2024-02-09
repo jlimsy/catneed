@@ -1,6 +1,6 @@
 import ISOToReadable from "../../controllers/api/dateConverter";
 
-export default function ItemCard({ donateItem, browseItem }) {
+export default function RequestCard({ donateItem, browseItem }) {
   return (
     <div className="max-w-sm rounded-lg border overflow-hidden shadow-lg">
       <img
