@@ -1,4 +1,4 @@
-import ISOToReadable from "../../controllers/api/dateConverter";
+import { ISOToDateTime } from "../../controllers/api/dateConverter";
 
 export default function RequestCard({ requestItem }) {
   return (
@@ -26,7 +26,7 @@ export default function RequestCard({ requestItem }) {
             Posted on: <br />
           </span>
           <span className="font-semibold ">
-            {ISOToReadable(requestItem?.updatedAt)}
+            {ISOToDateTime(requestItem?.updatedAt)}
           </span>
         </span>
       </div>

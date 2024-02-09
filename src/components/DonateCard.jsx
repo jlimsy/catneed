@@ -1,4 +1,4 @@
-import ISOToReadable from "../../controllers/api/dateConverter";
+import { ISOToDateTime, ISOToDate } from "../../controllers/api/dateConverter";
 
 export default function DonateCard({ donateItem, browseItem }) {
   return (
@@ -37,15 +37,28 @@ export default function DonateCard({ donateItem, browseItem }) {
           </span>
         </div>
 
-        <div className="col-span-2 ">
+        <div className="col-span-1 ">
+          <span className="inline-block px-3 py-1 text-sm">
+            <span className="text-xs">
+              Expires on: <br />
+            </span>
+            <span className="font-semibold">
+              {browseItem?.expiry || donateItem?.expiry
+                ? ISOToDate(browseItem?.expiry || donateItem?.expiry)
+                : "NA"}
+            </span>
+          </span>
+        </div>
+
+        <div className="col-span-1 ">
           <span className="inline-block px-3 py-1 text-sm">
             <span className="text-xs">
               Posted on: <br />
             </span>
             <span className="font-semibold">
               {browseItem
-                ? ISOToReadable(browseItem?.updatedAt)
-                : ISOToReadable(donateItem?.createdAt)}
+                ? ISOToDateTime(browseItem?.updatedAt)
+                : ISOToDateTime(donateItem?.createdAt)}
             </span>
           </span>
         </div>
