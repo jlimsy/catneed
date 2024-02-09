@@ -6,7 +6,6 @@ const requestSchema = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      unique: true,
       required: true,
     },
     name: { type: String, required: true },
