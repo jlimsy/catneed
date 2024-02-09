@@ -13,9 +13,13 @@ async function index(req, res) {
 
 async function create(req, res) {
   // extract userId from jwt token
+  const userId = req.user._id;
+  log("userId%", req.user._id);
+
   try {
     log("req.body %o", req.body);
-    const donateItem = await Donate.create(req.body);
+    // const donateItem = await Donate.create(req.body);
+    const donateItem = await Donate.create({ ...req.body, user: userId });
     log("donateItem %o", donateItem);
     res.json(donateItem);
   } catch (error) {

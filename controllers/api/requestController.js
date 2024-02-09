@@ -3,6 +3,7 @@ const log = require("debug")("catneed:controllers:requestController");
 
 async function create(req, res) {
   // extract userId from jwt token
+  log("req.body._id %o", req.body._id);
   try {
     log("req.body %o", req.body);
     const requestItem = await Request.create(req.body);

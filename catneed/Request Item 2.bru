@@ -1,11 +1,11 @@
 meta {
-  name: Donate Item test
+  name: Request Item 2
   type: http
-  seq: 8
+  seq: 13
 }
 
 post {
-  url: http://localhost:3000/api/donate/
+  url: http://localhost:3000/api/request/
   body: json
   auth: bearer
 }
@@ -16,7 +16,11 @@ auth:bearer {
 
 body:json {
   {
-    "user" : "65c3045b20e88e3aac36015c",
-    "name": "Revolution"
+    "user": "65c3045b20e88e3aac36015c",
+    "name": "Royal Canin Renal Dry",
+    "category": "Food and Treats",
+    "description": "Requesting for sample before committing to 2kg packet",
+    "expiry": "",
+    "location": "Toa Payoh"
   }
 }

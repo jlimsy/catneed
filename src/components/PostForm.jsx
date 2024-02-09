@@ -34,16 +34,11 @@ export default function PostForm({ user }) {
   };
 
   const onSubmit = async (data) => {
-    const formData = {
-      ...data,
-      user: user._id,
-    };
-
     try {
-      const donateItem = await postDonate(formData);
+      const donateItem = await postDonate(data);
       log("donateItem %o", donateItem);
 
-      console.log(formData);
+      console.log(data);
     } catch (error) {
       console.log("PostForm.jsx:", error);
     }

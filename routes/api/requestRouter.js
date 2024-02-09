@@ -3,6 +3,6 @@ const router = express.Router();
 const requestCtrl = require("../../controllers/api/requestController");
 const { checkToken } = require("../../config/checkToken");
 
-router.post("/", requestCtrl.create); //* post a request item
+router.post("/", checkToken, requestCtrl.create); //* post a request item
 
 module.exports = router;

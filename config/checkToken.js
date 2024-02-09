@@ -6,7 +6,8 @@ const checkToken = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    req.body = decodedToken.user;
+    req.user = decodedToken.user;
+    log("req.user %o", req.user);
     log("req.body %o", req.body);
 
     const { _id, isAdmin } = decodedToken.user;
