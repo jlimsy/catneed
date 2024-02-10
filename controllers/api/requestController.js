@@ -32,7 +32,10 @@ async function delItem(req, res) {
   try {
     log("itemId %o", itemId);
 
-    const listing = await Request.findByIdAndDelete(itemId);
+    const listing = await Request.findOneAndDelete({
+      _id: itemId,
+      user: req.user._id,
+    });
     log("listing %o", listing);
 
     if (!listing) {

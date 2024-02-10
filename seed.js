@@ -49,12 +49,20 @@ const seedRequests = async (user1, user2) => {
       location: "Toa Payoh",
     },
     {
-      user: user1._id,
-      name: "Subcut Fluids",
-      category: "Medical Supplies",
+      user: user2._id,
+      name: "3-tier cage",
+      category: "Safety and Enclosures",
       image: "NA",
-      description: "For rescue cats with CKD ",
+      description: "Running a shelter",
       location: "Toa Payoh",
+    },
+    {
+      user: user2._id,
+      name: "Castle",
+      category: "Toys and Enrichment",
+      image: "NA",
+      description: "Rescue cats deserve to live like royalty",
+      location: "Tampines",
     },
   ]);
 };
