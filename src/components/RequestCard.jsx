@@ -9,7 +9,7 @@ export default function RequestCard({ requestItem }) {
   const handleDelete = async () => {
     log("requestItem._id %o", requestItem._id);
 
-    await requestAPI.delItem();
+    await requestAPI.delItem(requestItem._id);
   };
 
   return (

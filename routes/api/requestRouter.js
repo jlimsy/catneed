@@ -5,5 +5,6 @@ const { checkToken } = require("../../config/checkToken");
 
 router.post("/", checkToken, requestCtrl.create); //* post a request item
 router.get("/", checkToken, requestCtrl.getListings); //* get user-specific request item
+router.get("/:itemId", requestCtrl.delItem);
 
 module.exports = router;
