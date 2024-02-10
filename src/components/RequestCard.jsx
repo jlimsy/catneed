@@ -1,10 +1,22 @@
 import { ISOToDateTime } from "../../controllers/api/dateConverter";
+import * as requestAPI from "../utilities/request-api";
+const log = debug("catneed:components:RequestCard");
+localStorage.debug = "catneed:*";
 
 export default function RequestCard({ requestItem }) {
+  const handleDelete = async () => {
+    log("requestItem._id %o", requestItem._id);
+
+    await requestAPI.delItem();
+  };
+
   return (
     <div className="max-w-sm rounded-lg border border-rust-500 overflow-hidden shadow-lg bg-ice-100  bg-opacity-75  flex flex-col">
       <div className="text-right">
-        <span className="inline-block rounded-full bg-rust-200 px-3 py-1 text-xs font-semibold my-2 mx-2">
+        <span
+          onClick={handleDelete}
+          className="inline-block rounded-full bg-rust-200 px-3 py-1 text-xs font-semibold my-2 mx-2"
+        >
           Delete
         </span>
       </div>

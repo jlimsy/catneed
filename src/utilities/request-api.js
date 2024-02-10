@@ -29,3 +29,14 @@ export async function getListings() {
     throw new Error("request-api: Unable to get listings");
   }
 }
+
+export async function delItem() {
+  const res = await sendRequest(BASE_URL, "DELETE");
+  log("res %o", res);
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("request-api: Unable to delete listing");
+  }
+}
