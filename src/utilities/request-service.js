@@ -19,8 +19,9 @@ export async function getRequest() {
   return requestListings;
 }
 
-export async function delRequest() {
-  const requestItem = await requestAPI.delItem();
+export async function delRequest(itemId) {
+  log("itemId %o", itemId);
+  const requestItem = await requestAPI.delItem(itemId);
   log("requestItem %o", requestItem);
 
   return requestItem;

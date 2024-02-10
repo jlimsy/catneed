@@ -1,15 +1,27 @@
 import { ISOToDateTime } from "../../controllers/api/dateConverter";
-import * as requestAPI from "../utilities/request-api";
+import { delRequest } from "../utilities/request-service";
 import debug from "debug";
 
 const log = debug("catneed:components:RequestCard");
 localStorage.debug = "catneed:*";
 
-export default function RequestCard({ requestItem }) {
+export default function RequestCard({
+  requestItem,
+  requestListings,
+  setRequestListings,
+}) {
+  log("requestListings %o", requestListings);
   const handleDelete = async () => {
-    log("requestItem._id %o", requestItem._id);
-
-    await requestAPI.delItem(requestItem._id);
+    try {
+      log("requestItem %o", requestItem);
+      const reqItem = await delRequest(requestItem._id);
+      log("delItem %o", reqItem);
+      setRequestListings(
+        requestListings.filter((item) => item._id !== requestItem._id)
+      );
+    } catch (error) {
+      log("error %o", error);
+    }
   };
 
   return (

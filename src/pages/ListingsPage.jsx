@@ -40,6 +40,8 @@ export default function ListingsPage() {
                   <RequestCard
                     key={requestItem._id}
                     requestItem={requestItem}
+                    requestListings={requestListings}
+                    setRequestListings={setRequestListings}
                   />
                 ))
               ) : (
