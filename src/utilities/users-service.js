@@ -6,8 +6,11 @@ localStorage.debug = "catneed:*";
 
 // ===== AUTHENTICATION ===== //
 export async function signUp(userData) {
+  log("userData", userData);
+
   const token = await usersAPI.signUp(userData);
   localStorage.setItem("token", token);
+  log("token", token);
   return getUser();
 }
 
@@ -46,16 +49,12 @@ export function getUser() {
 export async function userProfile(userData) {
   const user = await usersAPI.userProfile(userData);
   JSON.stringify(user);
-
-  console.log("userProfile", user);
-
   return user;
 }
 
 export async function updatePostal(postalData) {
   const postalCode = await usersAPI.updatePostal(postalData);
-  console.log("users-service | postal code:", postalCode);
-
+  log("postalCode %o", postalCode);
   return postalCode;
 }
 

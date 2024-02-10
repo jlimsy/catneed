@@ -4,11 +4,14 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 async function create(req, res) {
+  log("user %o", req.body);
+
   try {
     const user = await User.create(req.body);
-    const token = createJWT(user);
-    // console.log(token);
+    log("user %o", user);
 
+    const token = createJWT(user);
+    log("token %o", token);
     res.json(token);
   } catch (error) {
     res.status(500).json({ msg: "sign up failed" });

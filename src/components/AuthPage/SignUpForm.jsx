@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
 import { signUp } from "../../utilities/users-service";
 import { useNavigate } from "react-router-dom";
+import debug from "debug";
+
+const log = debug("catneed:component:SignUpForm");
+localStorage.debug = "catneed:*";
 
 export default function SignUpForm({ setNewUser, setUser }) {
   const form = useForm();
@@ -16,11 +20,11 @@ export default function SignUpForm({ setNewUser, setUser }) {
     try {
       const { username, email, password } = event;
       const formData = { username, email, password };
+      log("log %o", formData);
 
       const user = await signUp(formData);
 
-      console.log("client", formData);
-      console.log("server", user);
+      log("user %o", user);
 
       setUser(user);
       navigate("/browse");

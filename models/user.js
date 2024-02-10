@@ -6,13 +6,6 @@ const SALT_ROUNDS = 6;
 
 // Embedding postalSchema into userSchema
 
-const postalSchema = new Schema(
-  {
-    postal: { type: String, trim: true, minLength: 6, required: true },
-  },
-  { timestamps: true }
-);
-
 const userSchema = new Schema(
   {
     username: { type: String, unique: true, required: true },
@@ -29,7 +22,11 @@ const userSchema = new Schema(
       minLength: 6,
       required: true,
     },
-    postal: [postalSchema],
+    postal: {
+      type: String,
+      trim: true,
+      minLength: 6,
+    },
     isAdmin: { type: Boolean, default: false },
   },
   {

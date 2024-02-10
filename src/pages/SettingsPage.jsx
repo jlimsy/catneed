@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PostalModal from "../components/SettingsPage/PostalModal";
+import PostalInput from "../components/SettingsPage/PostalInput";
 import { userProfile } from "../utilities/users-service";
 
 export default function SettingsPage() {
@@ -33,7 +33,7 @@ export default function SettingsPage() {
           <span className="font-bold">Member</span>
         )}
       </p>
-      <PostalModal />
+      <PostalInput />
     </div>
   );
 }
