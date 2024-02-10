@@ -4,8 +4,6 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 6;
 
-// Embedding postalSchema into userSchema
-
 const userSchema = new Schema(
   {
     username: { type: String, unique: true, required: true },
@@ -39,6 +37,40 @@ const userSchema = new Schema(
     },
   }
 );
+
+// const userSchema = new Schema(
+//   {
+//     username: { type: String, unique: true, required: true },
+//     email: {
+//       type: String,
+//       unique: true,
+//       trim: true,
+//       lowercase: true,
+//       required: true,
+//     },
+//     password: {
+//       type: String,
+//       trim: true,
+//       minLength: 6,
+//       required: true,
+//     },
+//     postal: {
+//       type: String,
+//       trim: true,
+//       minLength: 6,
+//     },
+//     isAdmin: { type: Boolean, default: false },
+//   },
+//   {
+//     timestamps: true,
+//     toJSON: {
+//       transform: function (doc, ret) {
+//         delete ret.password;
+//         return ret;
+//       },
+//     },
+//   }
+// );
 
 userSchema.pre("save", async function (next) {
   // 'this' is the user doc
