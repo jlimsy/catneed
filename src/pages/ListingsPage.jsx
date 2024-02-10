@@ -7,28 +7,22 @@ import RequestCard from "../components/RequestCard";
 export default function ListingsPage() {
   const [donateListings, setDonateListings] = useState([]);
   const [requestListings, setRequestListings] = useState([]);
+  const [listingsExist, setListingsExist] = useState(true);
 
   useEffect(() => {
-    const fetchDonateListings = async () => {
+    const fetchListings = async () => {
       try {
-        const listings = await getDonate();
-        setDonateListings(listings);
+        const donateListings = await getDonate();
+        const requestListings = await getRequest();
+        setDonateListings(donateListings);
+        setRequestListings(requestListings);
+        setListingsExist(requestListings.length > 0 || donateListings > 0);
       } catch (error) {
-        console.error("Error fetching donate listings:", error);
+        console.error("Error fetching listings:", error);
       }
     };
 
-    const fetchRequestListings = async () => {
-      try {
-        const listings = await getRequest();
-        setRequestListings(listings);
-      } catch (error) {
-        console.error("Error fetching Request listings:", error);
-      }
-    };
-
-    fetchRequestListings(); // Call the function to fetch donate listings when the component mounts
-    fetchDonateListings(); // Call the function to fetch donate listings when the component mounts
+    fetchListings(); // Call the function to fetch listings when the component mounts
   }, []);
 
   return (
@@ -41,9 +35,18 @@ export default function ListingsPage() {
 
           <div className="mx-5 my-10 p-10 bg-ice-100 rounded-lg bg-opacity-50">
             <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-              {requestListings.map((requestItem) => (
-                <RequestCard key={requestItem._id} requestItem={requestItem} />
-              ))}
+              {listingsExist ? (
+                requestListings.map((requestItem) => (
+                  <RequestCard
+                    key={requestItem._id}
+                    requestItem={requestItem}
+                  />
+                ))
+              ) : (
+                <div className="col-span-4">
+                  <p>You have not posted any requests.</p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -53,9 +56,15 @@ export default function ListingsPage() {
 
           <div className="mx-5 my-10 p-10 bg-ice-100 rounded-lg bg-opacity-50">
             <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-              {donateListings.map((donateItem) => (
-                <DonateCard key={donateItem._id} donateItem={donateItem} />
-              ))}
+              {listingsExist ? (
+                donateListings.map((donateItem) => (
+                  <DonateCard key={donateItem._id} donateItem={donateItem} />
+                ))
+              ) : (
+                <div className="col-span-4">
+                  <p>You have not posted any donations.</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

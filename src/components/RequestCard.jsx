@@ -3,6 +3,11 @@ import { ISOToDateTime } from "../../controllers/api/dateConverter";
 export default function RequestCard({ requestItem }) {
   return (
     <div className="max-w-sm rounded-lg border border-rust-500 overflow-hidden shadow-lg bg-ice-100  bg-opacity-75  flex flex-col">
+      <div className="text-right">
+        <span className="inline-block rounded-full bg-rust-200 px-3 py-1 text-xs font-semibold my-2 mx-2">
+          Delete
+        </span>
+      </div>
       <img
         className="w-full"
         src="/img/card-top.jpg"
