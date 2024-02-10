@@ -36,7 +36,7 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} admin={admin} />
           <Routes>
-            <Route path="/browse" element={<BrowsePage />} />
+            <Route path="/browse" element={<BrowsePage user={user} />} />
             <Route path="/donate" element={<DonatePage user={user} />} />
             <Route path="/request" element={<RequestPage user={user} />} />
             <Route path="/listings" element={<ListingsPage />} />

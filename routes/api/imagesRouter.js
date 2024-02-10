@@ -3,6 +3,7 @@ const multer = require("multer");
 const router = express.Router();
 const multerS3 = require("multer-s3");
 const AWS = require("aws-sdk");
+const log = require("debug")("catneed:pages:imagesRouter");
 
 require("dotenv").config();
 
@@ -36,7 +37,7 @@ const uploadWithMulter = () =>
 
 const uploadToAws = (req, res) => {
   const upload = uploadWithMulter();
-
+  // log("req %o", req);
   upload(req, res, (error) => {
     if (error) {
       res.json({ error, msg: "Error occurred while uploading images." });

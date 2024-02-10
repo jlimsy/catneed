@@ -13,7 +13,7 @@ export default function ChatPage() {
   const onImageChange = (event) => {
     const selectedFiles = event.target.files;
     setFiles(selectedFiles);
-    log("event.target.files %o", event.target.files);
+    // log("event.target.files %o", event.target.files);
     log("selectedFiles %o", selectedFiles);
   };
 
@@ -25,7 +25,7 @@ export default function ChatPage() {
     }
 
     const formData = new FormData();
-    log("formData %o", formData);
+    // log("formData %o", formData);
 
     for (const file of files) {
       formData.append("s3Images", file);
@@ -57,7 +57,7 @@ export default function ChatPage() {
       </div>
 
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} method="post">
           <input
             type="file"
             accept="image/*"
