@@ -5,7 +5,7 @@ const log = debug("catneed:utilities:request-service");
 localStorage.debug = "catneed:*";
 
 export async function postRequest(requestData) {
-  log("requestData %o", requestData);
+  // log("requestData %o", requestData);
 
   const requestItem = await requestAPI.postItem(requestData);
   return requestItem;
@@ -13,8 +13,15 @@ export async function postRequest(requestData) {
 
 export async function getRequest() {
   const requestListings = await requestAPI.getListings();
-  log("requestListings %o", requestListings);
+  // log("requestListings %o", requestListings);
 
   JSON.stringify(requestListings);
   return requestListings;
+}
+
+export async function delRequest() {
+  const requestItem = await requestAPI.delItem();
+  log("requestItem %o", requestItem);
+
+  return requestItem;
 }

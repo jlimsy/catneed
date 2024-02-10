@@ -32,10 +32,18 @@ async function delItem(req, res) {
   try {
     log("itemId %o", itemId);
 
-    const listing = await Request.findById(itemId);
+    const listing = await Request.findByIdAndDelete(itemId);
     log("listing %o", listing);
 
-    return res.json(listing);
+    if (!listing) {
+      // If the listing with the specified ID doesn't exist
+      return res.status(404).json({ msg: "Listing not found" });
+    }
+
+    return res.json({
+      msg: "Listing deleted successfully",
+      deletedListing: listing,
+    });
   } catch (error) {
     res.status(500).json({ msg: "unable to delete Request listing" });
   }

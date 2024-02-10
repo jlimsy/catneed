@@ -32,7 +32,7 @@ export async function getListings() {
 
 export async function delItem(itemId) {
   log("itemId %o", itemId);
-  const res = await sendRequest(BASE_URL, "GET");
+  const res = await sendRequest(BASE_URL, "DELETE");
   // log("res %o", res);
 
   if (res.ok) {
