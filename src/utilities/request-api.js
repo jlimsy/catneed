@@ -41,3 +41,13 @@ export async function delItem(itemId) {
     throw new Error("request-api: Unable to delete listing");
   }
 }
+
+export async function getAll() {
+  const res = await sendRequest(BASE_URL, "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("request-api: Unable to get all");
+  }
+}

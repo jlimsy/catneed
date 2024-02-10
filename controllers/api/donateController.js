@@ -3,11 +3,11 @@ const log = require("debug")("catneed:controllers:donateController");
 
 async function index(req, res) {
   try {
-    const allListings = await Donate.find();
+    const allListings = await Donate.find({});
     res.json(allListings);
     log("listings %o", allListings);
   } catch (error) {
-    res.status(500).json({ msg: "unable to retrieve donate listings" });
+    res.status(500).json({ msg: "unable to retrieve donate" });
   }
 }
 

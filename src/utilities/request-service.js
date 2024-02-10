@@ -26,3 +26,8 @@ export async function delRequest(itemId) {
 
   return requestItem;
 }
+
+export async function getAllRequests() {
+  const allRequestListings = await requestAPI.getAll();
+  return allRequestListings;
+}

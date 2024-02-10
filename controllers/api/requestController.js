@@ -52,4 +52,12 @@ async function delItem(req, res) {
   }
 }
 
-module.exports = { create, getListings, delItem };
+async function index(req, res) {
+  try {
+    const all = await Request.find({});
+    res.json(all);
+  } catch (error) {
+    res.status(500).json({ msg: "unable to retrieve requests" });
+  }
+}
+module.exports = { create, getListings, delItem, index };
