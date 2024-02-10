@@ -2,7 +2,7 @@ import { ISOToDateTime, ISOToDate } from "../../controllers/api/dateConverter";
 
 export default function DonateCard({ donateItem, browseItem }) {
   return (
-    <div className="max-w-sm rounded-lg border border-sage-500 overflow-hidden shadow-lg bg-ice-100 bg-opacity-75 flex flex-col">
+    <div className="max-w-sm rounded-lg border h-72 border-sage-500 overflow-hidden shadow-lg bg-ice-100 bg-opacity-75 flex flex-col">
       <img
         className="w-full"
         src="/img/card-top.jpg"
