@@ -24,6 +24,9 @@ export default function SettingsPage() {
         Email: <span className="font-bold"> {profile.email}</span>
       </p>
       <p>
+        Located at: <span className="font-bold"> {profile.postal}</span>
+      </p>
+      <p>
         Account type:{" "}
         {profile.isAdmin ? (
           <span className="inline-block bg-sage-300 rounded-full px-3 py-1 text-sm font-bold mr-2 mb-2">

@@ -1,7 +1,6 @@
 import { getToken } from "./users-service";
 import sendRequest from "./send-request";
 import debug from "debug";
-import { setDriver } from "mongoose";
 
 const log = debug("catneed:utilities:users-api");
 localStorage.debug = "catneed:*";
@@ -54,15 +53,15 @@ export async function userProfile(userData) {
   }
 }
 
-// export async function updatePostal(postalData) {
-//   const res = await sendRequest(BASE_URL + "/profile", "PATCH", postalData);
+export async function updatePostal(postalData) {
+  const res = await sendRequest(BASE_URL + "/profile", "PATCH", postalData);
 
-//   if (res.ok) {
-//     return res.json();
-//   } else {
-//     throw new Error("users-api: Invalid Postal Code");
-//   }
-// }
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("users-api: Invalid Postal Code");
+  }
+}
 
 //! Admin-access routes
 

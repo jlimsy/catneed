@@ -53,15 +53,18 @@ async function index(req, res) {
 }
 
 async function updatePostal(req, res) {
-  const userId = req.user.id;
-  const { postalCode } = req.body;
+  const userId = req.user._id;
+  log("userId %o", userId);
+  // const { postalCode } = req.user.postal;
+  log("req.body %o", req.body.postal);
 
   try {
     const updatedUser = await User.findByIdAndUpdate(userId, {
-      postal: postalCode,
+      postal: req.body.postal,
     });
-    if (!updatedUser) throw new Error();
-    // Error: User does not exist
+    if (!updatedUser) {
+      return res.status(403).json({ msg: "Forbidden to update postal code" });
+    }
 
     return res.json(updatedUser);
   } catch (error) {

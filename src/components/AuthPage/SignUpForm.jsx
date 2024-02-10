@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { signUp } from "../../utilities/users-service";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +9,13 @@ localStorage.debug = "catneed:*";
 
 export default function SignUpForm({ setNewUser, setUser }) {
   const form = useForm();
-  const { register, handleSubmit, watch, formState } = form;
-  const { errors } = formState;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    setValue,
+  } = form;
   const navigate = useNavigate();
 
   const handleClick = () => {

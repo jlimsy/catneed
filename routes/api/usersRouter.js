@@ -13,7 +13,7 @@ router.post("/login", usersCtrl.login); //* login
 
 // ===== PROTECTED ROUTES ===== //
 router.get("/profile", checkToken, usersCtrl.readProfile);
-router.patch("/profile", usersCtrl.updatePostal);
+router.patch("/profile", checkToken, usersCtrl.updatePostal);
 
 //! admin-access only
 //? if all admins view the same thing, do i still need a checkToken?

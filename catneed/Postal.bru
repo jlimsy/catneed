@@ -1,0 +1,21 @@
+meta {
+  name: Postal
+  type: http
+  seq: 18
+}
+
+patch {
+  url: http://localhost:3000/api/users/profile
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YzZmZWM3MzI2ZTVhMjhlYzIyMWYxNyIsInVzZXJuYW1lIjoiam9leSIsImVtYWlsIjoiam9leUBqb2V5LmNvbSIsImlzQWRtaW4iOnRydWUsImNyZWF0ZWRBdCI6IjIwMjQtMDItMTBUMDQ6NDI6NDcuMjg3WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDItMTBUMDQ6NDI6NDcuMjg3WiIsIl9fdiI6MH0sImlhdCI6MTcwNzU2MjQxMSwiZXhwIjoxNzA3NjQ4ODExfQ.auNzjazIOMTAIUoZ2PwiNeUFTFCtyT8fbFKQG9GVZ6E
+}
+
+body:json {
+  { 
+    "postal": "320086"
+  }
+}

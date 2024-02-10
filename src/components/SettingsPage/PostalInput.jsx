@@ -11,6 +11,8 @@ export default function PostalInput() {
   const { errors } = formState;
 
   const onSubmit = async (event) => {
+    log("event %o", event);
+
     try {
       const formData = { postal: event.postal };
       log("formData %o", formData);
