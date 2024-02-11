@@ -4,6 +4,6 @@ const { checkToken } = require("../../config/checkToken");
 const postalCtrl = require("../../controllers/api/postalController");
 
 // ===== PROTECTED ROUTES ===== //
-router.get("/", checkToken, postalCtrl.create);
+router.post("/", checkToken, postalCtrl.create);
 
 module.exports = router;

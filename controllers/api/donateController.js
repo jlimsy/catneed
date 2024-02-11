@@ -18,7 +18,6 @@ async function create(req, res) {
 
   try {
     log("req.body %o", req.body);
-    // const donateItem = await Donate.create(req.body);
     const donateItem = await Donate.create({ ...req.body, user: userId });
     log("donateItem %o", donateItem);
     res.json(donateItem);
