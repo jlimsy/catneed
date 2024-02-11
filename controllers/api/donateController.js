@@ -37,4 +37,29 @@ async function getListings(req, res) {
   }
 }
 
-module.exports = { create, getListings, index };
+async function delItem(req, res) {
+  const itemId = req.params.itemId;
+  try {
+    log("itemId %o", itemId);
+
+    const listing = await Donate.findOneAndDelete({
+      _id: itemId,
+      user: req.user._id,
+    });
+    log("listing %o", listing);
+
+    if (!listing) {
+      // If the listing with the specified ID doesn't exist
+      return res.status(404).json({ msg: "Listing not found" });
+    }
+
+    return res.json({
+      msg: "Listing deleted successfully",
+      deletedListing: listing,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "unable to delete Request listing" });
+  }
+}
+
+module.exports = { create, getListings, delItem, index };

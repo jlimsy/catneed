@@ -46,3 +46,15 @@ export async function getListings() {
     throw new Error("donate-api: Unable to get listings");
   }
 }
+
+export async function delItem(itemId) {
+  log("itemId %o", itemId);
+  const res = await sendRequest(BASE_URL + `/${itemId}`, "DELETE");
+  log("res %o", res);
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("donate-api: Unable to delete listing");
+  }
+}

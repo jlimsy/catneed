@@ -29,3 +29,10 @@ export async function getDonate() {
   JSON.stringify(donateListings);
   return donateListings;
 }
+
+export async function delDonate(itemId) {
+  log("itemId %o", itemId);
+  const donateItem = await donateAPI.delItem(itemId);
+
+  return donateItem;
+}

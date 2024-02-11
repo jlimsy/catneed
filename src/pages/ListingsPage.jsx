@@ -4,7 +4,7 @@ import { getDonate } from "../utilities/donate-service";
 import { getRequest } from "../utilities/request-service";
 import RequestCard from "../components/RequestCard";
 
-export default function ListingsPage() {
+export default function ListingsPage({ user }) {
   const [donateListings, setDonateListings] = useState([]);
   const [requestListings, setRequestListings] = useState([]);
   const [listingsExist, setListingsExist] = useState(true);
@@ -16,14 +16,16 @@ export default function ListingsPage() {
         const requestListings = await getRequest();
         setDonateListings(donateListings);
         setRequestListings(requestListings);
-        setListingsExist(requestListings.length > 0 || donateListings > 0);
+        setListingsExist(
+          requestListings.length > 0 || donateListings.length > 0
+        );
       } catch (error) {
         console.error("Error fetching listings:", error);
       }
     };
 
     fetchListings(); // Call the function to fetch listings when the component mounts
-  }, []);
+  }, [requestListings.length, donateListings.length]);
 
   return (
     <section>
@@ -39,6 +41,7 @@ export default function ListingsPage() {
                 requestListings.map((requestItem) => (
                   <RequestCard
                     key={requestItem._id}
+                    user={user}
                     requestItem={requestItem}
                     requestListings={requestListings}
                     setRequestListings={setRequestListings}
@@ -60,7 +63,13 @@ export default function ListingsPage() {
             <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
               {listingsExist ? (
                 donateListings.map((donateItem) => (
-                  <DonateCard key={donateItem._id} donateItem={donateItem} />
+                  <DonateCard
+                    key={donateItem._id}
+                    user={user}
+                    donateItem={donateItem}
+                    donateListings={donateListings}
+                    setDonateListings={setDonateListings}
+                  />
                 ))
               ) : (
                 <div className="col-span-4">
