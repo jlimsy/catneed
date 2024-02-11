@@ -20,7 +20,7 @@ export async function postItem(requestData) {
 }
 
 export async function getListings() {
-  const res = await sendRequest(BASE_URL, "GET");
+  const res = await sendRequest(BASE_URL + "/listings", "GET");
   log("res %o", res);
 
   if (res.ok) {
