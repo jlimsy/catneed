@@ -38,27 +38,34 @@ const retrieveToken = async () => {
 log("oneMapToken %o", oneMapToken);
 
 // https://www.onemap.gov.sg/api/common/elastic/search?searchVal=320086&returnGeom=Y&getAddrDetails=Y
-const postalCode = "320086";
-const postalCode2 = "320098";
+// const postalCode = "320086";
+// const postalCode2 = "320098";
 
-const getLatLong = async () => {
+const getLatLong = async (postalCode) => {
   const res = await fetch(
     BASE_URL +
-      `/common/elastic/search?searchVal=${postalCode2}&returnGeom=Y&getAddrDetails=Y`,
+      `/common/elastic/search?searchVal=${postalCode}&returnGeom=Y&getAddrDetails=Y`,
     {
       headers: { "Content-Type": "application/json" },
     }
   );
 
   const details = await res.json();
+
+  if (details.results[0].length === 0) {
+    res.status(404).json({ msg: "Please input a valid postal code." });
+  }
+
   const { LATITUDE, LONGITUDE } = details.results[0];
-  console.log(LATITUDE, LONGITUDE);
+  // console.log(LATITUDE, LONGITUDE);
   return { LATITUDE, LONGITUDE };
 };
 
-const main = async () => {
-  // retrieveToken();
-  await getLatLong();
-};
+module.exports = { getLatLong };
 
-main();
+// const main = async () => {
+//   // retrieveToken();
+//   await getLatLong();
+// };
+
+// main();
