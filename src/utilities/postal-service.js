@@ -15,9 +15,9 @@ export async function updatePostal(postalData) {
 }
 
 export async function postalProfile(postalData) {
-  const user = await postalAPI.postalProfile(postalData);
-  JSON.stringify(user);
-  return user;
+  const postal = await postalAPI.postalProfile(postalData);
+  JSON.stringify(postal);
+  return postal;
 }
 
 //! ==== TEST ==== //

@@ -8,8 +8,6 @@ const log = debug("catneed:components:PostalInput");
 localStorage.debug = "catneed:*";
 
 export default function PostalInput({ setPostal, setPostalReminder }) {
-  const [postalInput, setPostalInput] = useState(true);
-
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
@@ -22,7 +20,7 @@ export default function PostalInput({ setPostal, setPostalReminder }) {
       log("formData %o", formData);
       const postalCode = await updatePostal(formData);
       log("postalCode %o", postalCode.postal);
-      setPostal(postalCode.postal);
+      // setPostal(postalCode.postal);
       setPostalReminder(false);
     } catch (error) {
       console.log("Unable to update postal code", error);

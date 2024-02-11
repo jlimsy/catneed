@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { getUser, getAdmin } from "./utilities/users-service";
 import debug from "debug";
 import { userProfile } from "./utilities/users-service";
+import { postalProfile } from "./utilities/postal-service";
 
 const log = debug("catneed:pages:app");
 localStorage.debug = "catneed:*";
@@ -34,10 +35,12 @@ function App() {
     const checkPostal = () => {
       const fetchUser = async () => {
         try {
-          const user = await userProfile();
-          if (user?.postal === null) {
+          const postal = await postalProfile();
+          log("postal %o", postal);
+
+          if (postal?.postal === null) {
             setPostalReminder(true);
-            log("user.postal %o", user.postal);
+            log("user.postal %o", postal?.postal);
           }
         } catch (error) {
           console.error("Error fetching user profile:", error);
