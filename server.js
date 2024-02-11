@@ -10,6 +10,18 @@ require("./config/database");
 
 const app = express();
 
+//* Chat
+/*
+const { Server } = require("socket.io");
+const io = new Server(app);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
+*/
+
 // ===== MIDDLEWARE ===== //
 app.use(logger("dev"));
 app.use(express.json());
