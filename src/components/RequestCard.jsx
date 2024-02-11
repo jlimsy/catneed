@@ -29,7 +29,8 @@ export default function RequestCard({
     <div className="max-w-sm rounded-lg border border-rust-500 overflow-hidden shadow-lg bg-ice-100  bg-opacity-75  flex flex-col">
       <div className="grid grid-cols-2">
         <div className="text-left text-xs text-onyx-400 my-2 mx-2">
-          Requested by <span className="font-bold italic">{user.username}</span>
+          Requested by{" "}
+          <span className="font-bold italic">{user?.username}</span>
         </div>
         <div className="text-right">
           <span

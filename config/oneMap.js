@@ -52,7 +52,7 @@ const getLatLong = async (postalCode) => {
 
   const details = await res.json();
 
-  if (details.results[0].length === 0) {
+  if (details.results.length === 0) {
     res.status(404).json({ msg: "Please input a valid postal code." });
   }
 

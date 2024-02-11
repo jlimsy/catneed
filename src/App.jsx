@@ -33,13 +33,14 @@ function App() {
 
     const checkPostal = () => {
       const fetchUser = async () => {
-        const user = await userProfile();
-        if (user?.postal === null) {
-          setPostalReminder(true);
-          console.log("Please enter postal code");
-          log("user.postal %o", user.postal);
-        } else {
-          setPostalReminder(false);
+        try {
+          const user = await userProfile();
+          if (user?.postal === null) {
+            setPostalReminder(true);
+            log("user.postal %o", user.postal);
+          }
+        } catch (error) {
+          console.error("Error fetching user profile:", error);
         }
       };
 
@@ -47,7 +48,7 @@ function App() {
     };
 
     checkPostal();
-  }, [user, user?.postal]);
+  }, [user]);
 
   return (
     <main>

@@ -18,3 +18,13 @@ export async function updatePostal(postalData) {
     throw new Error("postal-api: Invalid Postal Code");
   }
 }
+
+export async function postalProfile() {
+  const res = await sendRequest(BASE_URL, "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("postal-api: Invalid postalProfile");
+  }
+}

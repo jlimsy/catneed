@@ -1,7 +1,6 @@
 const log = require("debug")("catneed:controllers:postalController");
 const Postal = require("../../models/postal");
 const oneMap = require("../../config/oneMap");
-const distance = require("../../config/distance");
 
 async function create(req, res) {
   const userId = req.user._id;
@@ -22,8 +21,21 @@ async function create(req, res) {
     log("postal %o", postal);
     res.json(postal);
   } catch (error) {
-    res.status(500).json({ msg: "sign up failed" });
+    res.status(500).json({ msg: "posting postal code failed" });
   }
 }
 
-module.exports = { create };
+async function getPostal(req, res) {
+  log("req.body %o", req.body);
+  log("req.body.postal %o", req.body.postal);
+
+  try {
+    const postal = await Postal.findOne({ user: req.user._id });
+    log("postal %o", postal);
+    res.json(postal);
+  } catch (error) {
+    res.status(500).json({ msg: "unable to retrieve postal code" });
+  }
+}
+
+module.exports = { create, getPostal };

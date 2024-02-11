@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PostalInput from "../components/SettingsPage/PostalInput";
 import { userProfile } from "../utilities/users-service";
+import { postalProfile } from "../utilities/postal-service";
 
 export default function SettingsPage({ setPostalReminder }) {
   const [profile, setProfile] = useState({});
@@ -9,12 +10,13 @@ export default function SettingsPage({ setPostalReminder }) {
   useEffect(() => {
     const fetchUserProfile = async () => {
       const user = await userProfile();
+      const postal = await postalProfile();
       setProfile(user);
       setPostal(postal);
     };
 
     fetchUserProfile();
-  }, [postal]);
+  }, []);
 
   return (
     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
