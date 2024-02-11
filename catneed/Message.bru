@@ -1,0 +1,15 @@
+meta {
+  name: Message
+  type: http
+  seq: 19
+}
+
+get {
+  url: http://localhost:3000/api/chat
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZmFpcnkiLCJlbWFpbCI6ImZhaXJ5QGZhaXJ5LmNvbSIsInBvc3RhbCI6bnVsbCwiaXNBZG1pbiI6ZmFsc2UsIl9pZCI6IjY1Yzg1NmZhN2I2Zjg1ZjcxOWJhNDlkOSIsImNyZWF0ZWRBdCI6IjIwMjQtMDItMTFUMDU6MTE6MjIuODU3WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDItMTFUMDU6MTE6MjIuODU3WiIsIl9fdiI6MH0sImlhdCI6MTcwNzYyODI4MiwiZXhwIjoxNzA3NzE0NjgyfQ.nCa1DmRDux6T4rBcI3rMI8F1NhSd-yJGCT1ftcBUuBY
+}
