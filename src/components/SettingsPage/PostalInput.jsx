@@ -36,7 +36,8 @@ export default function PostalInput({ setPostal, setPostalReminder }) {
 
   const handleTestClick = async () => {
     log("test %o", test);
-    const testCode = await updateTestPostal(test);
+    const testPostal = { postal: test };
+    const testCode = await updateTestPostal(testPostal);
     log("testCode %o", testCode);
   };
 

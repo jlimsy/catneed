@@ -7,7 +7,10 @@ localStorage.debug = "catneed:*";
 const BASE_URL = "/api/postal";
 
 export async function updatePostal(postalData) {
+  log("postalData %o", postalData);
+
   const res = await sendRequest(BASE_URL, "POST", postalData);
+  log("res %o", res);
 
   if (res.ok) {
     return res.json();
