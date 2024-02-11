@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { updatePostal } from "../../utilities/users-service";
+import { updateTestPostal } from "../../utilities/postal-service";
 import debug from "debug";
+import { useState } from "react";
 
 const log = debug("catneed:components:PostalInput");
 localStorage.debug = "catneed:*";
@@ -24,6 +26,21 @@ export default function PostalInput({ setPostal, setPostalReminder }) {
       console.log("Unable to update postal code", error);
     }
   };
+
+  //! ==== TEST ==== //
+  const [test, setTest] = useState("");
+
+  const handleInputChange = async (event) => {
+    setTest(event.target.value);
+  };
+
+  const handleTestClick = async () => {
+    log("testevent %o", test);
+    const testCode = await updateTestPostal(test);
+    log("testevent %o", testevent);
+  };
+
+  //! ==== TEST ==== //
 
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
@@ -52,6 +69,10 @@ export default function PostalInput({ setPostal, setPostalReminder }) {
           Update postal code
         </button>
       </form>
+      <input onChange={handleInputChange} type="text" id="postal-test" />
+      <button onClick={handleTestClick} className="bg-drab-800 text-ice-100">
+        send postal code to referencee
+      </button>
     </div>
   );
 }

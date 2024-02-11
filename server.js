@@ -21,6 +21,8 @@ app.use(express.static(path.join(__dirname, "dist")));
 app.use("/api/users", require("./routes/api/usersRouter"));
 app.use("/api/donate", require("./routes/api/donateRouter"));
 app.use("/api/request", require("./routes/api/requestRouter"));
+app.use("/api/postal", require("./routes/api/postalRouter"));
+
 app.use("/api/test", require("./routes/api/testRouter"));
 
 app.use("/api/image", require("./routes/api/imagesRouter"));
