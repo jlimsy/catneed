@@ -52,10 +52,7 @@ export default function SettingsPage({ setPostalReminder }) {
       </p>
       {!postal.postal && (
         <div>
-          <PostalInput
-            setPostal={setPostal}
-            setPostalReminder={setPostalReminder}
-          />
+          <PostalInput setPostal={setPostal} />
         </div>
       )}
     </div>

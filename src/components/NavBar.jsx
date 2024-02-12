@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import * as userService from "../utilities/users-service";
 
-export default function NavBar({ user, setUser, admin }) {
+export default function NavBar({ user, setUser }) {
   const handleLogOut = () => {
     userService.logOut();
     setUser(null);
@@ -23,7 +23,7 @@ export default function NavBar({ user, setUser, admin }) {
         <NavLink to="/request">Request </NavLink>
         <NavLink to="/listings">My Listings </NavLink>
         <NavLink to="/chat">Chat </NavLink>
-        {admin && (
+        {user.isAdmin && (
           <NavLink to="/dashboard">
             <span className="text-rust-600">Dashboard</span>
           </NavLink>
