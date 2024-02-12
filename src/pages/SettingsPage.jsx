@@ -6,7 +6,7 @@ import debug from "debug";
 const log = debug("catneed:pages:SettingsPage");
 localStorage.debug = "catneed:*";
 
-export default function SettingsPage({ user }) {
+export default function SettingsPage({ user, setPostalAlert, postalAlert }) {
   log("user %o", user);
 
   const [postal, setPostal] = useState("");
@@ -19,17 +19,18 @@ export default function SettingsPage({ user }) {
         const user = await userProfile();
         // Update component state with postal information
         setPostal(user.postal?.postal);
-        log("postal %o", postal);
+        // log("postal %o", postal);
       } catch (error) {
         console.error("Error fetching postal information:", error);
       }
     };
 
     fetchPostalInfo();
-  }, [user]);
+  }, [user, postal]);
 
-  // const handlePostalUpdate = (updatedPostal) => {
+  // const handlePostalUpdateLocal = (updatedPostal) => {
   //   setPostal(updatedPostal);
+  //   handlePostalUpdate();
   // };
 
   return (
@@ -55,7 +56,15 @@ export default function SettingsPage({ user }) {
         )}
       </p>
 
-      <div>{!postal && <PostalInput setPostal={setPostal} />}</div>
+      <div>
+        {!postal && (
+          <PostalInput
+            setPostal={setPostal}
+            setPostalAlert={setPostalAlert}
+            postalAlert={postalAlert}
+          />
+        )}
+      </div>
     </div>
   );
 }

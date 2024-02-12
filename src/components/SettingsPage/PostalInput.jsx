@@ -1,11 +1,17 @@
 import { useForm } from "react-hook-form";
 import { updatePostal } from "../../utilities/postal-service";
+import { userProfile } from "../../utilities/users-service";
 import debug from "debug";
+import { useEffect } from "react";
 
 const log = debug("catneed:components:PostalInput");
 localStorage.debug = "catneed:*";
 
-export default function PostalInput({ setPostal }) {
+export default function PostalInput({
+  setPostal,
+  setPostalAlert,
+  postalAlert,
+}) {
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
@@ -18,8 +24,11 @@ export default function PostalInput({ setPostal }) {
       log("formData %o", formData);
       const postalCode = await updatePostal(formData);
       setPostal(postalCode.postal);
+      log("postalCode.postal %o", postalCode.postal);
 
-      // handlePostalUpdate(postalCode.postal);
+      log("postalAlert before %o", postalAlert);
+      setPostalAlert(!postalCode.postal);
+      log("postalAlert after %o", postalAlert);
     } catch (error) {
       console.log("Unable to update postal code", error);
     }

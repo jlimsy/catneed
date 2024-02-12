@@ -10,8 +10,10 @@ import DashboardPage from "./pages/DashboardPage";
 import SettingsPage from "./pages/SettingsPage";
 import AboutPage from "./pages/AboutPage";
 import PostalAlert from "./components/BrowsePage/PostalAlert";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getUser } from "./utilities/users-service";
+import { userProfile } from "./utilities/users-service";
+
 import debug from "debug";
 
 const log = debug("catneed:pages:app");
@@ -19,14 +21,31 @@ localStorage.debug = "catneed:*";
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [postalAlert, setPostalAlert] = useState(true);
+
   log("user %o", user);
+
+  useEffect(() => {
+    // Fetch postal information when user data changes
+    const fetchPostalInfo = async () => {
+      try {
+        const user = await userProfile();
+        setPostalAlert(!user.postal?.postal);
+        log("postalAlert %o", postalAlert);
+      } catch (error) {
+        console.error("Error fetching postal status:", error);
+      }
+    };
+
+    fetchPostalInfo();
+  }, [postalAlert]);
 
   return (
     <main>
       {user ? (
         <>
           <NavBar user={user} setUser={setUser} />
-          <PostalAlert />
+          {postalAlert && <PostalAlert />}
           <Routes>
             <Route path="/browse" element={<BrowsePage user={user} />} />
             <Route path="/donate" element={<DonatePage user={user} />} />
@@ -36,7 +55,16 @@ function App() {
             {user.isAdmin && (
               <Route path="/dashboard" element={<DashboardPage />} />
             )}
-            <Route path="/settings" element={<SettingsPage user={user} />} />
+            <Route
+              path="/settings"
+              element={
+                <SettingsPage
+                  user={user}
+                  setPostalAlert={setPostalAlert}
+                  postalAlert={postalAlert}
+                />
+              }
+            />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </>
