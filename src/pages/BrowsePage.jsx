@@ -3,8 +3,8 @@ import DonateCard from "../components/DonateCard";
 import RequestCard from "../components/RequestCard";
 import { getAll } from "../utilities/donate-service";
 import { getAllRequests } from "../utilities/request-service";
+import SearchBar from "../components/BrowsePage/SearchBar";
 import debug from "debug";
-import PostalAlert from "../components/BrowsePage/PostalAlert";
 
 const log = debug("catneed:pages:BrowsePage");
 localStorage.debug = "catneed:*";
@@ -61,6 +61,9 @@ export default function BrowsePage({ user }) {
           </h1>
         </div>
 
+        <div className="flex justify-center p-6 space-y-4 md:space-y-6 sm:p-8">
+          <SearchBar />
+        </div>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5">
             {browseItems
