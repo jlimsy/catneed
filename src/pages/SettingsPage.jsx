@@ -28,9 +28,9 @@ export default function SettingsPage({ user }) {
     fetchPostalInfo();
   }, []);
 
-  const handlePostalUpdate = (updatedPostal) => {
-    setPostal(updatedPostal);
-  };
+  // const handlePostalUpdate = (updatedPostal) => {
+  //   setPostal(updatedPostal);
+  // };
 
   return (
     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -55,9 +55,7 @@ export default function SettingsPage({ user }) {
         )}
       </p>
 
-      <div>
-        {!postal && <PostalInput handlePostalUpdate={handlePostalUpdate} />}
-      </div>
+      <div>{!postal && <PostalInput setPostal={setPostal} />}</div>
     </div>
   );
 }
