@@ -30,7 +30,9 @@ export default function RequestCard({
       <div className="grid grid-cols-2">
         <div className="text-left text-xs text-onyx-400 my-2 mx-2">
           Requested by{" "}
-          <span className="font-bold italic">{user?.username}</span>
+          <span className="font-bold italic">
+            {user?.username} {requestItem.user.username}
+          </span>
         </div>
         <div className="text-right">
           <span

@@ -54,7 +54,7 @@ async function delItem(req, res) {
 
 async function index(req, res) {
   try {
-    const all = await Request.find({});
+    const all = await Request.find({}).populate("user");
     res.json(all);
   } catch (error) {
     res.status(500).json({ msg: "unable to retrieve requests" });

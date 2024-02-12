@@ -3,7 +3,7 @@ const log = require("debug")("catneed:controllers:donateController");
 
 async function index(req, res) {
   try {
-    const allListings = await Donate.find({});
+    const allListings = await Donate.find({}).populate("user");
     res.json(allListings);
     log("listings %o", allListings);
   } catch (error) {
