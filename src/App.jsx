@@ -10,8 +10,8 @@ import DashboardPage from "./pages/DashboardPage";
 import SettingsPage from "./pages/SettingsPage";
 import AboutPage from "./pages/AboutPage";
 import PostalAlert from "./components/BrowsePage/PostalAlert";
-import { useEffect, useState } from "react";
-import { getUser, getAdmin } from "./utilities/users-service";
+import { useState } from "react";
+import { getUser } from "./utilities/users-service";
 import debug from "debug";
 
 const log = debug("catneed:pages:app");
@@ -36,7 +36,7 @@ function App() {
             {user.isAdmin && (
               <Route path="/dashboard" element={<DashboardPage />} />
             )}
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/settings" element={<SettingsPage user={user} />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </>

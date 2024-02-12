@@ -21,7 +21,9 @@ async function create(req, res) {
     });
     log("postal %o", postal);
 
-    await User.findByIdAndUpdate(userId, { postal: postal._id });
+    await User.findByIdAndUpdate(userId, { postal: postal._id }).populate(
+      "postal"
+    );
 
     res.json(postal);
   } catch (error) {
