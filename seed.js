@@ -8,7 +8,10 @@ const Donate = require("./models/donate");
 const findUsers = async () => {
   const user1 = await User.findOne({ username: "joey" }); // Adjust the query according to your user schema
   const user2 = await User.findOne({ username: "meow" });
-  return [user1, user2];
+  const user3 = await User.findOne({ username: "woof" });
+  const user4 = await User.findOne({ username: "quack" });
+
+  return [user1, user2, user3, user4];
 };
 
 const seedRequests = async (user1, user2) => {
@@ -186,10 +189,62 @@ const seedDonations = async (user1, user2) => {
   ]);
 };
 
+const seedLaterDonations = async (user1, user2, user3, user4) => {
+  await findUsers();
+
+  const items = await Donate.create([
+    {
+      user: user3._id,
+      name: "Fancy Feast",
+      category: "Food and Treats",
+      image: "NA",
+      description: "My cats don't like anymore",
+      expiry: "2024-09-28",
+      condition: "New",
+      location: "Sengkang",
+      status: "Available",
+    },
+    {
+      user: user3._id,
+      name: "Whiskas",
+      category: "Food and Treats",
+      image: "NA",
+      description: "Cat has upgraded its SES",
+      expiry: "2024-09-28",
+      condition: "New",
+      location: "Bedok",
+      status: "Available",
+    },
+    {
+      user: user4._id,
+      name: "Watermelon Bed",
+      category: "Bedding and Furniture",
+      image: "NA",
+      description: "I love watermelon",
+      expiry: "",
+      condition: "Used",
+      location: "Bishan",
+      status: "Available",
+    },
+    {
+      user: user4._id,
+      name: "Watermelon Scratchboard",
+      category: "Toys and Enrichment",
+      image: "NA",
+      description: "I love watermelon",
+      expiry: "",
+      condition: "New",
+      location: "Jurong",
+      status: "Available",
+    },
+  ]);
+};
+
 const main = async () => {
-  const [user1, user2] = await findUsers();
-  seedRequests(user1, user2);
-  seedDonations(user1, user2);
+  const [user1, user2, user3, user4] = await findUsers();
+  // seedRequests(user1, user2);
+  // seedDonations(user1, user2);
+  seedLaterDonations(user1, user2, user3, user4);
 };
 
 main();
