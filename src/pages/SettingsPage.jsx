@@ -26,7 +26,7 @@ export default function SettingsPage({ user }) {
     };
 
     fetchPostalInfo();
-  }, []);
+  }, [user]);
 
   // const handlePostalUpdate = (updatedPostal) => {
   //   setPostal(updatedPostal);
