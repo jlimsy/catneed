@@ -1,4 +1,4 @@
-export default function UsersTable({ users, postal }) {
+export default function UsersTable({ users }) {
   return (
     <div className="flex flex-col">
       <div className="-m-1.5 overflow-x-auto">
@@ -51,7 +51,7 @@ export default function UsersTable({ users, postal }) {
                       {user.email}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                      {postal.postal}
+                      postal
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                       {user.isAdmin ? (

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import UsersTable from "../components/DashboardPage/UsersTable";
 import { allUsers } from "../utilities/users-service";
 
-export default function DashboardPage({ postal }) {
+export default function DashboardPage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function DashboardPage({ postal }) {
   return (
     <div className="flex justify-center bg-gradient-to-r from-sage-200 to-rust-200">
       <div className="mx-5 my-10 p-10 bg-ice-100 rounded-lg bg-opacity-50">
-        <UsersTable users={users} postal={postal} />
+        <UsersTable users={users} />
       </div>
     </div>
   );

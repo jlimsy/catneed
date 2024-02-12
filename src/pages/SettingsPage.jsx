@@ -7,9 +7,9 @@ import debug from "debug";
 const log = debug("catneed:pages:SettingsPage");
 localStorage.debug = "catneed:*";
 
-export default function SettingsPage({ setPostalReminder, postal, setPostal }) {
+export default function SettingsPage({ setPostalReminder }) {
   const [profile, setProfile] = useState({});
-  // const [postal, setPostal] = useState("");
+  const [postal, setPostal] = useState("");
 
   useEffect(() => {
     const fetchUserProfile = async () => {
