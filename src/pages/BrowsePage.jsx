@@ -13,6 +13,8 @@ export default function BrowsePage({ user }) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
   log("user %o", user);
+  log("user.postal %o", user.postal);
+  log("user.postal.postal %o", user.postal.postal);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -44,6 +46,7 @@ export default function BrowsePage({ user }) {
     <section>
       <div className="flex flex-col">
         <div>
+          <div>{user.postal.postal}</div>
           <h1 className="font-bold mt-5 mb-8">
             Browse all{" "}
             <button

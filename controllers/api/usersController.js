@@ -20,7 +20,9 @@ async function create(req, res) {
 
 async function login(req, res) {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email }).populate(
+      "postal"
+    );
     if (!user) {
       return res.status(404).json({ msg: "user not found" });
     }

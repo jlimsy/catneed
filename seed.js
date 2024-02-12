@@ -275,8 +275,8 @@ const updateUsers = async () => {
 const main = async () => {
   const [user1, user2, user3, user4] = await findUsers();
   // seedRequests(user1, user2);
-  seedDonations(user1, user2);
-  // seedLaterDonations(user1, user2, user3, user4);
+  // seedDonations(user1, user2);
+  seedLaterDonations(user1, user2, user3, user4);
   // updateUsers();
   // await Donate.deleteMany({});
 };
