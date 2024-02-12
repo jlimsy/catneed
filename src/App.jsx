@@ -38,7 +38,7 @@ function App() {
     };
 
     fetchPostalInfo();
-  }, [postalAlert]);
+  }, [user]);
 
   return (
     <main>
