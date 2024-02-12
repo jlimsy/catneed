@@ -51,7 +51,7 @@ export default function UsersTable({ users }) {
                       {user.email}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                      postal
+                      {user.postal?.postal}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                       {user.isAdmin ? (

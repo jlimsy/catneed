@@ -21,7 +21,8 @@ export async function postalProfile(postalData) {
 }
 
 export async function getAllPostal(postalData) {
-  const postal = await postalAPI.getAllPostal(postalData);
-  JSON.stringify(postal);
-  return postal;
+  const allPostal = await postalAPI.getAllPostal(postalData);
+  log("allPostal %o", allPostal);
+
+  return allPostal.postal;
 }

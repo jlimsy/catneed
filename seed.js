@@ -4,6 +4,7 @@ require("./config/database");
 const User = require("./models/user");
 const Request = require("./models/request");
 const Donate = require("./models/donate");
+const Postal = require("./models/postal");
 
 const findUsers = async () => {
   const user1 = await User.findOne({ username: "joey" }); // Adjust the query according to your user schema
@@ -240,11 +241,44 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
   ]);
 };
 
+const updateUsers = async () => {
+  try {
+    const users = await User.find();
+
+    for (const user of users) {
+      // Assuming oldPostal is the old postal string in each user document
+      const oldPostal = user.postal;
+
+      // Find the corresponding Postal document based on oldPostal
+      const postalDocument = await Postal.findOne({ user: user._id }).populate(
+        "postal"
+      );
+
+      if (user.postal === null) {
+        console.log("user has not updated postal");
+        continue;
+      }
+
+      // Update the user's postal field to use ObjectId reference
+      user.postal = postalDocument._id;
+
+      // Save the updated user document
+      await user.save();
+    }
+
+    console.log("Data migration completed.");
+  } catch (error) {
+    console.error("Error updating users:", error);
+  }
+};
+
 const main = async () => {
   const [user1, user2, user3, user4] = await findUsers();
   // seedRequests(user1, user2);
-  // seedDonations(user1, user2);
-  seedLaterDonations(user1, user2, user3, user4);
+  seedDonations(user1, user2);
+  // seedLaterDonations(user1, user2, user3, user4);
+  // updateUsers();
+  // await Donate.deleteMany({});
 };
 
 main();

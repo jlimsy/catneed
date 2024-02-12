@@ -15,17 +15,18 @@ export default function SettingsPage({ setPostalReminder }) {
     const fetchUserProfile = async () => {
       const user = await userProfile();
       setProfile(user);
+      log("user", user);
     };
 
     const fetchPostal = async () => {
       const postalCode = await postalProfile();
       log("postalCode", postalCode);
-      setPostal(postalCode);
+      // setPostal(postalCode);
     };
 
     fetchUserProfile();
     fetchPostal();
-  }, []);
+  }, [postal]);
 
   return (
     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -37,7 +38,7 @@ export default function SettingsPage({ setPostalReminder }) {
         Email: <span className="font-bold">{profile.email}</span>
       </p>
       <p>
-        Located at: <span className="font-bold">{postal.postal}</span>
+        Located at: <span className="font-bold">{profile.postal?.postal}</span>
       </p>
       <p>
         Account type:{" "}
@@ -55,7 +56,6 @@ export default function SettingsPage({ setPostalReminder }) {
             setPostal={setPostal}
             setPostalReminder={setPostalReminder}
           />
-          <button>Update</button>
         </div>
       )}
     </div>

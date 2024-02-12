@@ -23,6 +23,7 @@ export default function DonateCard({
     }
   };
 
+  // log("allPostal %o", allPostal);
   return (
     <div className="max-w-sm rounded-lg border min-h-80 border-sage-500 overflow-hidden shadow-lg bg-ice-100 bg-opacity-75 flex flex-col">
       <div className="grid grid-cols-2">

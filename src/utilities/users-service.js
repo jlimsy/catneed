@@ -48,7 +48,6 @@ export function getUser() {
 // ===== USER PROFILES ===== //
 export async function userProfile(userData) {
   const user = await usersAPI.userProfile(userData);
-  JSON.stringify(user);
   return user;
 }
 
@@ -67,7 +66,7 @@ export function getAdmin() {
 }
 
 export async function allUsers() {
-  const user = await usersAPI.allUsers();
-  console.log("allUsers", user);
-  return user;
+  const users = await usersAPI.allUsers();
+  console.log("allUsers", users);
+  return users;
 }

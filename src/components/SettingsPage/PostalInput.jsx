@@ -54,10 +54,6 @@ export default function PostalInput({ setPostal, setPostalReminder }) {
           Update postal code
         </button>
       </form>
-      {/* <input onChange={handleInputChange} type="text" id="postal-test" /> */}
-      {/* <button onClick={handleTestClick} className="bg-drab-800 text-ice-100">
-        send postal code to referencee
-      </button> */}
     </div>
   );
 }

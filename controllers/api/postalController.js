@@ -1,15 +1,16 @@
 const log = require("debug")("catneed:controllers:postalController");
 const Postal = require("../../models/postal");
+const User = require("../../models/user");
 const oneMap = require("../../config/oneMap");
 
 async function create(req, res) {
   const userId = req.user._id;
 
-  log("req.body %o", req.body);
-  log("req.body.postal %o", req.body.postal);
+  // log("req.body %o", req.body);
+  // log("req.body.postal %o", req.body.postal);
 
   const geoCode = await oneMap.getLatLong(req.body.postal);
-  log("latLong %o", geoCode);
+  // log("latLong %o", geoCode);
 
   try {
     const postal = await Postal.create({
@@ -19,6 +20,9 @@ async function create(req, res) {
       long: geoCode.LONGITUDE,
     });
     log("postal %o", postal);
+
+    await User.findByIdAndUpdate(userId, { postal: postal._id });
+
     res.json(postal);
   } catch (error) {
     res.status(500).json({ msg: "posting postal code failed" });

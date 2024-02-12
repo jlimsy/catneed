@@ -26,25 +26,27 @@ function App() {
   const [admin, setAdmin] = useState(getAdmin());
   log("admin %o", admin);
 
-  const [allPostal, setAllPostal] = useState(getAllPostal());
+  // const [allPostal, setAllPostal] = useState(getAllPostal());
+  // log("allPostal %o", allPostal);
 
-  const [postalReminder, setPostalReminder] = useState(false);
+  const [postalReminder, setPostalReminder] = useState(true);
 
   // Retrieve admin status without needing to refresh page
   useEffect(() => {
     setAdmin(getAdmin());
     // setAllPostal(getAllPostal());
+    // log("allPostal %o", allPostal);
 
     const checkPostal = () => {
       const fetchUser = async () => {
         try {
           const postal = await postalProfile();
-          log("postal %o", postal);
+          // log("postal %o", postal);
 
           if (postal?.postal === null) {
             setPostalReminder(true);
 
-            log("user.postal %o", postal?.postal);
+            // log("user.postal %o", postal?.postal);
           }
         } catch (error) {
           console.error("Error fetching user profile:", error);

@@ -21,9 +21,8 @@ const userSchema = new Schema(
       required: true,
     },
     postal: {
-      type: String,
-      trim: true,
-      minLength: 6,
+      type: Schema.Types.ObjectId,
+      ref: "Postal",
       default: null,
     },
     isAdmin: { type: Boolean, default: false },
