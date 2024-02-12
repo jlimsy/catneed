@@ -41,14 +41,14 @@ async function login(req, res) {
 
 //! User access
 async function readProfile(req, res) {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id).populate("postal");
   log("req.body %o", req.user._id);
   return res.json(user);
 }
 
 //! Admin-access only
 async function index(req, res) {
-  const user = await User.find({});
+  const user = await User.find({}).populate("postal");
   return res.json(user);
 }
 

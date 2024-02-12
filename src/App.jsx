@@ -28,6 +28,8 @@ function App() {
 
   const [postalReminder, setPostalReminder] = useState(false);
 
+  const [postal, setPostal] = useState("");
+
   // Retrieve admin status without needing to refresh page
   useEffect(() => {
     setAdmin(getAdmin());
@@ -65,10 +67,21 @@ function App() {
             <Route path="/request" element={<RequestPage user={user} />} />
             <Route path="/listings" element={<ListingsPage user={user} />} />
             <Route path="/chat" element={<ChatPage />} />
-            {admin && <Route path="/dashboard" element={<DashboardPage />} />}
+            {admin && (
+              <Route
+                path="/dashboard"
+                element={<DashboardPage postal={postal} />}
+              />
+            )}
             <Route
               path="/settings"
-              element={<SettingsPage setPostalReminder={setPostalReminder} />}
+              element={
+                <SettingsPage
+                  setPostalReminder={setPostalReminder}
+                  postal={postal}
+                  setPostal={setPostal}
+                />
+              }
             />
             <Route path="/about" element={<AboutPage />} />
           </Routes>

@@ -1,66 +1,74 @@
-export default function UsersTable({ users }) {
+export default function UsersTable({ users, postal }) {
   return (
     <div className="flex flex-col">
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
           <div className="overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <table className="min-w-full divide-y divide-drab-800 ">
               <thead>
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-center text font-bold text-gray-500 uppercase"
                   >
                     Name
                   </th>
+
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Admin
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-center text font-bold text-gray-500 uppercase"
                   >
                     Email
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-center text font-bold text-gray-500 uppercase"
                   >
                     Postal
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-center text font-bold text-gray-500 uppercase"
                   >
-                    Action
+                    Account
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-center text font-bold text-gray-500 uppercase"
+                  >
+                    Permission
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="divide-y divide-onyx-300">
                 {users.map((user) => (
-                  <tr
-                    className="hover:bg-gray-100 dark:hover:bg-gray-700"
-                    key={user._id}
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                  <tr key={user._id} className="h-16">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                       {user.username}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                      {user.isAdmin ? "Admin" : "No"}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                       {user.email}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                      <button
-                        type="button"
-                        className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                      >
-                        Delete
-                      </button>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                      {postal.postal}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                      {user.isAdmin ? (
+                        <span className="text-rust-500 font-bold">Admin</span>
+                      ) : (
+                        <span className="text-drab-800">Member</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium inline-flex items-center">
+                      {user.isAdmin || (
+                        <button
+                          type="button"
+                          className="text-sm font-semibold rounded-full py-1 px-2 border border-transparent text-blue-600 hover:bg-sage-300 disabled:opacity-50"
+                        >
+                          Make Admin
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}
