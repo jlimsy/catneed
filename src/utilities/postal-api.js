@@ -28,3 +28,13 @@ export async function postalProfile() {
     throw new Error("postal-api: Invalid postalProfile");
   }
 }
+
+export async function getAllPostal() {
+  const res = await sendRequest(BASE_URL + "/all", "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("postal-api: Invalid postalProfile");
+  }
+}

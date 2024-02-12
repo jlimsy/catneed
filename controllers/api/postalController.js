@@ -51,4 +51,30 @@ async function getPostal(req, res) {
   }
 }
 
-module.exports = { create, getPostal };
+async function index(req, res) {
+  // log("req.body %o", req.body);
+  // log("req.body.postal %o", req.body.postal);
+
+  // if (!req.user) {
+  //   return res
+  //     .status(404)
+  //     .json({ msg: "User does not have a postal code set" });
+  // }
+
+  try {
+    const postal = await Postal.find({}).populate("user");
+    log("postal %o", postal);
+
+    if (!postal) {
+      return res
+        .status(404)
+        .json({ msg: "Postal code not found for this user" });
+    }
+
+    res.json(postal);
+  } catch (error) {
+    res.status(500).json({ msg: "unable to retrieve postal code" });
+  }
+}
+
+module.exports = { create, getPostal, index };

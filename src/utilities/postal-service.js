@@ -20,4 +20,8 @@ export async function postalProfile(postalData) {
   return postal;
 }
 
-//! ==== TEST ==== //
+export async function getAllPostal(postalData) {
+  const postal = await postalAPI.getAllPostal(postalData);
+  JSON.stringify(postal);
+  return postal;
+}

@@ -35,12 +35,14 @@ export default function RequestCard({
           </span>
         </div>
         <div className="text-right">
-          <span
-            onClick={handleDelete}
-            className="inline-block rounded-full bg-rust-200  hover:bg-rust-300 px-3 py-1 text-xs font-semibold my-2 mx-2"
-          >
-            Delete
-          </span>
+          {user && (
+            <span
+              onClick={handleDelete}
+              className="inline-block rounded-full bg-rust-200  hover:bg-rust-300 px-3 py-1 text-xs font-semibold my-2 mx-2"
+            >
+              Delete
+            </span>
+          )}
         </div>
       </div>
 

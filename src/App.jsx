@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { getUser, getAdmin } from "./utilities/users-service";
 import debug from "debug";
 import { userProfile } from "./utilities/users-service";
-import { postalProfile } from "./utilities/postal-service";
+import { postalProfile, getAllPostal } from "./utilities/postal-service";
 
 const log = debug("catneed:pages:app");
 localStorage.debug = "catneed:*";
@@ -26,11 +26,14 @@ function App() {
   const [admin, setAdmin] = useState(getAdmin());
   log("admin %o", admin);
 
+  const [allPostal, setAllPostal] = useState(getAllPostal());
+
   const [postalReminder, setPostalReminder] = useState(false);
 
   // Retrieve admin status without needing to refresh page
   useEffect(() => {
     setAdmin(getAdmin());
+    // setAllPostal(getAllPostal());
 
     const checkPostal = () => {
       const fetchUser = async () => {

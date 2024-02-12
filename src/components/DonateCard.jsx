@@ -29,16 +29,18 @@ export default function DonateCard({
         <div className="text-left text-xs text-onyx-400 my-2 mx-2">
           Donated by{" "}
           <span className="font-bold italic">
-            {user?.username} {browseItem?.user?.username}
+            {user?.username} {browseItem?.user.username}
           </span>
         </div>
         <div className="text-right">
-          <span
-            onClick={handleDelete}
-            className="inline-block rounded-full bg-sage-200 hover:bg-sage-300 px-3 py-1 text-xs font-semibold my-2 mx-2"
-          >
-            Delete
-          </span>
+          {user && (
+            <span
+              onClick={handleDelete}
+              className="inline-block rounded-full bg-sage-200 hover:bg-sage-300 px-3 py-1 text-xs font-semibold my-2 mx-2"
+            >
+              Delete
+            </span>
+          )}
         </div>
       </div>
       <img
