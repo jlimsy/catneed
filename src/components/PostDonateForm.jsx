@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { postDonate } from "../utilities/donate-service";
 import categories from "../assets/categories";
 import planningAreas from "../assets/planningAreas";
+import { uploadOne } from "../utilities/images-service";
 
 const log = debug("catneed:components:PostDonateForm");
 localStorage.debug = "catneed:*";
@@ -30,21 +31,9 @@ export default function PostDonateForm({ user }) {
       return alert("Please select an image");
     }
 
-    const formData = new FormData();
-    formData.append("file", file);
-
-    log("formData after append %o", formData);
-
-    const response = await fetch(BASE_URL + "/upload", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (response.ok) {
-      console.log("Image uploaded successfully");
-    } else {
-      console.error("Error uploading image");
-    }
+    const fileData = new FormData();
+    fileData.append("file", file);
+    const image = await uploadOne(fileData);
   };
 
   const onImageChange = (event) => {
