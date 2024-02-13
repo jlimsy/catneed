@@ -24,7 +24,6 @@ const seedRequests = async (user1, user2) => {
       user: user1._id,
       name: "Royal Canin Renal Dry",
       category: "Food and Treats",
-      image: "NA",
       description: "Requesting sample before committing to 2kg bags",
       location: "Toa Payoh",
     },
@@ -32,7 +31,6 @@ const seedRequests = async (user1, user2) => {
       user: user1._id,
       name: "Hills' K/D Dry",
       category: "Food and Treats",
-      image: "NA",
       description: "Requesting sample before committing to 2kg bags",
       location: "Toa Payoh",
     },
@@ -40,7 +38,6 @@ const seedRequests = async (user1, user2) => {
       user: user1._id,
       name: "Large Carrier",
       category: "Safety and Enclosures",
-      image: "NA",
       description: "To bring Chonkity Chonk to the vet",
       location: "Toa Payoh",
     },
@@ -48,7 +45,6 @@ const seedRequests = async (user1, user2) => {
       user: user1._id,
       name: "Needles",
       category: "Medical Supplies",
-      image: "NA",
       description: "For rescue cats with CKD ",
       location: "Toa Payoh",
     },
@@ -56,7 +52,6 @@ const seedRequests = async (user1, user2) => {
       user: user2._id,
       name: "3-tier cage",
       category: "Safety and Enclosures",
-      image: "NA",
       description: "Running a shelter",
       location: "Toa Payoh",
     },
@@ -64,7 +59,6 @@ const seedRequests = async (user1, user2) => {
       user: user2._id,
       name: "Castle",
       category: "Toys and Enrichment",
-      image: "NA",
       description: "Rescue cats deserve to live like royalty",
       location: "Tampines",
     },
@@ -80,7 +74,6 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Poop Scooper",
       category: "Grooming and Hygiene",
-      image: "NA",
       description: "For the non-dingleberries",
       expiry: "",
       condition: "Used",
@@ -91,7 +84,6 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Revolution",
       category: "Medical Supplies",
-      image: "NA",
       description: "Dingleberries",
       expiry: "2024-09-28",
       condition: "New",
@@ -102,7 +94,6 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Old Carrier",
       category: "Safety and Enclosures",
-      image: "NA",
       description: "Donated by uncle feeder",
       expiry: "",
       condition: "Used",
@@ -113,7 +104,6 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Pee pads",
       category: "Medical Supplies",
-      image: "NA",
       description: "No longer needed",
       expiry: "",
       condition: "New",
@@ -124,7 +114,6 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Mesh",
       category: "Safety and Enclosures",
-      image: "NA",
       description: "Fortify your home",
       expiry: "",
       condition: "Used",
@@ -135,7 +124,6 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Nail Clipper",
       category: "Grooming and Hygiene",
-      image: "NA",
       description:
         "The irony of being cut by it before you cut it. Good luck using it though",
       expiry: "",
@@ -147,7 +135,6 @@ const seedDonations = async (user1, user2) => {
       user: user2._id,
       name: "Tofu litter - green tea",
       category: "Grooming and Hygiene",
-      image: "NA",
       description: "For your fur baby to smell like green tea",
       expiry: "",
       condition: "New",
@@ -158,7 +145,6 @@ const seedDonations = async (user1, user2) => {
       user: user2._id,
       name: "Tofu litter - coffee",
       category: "Grooming and Hygiene",
-      image: "NA",
       description: "That daily dose of coffee for you and your fur baby",
       expiry: "",
       condition: "New",
@@ -180,7 +166,6 @@ const seedDonations = async (user1, user2) => {
       user: user2._id,
       name: "Tofu litter - orginal",
       category: "Grooming and Hygiene",
-      image: "NA",
       description: "Injeolmi Pooperoni",
       expiry: "",
       condition: "New",
@@ -209,7 +194,6 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user3._id,
       name: "Whiskas",
       category: "Food and Treats",
-      image: "NA",
       description: "Cat has upgraded its SES",
       expiry: "2024-09-28",
       condition: "New",
@@ -220,7 +204,7 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user4._id,
       name: "Watermelon Bed",
       category: "Bedding and Furniture",
-      image: "NA",
+
       description: "I love watermelon",
       expiry: "",
       condition: "Used",
@@ -231,7 +215,6 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user4._id,
       name: "Watermelon Scratchboard",
       category: "Toys and Enrichment",
-      image: "NA",
       description: "I love watermelon",
       expiry: "",
       condition: "New",
@@ -275,8 +258,8 @@ const updateUsers = async () => {
 const main = async () => {
   const [user1, user2, user3, user4] = await findUsers();
   // seedRequests(user1, user2);
-  // seedDonations(user1, user2);
-  seedLaterDonations(user1, user2, user3, user4);
+  seedDonations(user1, user2);
+  // seedLaterDonations(user1, user2, user3, user4);
   // updateUsers();
   // await Donate.deleteMany({});
 };

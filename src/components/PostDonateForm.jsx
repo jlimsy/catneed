@@ -19,7 +19,6 @@ function sanitizeFileName(fileName) {
 
 export default function PostDonateForm({ user }) {
   const [file, setFile] = useState([]);
-  const [imgUrl, setImgUrl] = useState("");
 
   const form = useForm();
   const {
@@ -45,6 +44,7 @@ export default function PostDonateForm({ user }) {
     log("name of selected file %o", file.name);
     const fileUrl = `https://${BUCKET_NAME}.s3.${REGION}.amazonaws.com/${file.name}`;
     log("fileUrl %o", fileUrl);
+    setValue("image", fileUrl);
   };
 
   const onImageChange = (event) => {
@@ -56,9 +56,6 @@ export default function PostDonateForm({ user }) {
     const sanitizedFile = new File([selectedFile], sanitizedFileName, {
       type: selectedFile.type,
     });
-
-    log("Original file name:", originalFileName);
-    log("Sanitized file name:", sanitizedFileName);
 
     setFile(sanitizedFile);
   };
@@ -98,7 +95,6 @@ export default function PostDonateForm({ user }) {
       <div className="mb-5">
         <label htmlFor="photo">Upload photo of your item:</label>
 
-        {/* <input type="string" id="image" name="image" {...register("image")} /> */}
         <div className="flex flex-row">
           <input
             type="file"
@@ -129,7 +125,6 @@ export default function PostDonateForm({ user }) {
           id="category"
           className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           {...register("category")}
-          defaultValue="Select category"
         >
           {Object.keys(categories).map((category) => (
             <option key={category} value={categories[category]}>

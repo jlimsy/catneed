@@ -10,7 +10,7 @@ const donateSchema = new Schema(
     },
     name: { type: String, required: true },
     category: { type: String, required: true },
-    image: { type: Object },
+    image: { type: String, default: null },
     description: { type: String, required: true },
     expiry: { type: Date },
     condition: { type: String, required: true },
