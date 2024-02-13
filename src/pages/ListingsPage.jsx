@@ -32,7 +32,7 @@ export default function ListingsPage({ user }) {
       <div className="flex justify-center bg-gradient-to-r from-sage-200 to-rust-200">
         <div className="flex flex-col">
           <div>
-            <h1 className="font-bold">My Donations</h1>
+            <h1 className="font-bold mt-10">My Donations</h1>
           </div>
 
           <div className="mx-5 my-10 p-10 bg-ice-100 rounded-lg bg-opacity-50">
@@ -55,7 +55,7 @@ export default function ListingsPage({ user }) {
             </div>
           </div>
           <div>
-            <h1 className="font-bold mt-10">My Requests</h1>
+            <h1 className="font-bold ">My Requests</h1>
           </div>
 
           <div className="mx-5 my-10 p-10 bg-ice-100 rounded-lg bg-opacity-50">

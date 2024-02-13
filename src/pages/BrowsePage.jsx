@@ -46,7 +46,6 @@ export default function BrowsePage({ user }) {
     <section>
       <div className="flex flex-col">
         <div>
-          <div>{user.postal.postal}</div>
           <h1 className="font-bold mt-5 mb-8">
             Browse all{" "}
             <button

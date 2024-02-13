@@ -75,6 +75,8 @@ const seedDonations = async (user1, user2) => {
       name: "Poop Scooper",
       category: "Grooming and Hygiene",
       description: "For the non-dingleberries",
+      image:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQnEjyMo7b0uOCrP6kloX8_JX-L788_PY6D7eyVBaQrhIadY85IByJ3muCKILMzAMoGZ-DI7ZKBn4y35ySpgf4uLbfGmQHB-zOVTQ1cgNNe&usqp=CAE",
       expiry: "",
       condition: "Used",
       location: "Toa Payoh",
@@ -84,7 +86,9 @@ const seedDonations = async (user1, user2) => {
       user: user1._id,
       name: "Revolution",
       category: "Medical Supplies",
-      description: "Dingleberries",
+      description: "For flea and tick prevention",
+      image:
+        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRViHLRRWqXAeycS0nekfbxbUi5OM1ExigtVAvjcwKyoBmxoEmlvv30OG76jWifLBn_E3x4TuMvCMoOeQQ6-rHTOltVzlcFEebNBTryxWWyE4X2WNff-6lg&usqp=CAE",
       expiry: "2024-09-28",
       condition: "New",
       location: "Bedok",
@@ -95,6 +99,8 @@ const seedDonations = async (user1, user2) => {
       name: "Old Carrier",
       category: "Safety and Enclosures",
       description: "Donated by uncle feeder",
+      image:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSUy24UoVbMU45G0uurgkvl9FahSjT4wSLZJJ1_5azYdF1EC3FmlwBWwQE7tbwBcVg5657tCx3aDbbs5ZATH6uWuXxvYyzBjW-EHJ2w_jLTfQI3kF-YSwjw&usqp=CAE",
       expiry: "",
       condition: "Used",
       location: "Bishan",
@@ -105,6 +111,8 @@ const seedDonations = async (user1, user2) => {
       name: "Pee pads",
       category: "Medical Supplies",
       description: "No longer needed",
+      image:
+        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTxWgiTEyIT-GBc2wKLhjom3-Us6IYh2HzXGFS-RzrEV49Vfxdsv3PfxEd-yIW0-SjqKjU-a90Xba_OXuok4ZtSMNaGN2CuYmohVkjd0RRPUYf1E4MctVhq_W0&usqp=CAE",
       expiry: "",
       condition: "New",
       location: "Jurong",
@@ -115,6 +123,8 @@ const seedDonations = async (user1, user2) => {
       name: "Mesh",
       category: "Safety and Enclosures",
       description: "Fortify your home",
+      image:
+        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSxEHKLdTe8frM61Gf1s8cyxNmCMzYe6RdsJX5ZUePHkiYzASTQqCPjf-Nngx03RHemiUYYVrYeJYdgg8tAmYhtWIA729P1TjVMrwesRSsy&usqp=CAE",
       expiry: "",
       condition: "Used",
       location: "Bishan",
@@ -126,6 +136,8 @@ const seedDonations = async (user1, user2) => {
       category: "Grooming and Hygiene",
       description:
         "The irony of being cut by it before you cut it. Good luck using it though",
+      image:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRfI4UBk0VOVLMgOG_shNONvOlx5T3-UX4ypz1PK9J-3QBxjpkuJLpQxy5qzDWtwzgEStTgaZJa9g6YKGyVnAaZmmi15X5aKaebRZSTsaqS&usqp=CAE",
       expiry: "",
       condition: "Used",
       location: "Bishan",
@@ -136,6 +148,8 @@ const seedDonations = async (user1, user2) => {
       name: "Tofu litter - green tea",
       category: "Grooming and Hygiene",
       description: "For your fur baby to smell like green tea",
+      image:
+        "https://nibbles.sg/cdn/shop/products/GREENTEAWOSHADOW_1296x.png?v=1636131737",
       expiry: "",
       condition: "New",
       location: "Ang Mo Kio",
@@ -146,6 +160,8 @@ const seedDonations = async (user1, user2) => {
       name: "Tofu litter - coffee",
       category: "Grooming and Hygiene",
       description: "That daily dose of coffee for you and your fur baby",
+      image:
+        "https://nibbles.sg/cdn/shop/products/COFFEEWOSHADOW_1296x.png?v=1636131738",
       expiry: "",
       condition: "New",
       location: "Serangoon",
@@ -155,7 +171,8 @@ const seedDonations = async (user1, user2) => {
       user: user2._id,
       name: "Tofu litter - charcoal",
       category: "Grooming and Hygiene",
-      image: "NA",
+      image:
+        "https://nibbles.sg/cdn/shop/products/CHARCOALWOSHADOW_1080x.png?v=1636131737",
       description: "Black litter, black glitter for your void",
       expiry: "",
       condition: "New",
@@ -167,6 +184,8 @@ const seedDonations = async (user1, user2) => {
       name: "Tofu litter - orginal",
       category: "Grooming and Hygiene",
       description: "Injeolmi Pooperoni",
+      image:
+        "https://nibbles.sg/cdn/shop/products/ORIGINALWOSHADOW_1296x.png?v=1636131739",
       expiry: "",
       condition: "New",
       location: "Orchard",
