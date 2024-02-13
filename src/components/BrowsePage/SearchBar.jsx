@@ -2,6 +2,7 @@ import conditions from "../../assets/conditions";
 import categories from "../../assets/categories";
 
 export default function SearchBar() {
+  const handleChange = () => {};
   return (
     <div className="flex flex-col md:flex-row w-1/2">
       <input type="text" />
@@ -40,6 +41,7 @@ export default function SearchBar() {
       <select
         id="sort"
         className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+        onChange={handleChange}
       >
         <option value="">Filter</option>
         <option value="distance">Distance</option>

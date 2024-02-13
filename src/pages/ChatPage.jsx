@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ChatTable from "../components/ChatPage/ChatTable";
 import debug from "debug";
 
@@ -28,7 +28,7 @@ export default function ChatPage() {
     // log("formData %o", formData);
 
     for (const file of files) {
-      formData.append("s3Images", file);
+      formData.append("file", file);
     }
 
     log("formData after append %o", formData);
@@ -63,7 +63,6 @@ export default function ChatPage() {
             accept="image/*"
             onChange={onImageChange}
             name="image"
-            multiple
           />
           <button type="submit">Upload</button>
           <button onClick={fetchImages}>Fetch</button>
