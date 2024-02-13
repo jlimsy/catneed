@@ -9,10 +9,17 @@ import { uploadOne } from "../utilities/images-service";
 const log = debug("catneed:components:PostDonateForm");
 localStorage.debug = "catneed:*";
 
+const BUCKET_NAME = "catneed";
+const REGION = "ap-southeast-1";
 const BASE_URL = "/api/image/";
+
+function sanitizeFileName(fileName) {
+  return fileName.replace(/[^a-zA-Z0-9-]/g, "_");
+}
 
 export default function PostDonateForm({ user }) {
   const [file, setFile] = useState([]);
+  const [imgUrl, setImgUrl] = useState("");
 
   const form = useForm();
   const {
@@ -33,13 +40,27 @@ export default function PostDonateForm({ user }) {
 
     const fileData = new FormData();
     fileData.append("file", file);
+
     const image = await uploadOne(fileData);
+    log("name of selected file %o", file.name);
+    const fileUrl = `https://${BUCKET_NAME}.s3.${REGION}.amazonaws.com/${file.name}`;
+    log("fileUrl %o", fileUrl);
   };
 
   const onImageChange = (event) => {
     const selectedFile = event.target.files[0];
-    log("event.target.files %o", event.target.files);
-    setFile(selectedFile);
+    const originalFileName = selectedFile.name;
+    const sanitizedFileName = sanitizeFileName(originalFileName);
+
+    // Create a new File object with the sanitized file name
+    const sanitizedFile = new File([selectedFile], sanitizedFileName, {
+      type: selectedFile.type,
+    });
+
+    log("Original file name:", originalFileName);
+    log("Sanitized file name:", sanitizedFileName);
+
+    setFile(sanitizedFile);
   };
 
   const onSubmit = async (data) => {
