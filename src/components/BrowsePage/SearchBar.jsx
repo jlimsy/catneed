@@ -1,13 +1,13 @@
 import { useState } from "react";
 import categories from "../../assets/categories";
-import { sortByDist } from "../../utilities/postal-service";
+import debug from "debug";
 
-export default function SearchBar() {
-  const [sort, getSort] = useState([]);
+const log = debug("catneed:pages:BrowsePage");
+localStorage.debug = "catneed:*";
 
-  const handleChange = async (event) => {
-    console.log(event.target.value);
-    const response = await sortByDist();
+export default function SearchBar({ getSortByDist }) {
+  const handleChange = () => {
+    getSortByDist();
   };
 
   return (
@@ -52,8 +52,8 @@ export default function SearchBar() {
       >
         <option value="">Filter</option>
         <option value="distance">Distance</option>
-        <option value="condition">Condition</option>
-        <option value="status">Status</option>
+        {/* <option value="condition">Condition</option>
+        <option value="status">Status</option> */}
       </select>
     </div>
   );

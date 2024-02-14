@@ -110,6 +110,8 @@ async function sort(req, res) {
     return donor;
   });
 
+  addField.sort((a, b) => a.distance - b.distance);
+
   res.json(addField);
 
   // try {

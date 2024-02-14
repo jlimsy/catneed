@@ -3,6 +3,7 @@ import DonateCard from "../components/DonateCard";
 import RequestCard from "../components/RequestCard";
 import { getAll } from "../utilities/donate-service";
 import { getAllRequests } from "../utilities/request-service";
+import { sortByDist } from "../utilities/postal-service";
 import SearchBar from "../components/BrowsePage/SearchBar";
 import debug from "debug";
 
@@ -12,9 +13,6 @@ localStorage.debug = "catneed:*";
 export default function BrowsePage({ user }) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
-  // log("user %o", user);
-  // log("user.postal %o", user.postal);
-  // log("user.postal.postal %o", user.postal.postal);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -29,6 +27,12 @@ export default function BrowsePage({ user }) {
 
     fetchAll(); // Call the function to fetch donate listings when the component mounts
   }, []);
+
+  const getSortByDist = async () => {
+    const sorted = await sortByDist();
+    log("response %o", sorted);
+    setBrowseItems(sorted);
+  };
 
   const handleDonate = async () => {
     const all = await getAll();
@@ -64,7 +68,7 @@ export default function BrowsePage({ user }) {
         </div>
 
         <div className="flex justify-center p-6 space-y-4 md:space-y-6 sm:p-8">
-          <SearchBar />
+          <SearchBar getSortByDist={getSortByDist} />
         </div>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5">
