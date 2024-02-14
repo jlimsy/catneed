@@ -8,7 +8,7 @@ export default function ChatModal() {
         className="bg-ice-100 birder"
         placeholder="your message here"
       />
-      <button>Send</button>
+      <button type="submit">Send</button>
     </div>
   );
 }

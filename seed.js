@@ -24,12 +24,16 @@ const seedRequests = async (user1, user2) => {
       user: user1._id,
       name: "Royal Canin Renal Dry",
       category: "Food and Treats",
+      image:
+        "https://static-shop.vivapets.com/media/catalog/product/cache/11fc96e7318a291175a0004e054be56e/v/h/vhn-vital-support-renal-cat-dry-packshot.png",
       description: "Requesting sample before committing to 2kg bags",
       location: "Toa Payoh",
     },
     {
       user: user1._id,
       name: "Hills' K/D Dry",
+      image:
+        "https://www.hillspet.com.sg/content/dam/pim/hills/en_sg/pd/dry/pd-kd-feline-dry-productShot_zoom.jpg",
       category: "Food and Treats",
       description: "Requesting sample before committing to 2kg bags",
       location: "Toa Payoh",
@@ -37,6 +41,8 @@ const seedRequests = async (user1, user2) => {
     {
       user: user1._id,
       name: "Large Carrier",
+      image:
+        "https://cdn.shopify.com/s/files/1/1511/7434/files/blog-BestLargeCatCarriers-SportPet_1024x1024.jpg?v=1690490579",
       category: "Safety and Enclosures",
       description: "To bring Chonkity Chonk to the vet",
       location: "Toa Payoh",
@@ -44,6 +50,8 @@ const seedRequests = async (user1, user2) => {
     {
       user: user1._id,
       name: "Needles",
+      image:
+        "https://www.nipro-group.com/sites/default/files/styles/vrije_dimensie/public/2019-11/Hypodermic%20Needles.png?itok=RbZKjO-F",
       category: "Medical Supplies",
       description: "For rescue cats with CKD ",
       location: "Toa Payoh",
@@ -51,6 +59,8 @@ const seedRequests = async (user1, user2) => {
     {
       user: user2._id,
       name: "3-tier cage",
+      image:
+        "https://www.petsstation.com.sg/cdn/shop/products/312077_Pink_2000x.jpg?v=1643853159",
       category: "Safety and Enclosures",
       description: "Running a shelter",
       location: "Toa Payoh",
@@ -58,6 +68,8 @@ const seedRequests = async (user1, user2) => {
     {
       user: user2._id,
       name: "Castle",
+      image:
+        "https://nibbles.sg/cdn/shop/products/O1CN01QWXE681uM7nV1y10z__1918356022_1080x.jpg?v=1653528559",
       category: "Toys and Enrichment",
       description: "Rescue cats deserve to live like royalty",
       location: "Tampines",
@@ -282,9 +294,9 @@ const updateUsers = async () => {
 
 const main = async () => {
   const [user1, user2, user3, user4] = await findUsers();
-  // seedRequests(user1, user2);
+  seedRequests(user1, user2);
   // seedDonations(user1, user2);
-  seedLaterDonations(user1, user2, user3, user4);
+  // seedLaterDonations(user1, user2, user3, user4);
   // updateUsers();
   // await Donate.deleteMany({});
 };

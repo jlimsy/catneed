@@ -26,7 +26,7 @@ export default function RequestCard({
   };
 
   return (
-    <div className="max-w-sm rounded-lg border border-rust-500 overflow-hidden shadow-lg bg-ice-100  bg-opacity-75  flex flex-col">
+    <div className="max-w-sm rounded-lg border min-h-72 border-rust-500 overflow-hidden shadow-lg bg-ice-100  bg-opacity-75  flex flex-col">
       <div className="grid grid-cols-2">
         <div className="text-left text-xs text-onyx-400 my-2 mx-2">
           Requested by{" "}
@@ -46,11 +46,7 @@ export default function RequestCard({
         </div>
       </div>
 
-      <img
-        className="w-full"
-        src="/img/card-top.jpg"
-        alt="Sunset in the mountains"
-      />
+      <img className="w-full" src={requestItem?.image} alt="donated-item" />
       <div className="px-6 py-4 flex-grow">
         <div className="font-bold text-xl mb-2">{requestItem?.name}</div>
         <p>{requestItem?.description}</p>

@@ -4,6 +4,11 @@ const path = require("path");
 const logger = require("morgan");
 const debug = require("debug")("catneed:server");
 
+//* Chat
+const { createServer } = require("node:http");
+const { join } = require("node:path");
+const { Server } = require("socket.io");
+
 //* Database
 require("dotenv").config();
 require("./config/database");
@@ -11,16 +16,12 @@ require("./config/database");
 const app = express();
 
 //* Chat
-/*
-const { Server } = require("socket.io");
-const io = new Server(app);
-io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
+const server = createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:3000"],
+  },
 });
-*/
 
 // ===== MIDDLEWARE ===== //
 app.use(logger("dev"));
@@ -49,6 +50,10 @@ app.get("/*", function (req, res) {
 // ===== LISTEN BLOCK ===== //
 const port = process.env.PORT || 3000;
 
-app.listen(port, function () {
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
+
+server.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });
