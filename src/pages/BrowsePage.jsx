@@ -5,6 +5,7 @@ import {
   getAll,
   getAllWithDist,
   getCategories,
+  getQuery,
 } from "../utilities/donate-service";
 import { getAllRequests } from "../utilities/request-service";
 import { sortByDist } from "../utilities/postal-service";
@@ -45,6 +46,11 @@ export default function BrowsePage() {
     setBrowseItems(filtered);
   };
 
+  const searchByName = async (searchTerm) => {
+    const search = await getQuery(searchTerm);
+    setBrowseItems(search);
+  };
+
   const handleDonate = async () => {
     const all = await getAll();
     setRequestItems(false);
@@ -79,7 +85,11 @@ export default function BrowsePage() {
         </div>
 
         <div className="flex justify-center p-6 space-y-4 md:space-y-6 sm:p-8">
-          <SearchBar getSortByDist={getSortByDist} filterByCat={filterByCat} />
+          <SearchBar
+            getSortByDist={getSortByDist}
+            filterByCat={filterByCat}
+            searchByName={searchByName}
+          />
         </div>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5">

@@ -1,23 +1,23 @@
 import { useState } from "react";
 import categories from "../../assets/categories";
-import { getQuery } from "../../utilities/donate-service";
 import debug from "debug";
 
 const log = debug("catneed:pages:BrowsePage");
 localStorage.debug = "catneed:*";
 
-export default function SearchBar({ getSortByDist, filterByCat }) {
+export default function SearchBar({
+  getSortByDist,
+  filterByCat,
+  searchByName,
+}) {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
   };
 
-  const handleQueryClick = async () => {
-    const response = await getQuery(query);
-    console.log("send query to back end");
-
-    return response;
+  const handleQueryClick = () => {
+    searchByName(query);
   };
 
   const handleChange = () => {
