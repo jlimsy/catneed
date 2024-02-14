@@ -48,6 +48,8 @@ async function readProfile(req, res) {
   return res.json(user);
 }
 
+async function getDistance(req, res) {}
+
 //! Admin-access only
 async function index(req, res) {
   const user = await User.find({}).populate("postal");

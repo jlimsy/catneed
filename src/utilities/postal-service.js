@@ -16,7 +16,6 @@ export async function updatePostal(postalData) {
 
 export async function postalProfile(postalData) {
   const postal = await postalAPI.postalProfile(postalData);
-  JSON.stringify(postal);
   return postal;
 }
 
@@ -25,4 +24,9 @@ export async function getAllPostal(postalData) {
   log("allPostal %o", allPostal);
 
   return allPostal.postal;
+}
+
+export async function sortByDist() {
+  const sortPostal = await postalAPI.sortByDist();
+  return sortPostal;
 }

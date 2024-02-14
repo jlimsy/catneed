@@ -38,3 +38,13 @@ export async function getAllPostal() {
     throw new Error("postal-api: Invalid postalProfile");
   }
 }
+
+export async function sortByDist() {
+  const res = await sendRequest(BASE_URL + "/sort", "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("postal-api: Unable to retrieve distances");
+  }
+}

@@ -26,14 +26,14 @@ export default function DonateCard({
   return (
     <div className="max-w-sm rounded-lg border min-h-80 border-sage-500 overflow-hidden shadow-lg bg-ice-100 bg-opacity-75 flex flex-col">
       <div className="grid grid-cols-2">
-        <div className="text-left text-xs text-onyx-400 my-2 mx-2 col-span-2">
+        <div className="text-left text-xs text-onyx-400 my-2 mx-2">
           Donated by{" "}
           <span className="font-bold italic">
             {user?.username} {browseItem?.user.username}
             {browseItem?.user.postal.postal}
           </span>
         </div>
-        <div className="text-right col-span-1">
+        <div className="text-right ">
           {user && (
             <span
               onClick={handleDelete}

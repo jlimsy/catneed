@@ -12,9 +12,9 @@ localStorage.debug = "catneed:*";
 export default function BrowsePage({ user }) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
-  log("user %o", user);
-  log("user.postal %o", user.postal);
-  log("user.postal.postal %o", user.postal.postal);
+  // log("user %o", user);
+  // log("user.postal %o", user.postal);
+  // log("user.postal.postal %o", user.postal.postal);
 
   useEffect(() => {
     const fetchAll = async () => {

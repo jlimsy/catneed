@@ -1,8 +1,15 @@
-import conditions from "../../assets/conditions";
+import { useState } from "react";
 import categories from "../../assets/categories";
+import { sortByDist } from "../../utilities/postal-service";
 
 export default function SearchBar() {
-  const handleChange = () => {};
+  const [sort, getSort] = useState([]);
+
+  const handleChange = async (event) => {
+    console.log(event.target.value);
+    const response = await sortByDist();
+  };
+
   return (
     <div className="flex flex-col md:flex-row w-1/2">
       <input type="text" />
