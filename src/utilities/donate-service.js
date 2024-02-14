@@ -10,6 +10,12 @@ export async function getAll() {
   return allDonateListings;
 }
 
+export async function getAllWithDist() {
+  const allDonateListings = await donateAPI.getAllWithDist();
+  log("allDonateListings %o", allDonateListings);
+  return allDonateListings;
+}
+
 export async function postDonate(donateData) {
   log("donateData %o", donateData);
 

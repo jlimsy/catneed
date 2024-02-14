@@ -1,17 +1,56 @@
 const Donate = require("../../models/donate");
+const Postal = require("../../models/postal");
 const log = require("debug")("catneed:controllers:donateController");
+const haversine = require("haversine");
 
 async function index(req, res) {
   try {
-    const allListings = await Donate.find({})
+    const all = await Donate.find({})
       .populate({
         path: "user",
         populate: { path: "postal" },
       })
       .sort({ createdAt: -1 });
 
-    res.json(allListings);
-    log("listings %o", allListings);
+    res.json(all);
+    log("Donate All %o", all);
+    log("AddField %o", all);
+  } catch (error) {
+    res.status(500).json({ msg: "unable to retrieve donate" });
+  }
+}
+
+async function getAllWithDist(req, res) {
+  try {
+    const myPostal = await Postal.findOne({ user: req.user._id });
+
+    const myPostalCoords = {
+      latitude: myPostal.lat,
+      longitude: myPostal.long,
+    };
+
+    const all = await Donate.find({})
+      .populate({
+        path: "user",
+        populate: { path: "postal" },
+      })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    const addDist = all.map((donor) => {
+      const donorCoords = {
+        latitude: donor.user.postal.lat,
+        longitude: donor.user.postal.long,
+      };
+
+      donor["distance"] = haversine(myPostalCoords, donorCoords, {
+        unit: "km",
+      });
+      return donor;
+    });
+
+    res.json(addDist);
+    log("addDist %o", addDist);
   } catch (error) {
     res.status(500).json({ msg: "unable to retrieve donate" });
   }
@@ -70,4 +109,4 @@ async function delItem(req, res) {
   }
 }
 
-module.exports = { create, getListings, delItem, index };
+module.exports = { create, getListings, delItem, index, getAllWithDist };

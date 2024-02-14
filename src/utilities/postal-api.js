@@ -39,6 +39,16 @@ export async function getAllPostal() {
   }
 }
 
+// export async function getDist() {
+//   const res = await sendRequest(BASE_URL + "/dist", "GET");
+
+//   if (res.ok) {
+//     return res.json();
+//   } else {
+//     throw new Error("postal-api: Unable to retrieve distances");
+//   }
+// }
+
 export async function sortByDist() {
   const res = await sendRequest(BASE_URL + "/sort", "GET");
 

@@ -76,14 +76,45 @@ async function index(req, res) {
   }
 }
 
-async function sort(req, res) {
-  // const user = await User.findOne({ _id: req.user._id });
-  // const myPostal = await Postal.findOne({ "$user.id": req.user._id });
+/*
+async function getDist(req, res) {
   const myPostal = await Postal.findOne({ user: req.user._id });
 
-  log("myPostal %o", myPostal);
-  log("myPostal lat %o", myPostal.lat);
-  log("myPostal long %o", myPostal.long);
+  const myPostalCoords = {
+    latitude: myPostal.lat,
+    longitude: myPostal.long,
+  };
+
+  const donors = await Donate.find({})
+    .populate({
+      path: "user",
+      populate: { path: "postal" },
+    })
+    .lean();
+  // log("donors %o", donors);
+
+  const addField = donors.map((donor) => {
+    const donorCoords = {
+      latitude: donor.user.postal.lat,
+      longitude: donor.user.postal.long,
+    };
+    // log("donorCoords %o", donorCoords);
+
+    donor["distance"] = haversine(myPostalCoords, donorCoords, { unit: "km" });
+    return donor;
+  });
+
+  log("addField %o", addField);
+  res.json(addField);
+}
+*/
+
+async function sort(req, res) {
+  const myPostal = await Postal.findOne({ user: req.user._id });
+
+  // log("myPostal %o", myPostal);
+  // log("myPostal lat %o", myPostal.lat);
+  // log("myPostal long %o", myPostal.long);
 
   const myPostalCoords = {
     latitude: myPostal.lat,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DonateCard from "../components/DonateCard";
 import RequestCard from "../components/RequestCard";
-import { getAll } from "../utilities/donate-service";
+import { getAll, getAllWithDist } from "../utilities/donate-service";
 import { getAllRequests } from "../utilities/request-service";
 import { sortByDist } from "../utilities/postal-service";
 import SearchBar from "../components/BrowsePage/SearchBar";
@@ -13,13 +13,16 @@ localStorage.debug = "catneed:*";
 export default function BrowsePage({ user }) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
+  // const [dist, setDist] = useState("");
 
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const all = await getAll();
-        setBrowseItems(all);
-        setRequestItems(all);
+        const allRequests = await getAll();
+        const allDonates = await getAllWithDist();
+        setBrowseItems(allDonates);
+        log("allDonates %o", allDonates);
+        setRequestItems(allRequests);
       } catch (error) {
         console.error("Error fetching items to browse:", error);
       }

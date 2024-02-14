@@ -11,6 +11,7 @@ export default function DonateCard({
   browseItem,
   donateListings,
   setDonateListings,
+  dist,
 }) {
   const handleDelete = async () => {
     try {
@@ -29,8 +30,12 @@ export default function DonateCard({
         <div className="text-left text-xs text-onyx-400 my-2 mx-2">
           Donated by{" "}
           <span className="font-bold italic">
-            {user?.username} {browseItem?.user.username}
-            {browseItem?.user.postal.postal}
+            {user?.username} {browseItem?.user.username}{" "}
+            {browseItem?.distance && (
+              <span className="text-rust-400">
+                {Math.trunc(browseItem?.distance)} km
+              </span>
+            )}
           </span>
         </div>
         <div className="text-right ">

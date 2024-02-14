@@ -26,6 +26,11 @@ export async function getAllPostal(postalData) {
   return allPostal.postal;
 }
 
+// export async function getDist() {
+//   const dist = await postalAPI.getDist();
+//   return dist;
+// }
+
 export async function sortByDist() {
   const sortPostal = await postalAPI.sortByDist();
   return sortPostal;

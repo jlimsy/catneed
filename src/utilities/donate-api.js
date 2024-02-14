@@ -16,6 +16,16 @@ export async function getAll() {
   }
 }
 
+export async function getAllWithDist() {
+  const res = await sendRequest(BASE_URL + "/browse", "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("donate-api: Unable to get listings");
+  }
+}
+
 export async function postItem(donateData) {
   log("donateData %o", donateData);
   const res = await sendRequest(BASE_URL, "POST", donateData);
