@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import DonateCard from "../components/DonateCard";
 import RequestCard from "../components/RequestCard";
-import { getAll, getAllWithDist } from "../utilities/donate-service";
+import {
+  getAll,
+  getAllWithDist,
+  getCategories,
+} from "../utilities/donate-service";
 import { getAllRequests } from "../utilities/request-service";
 import { sortByDist } from "../utilities/postal-service";
 import SearchBar from "../components/BrowsePage/SearchBar";
@@ -13,7 +17,6 @@ localStorage.debug = "catneed:*";
 export default function BrowsePage({ user }) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
-  // const [dist, setDist] = useState("");
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -35,6 +38,11 @@ export default function BrowsePage({ user }) {
     const sorted = await sortByDist();
     log("response %o", sorted);
     setBrowseItems(sorted);
+  };
+
+  const filterByCat = async (category) => {
+    const filtered = await getCategories(category);
+    setBrowseItems(filtered);
   };
 
   const handleDonate = async () => {
@@ -71,7 +79,7 @@ export default function BrowsePage({ user }) {
         </div>
 
         <div className="flex justify-center p-6 space-y-4 md:space-y-6 sm:p-8">
-          <SearchBar getSortByDist={getSortByDist} />
+          <SearchBar getSortByDist={getSortByDist} filterByCat={filterByCat} />
         </div>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5">

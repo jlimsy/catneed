@@ -68,3 +68,27 @@ export async function delItem(itemId) {
     throw new Error("donate-api: Unable to delete listing");
   }
 }
+
+export async function getItems(itemId) {
+  log("itemId %o", itemId);
+  const res = await sendRequest(BASE_URL + `/q?`, "GET");
+  log("res %o", res);
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("donate-api: Unable to delete listing");
+  }
+}
+
+export async function getItemsByCat(category) {
+  const res = await sendRequest(
+    BASE_URL + `/search?category=${category}`,
+    "GET"
+  );
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("donate-api: Unable to retrieve listings by category");
+  }
+}

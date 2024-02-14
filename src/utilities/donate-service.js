@@ -40,3 +40,13 @@ export async function delDonate(itemId) {
 
   return donateItem;
 }
+
+export async function getQuery(itemName) {
+  const getQueryItem = await donateAPI.getItems(itemName);
+  return getQueryItem;
+}
+
+export async function getCategories(category) {
+  const getQueryItem = await donateAPI.getItemsByCat(category);
+  return getQueryItem;
+}

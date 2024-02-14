@@ -28,11 +28,6 @@ export default function SettingsPage({ user, setPostalAlert, postalAlert }) {
     fetchPostalInfo();
   }, [user, postal]);
 
-  // const handlePostalUpdateLocal = (updatedPostal) => {
-  //   setPostal(updatedPostal);
-  //   handlePostalUpdate();
-  // };
-
   return (
     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
       <h1>Personal Info</h1>

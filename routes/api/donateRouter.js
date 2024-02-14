@@ -12,5 +12,6 @@ router.post("/", checkToken, donateCtrl.create); //* post a donate item
 router.get("/browse", checkToken, donateCtrl.getAllWithDist); //* browse all donations
 router.get("/listings", checkToken, donateCtrl.getListings); //* get all your donations
 router.delete("/:itemId", checkToken, donateCtrl.delItem);
+router.get("/search", checkToken, donateCtrl.getItemByCat);
 
 module.exports = router;

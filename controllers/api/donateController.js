@@ -109,4 +109,20 @@ async function delItem(req, res) {
   }
 }
 
-module.exports = { create, getListings, delItem, index, getAllWithDist };
+async function getItemByCat(req, res) {
+  const category = req.query.category;
+  log("category", category);
+  const itemsByCat = await Donate.find({ category: req.query.category });
+  log("req.query.category", req.query.category);
+  log("itemsByCat", itemsByCat);
+  res.json(itemsByCat);
+}
+
+module.exports = {
+  create,
+  getListings,
+  delItem,
+  index,
+  getAllWithDist,
+  getItemByCat,
+};

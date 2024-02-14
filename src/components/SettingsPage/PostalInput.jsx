@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import { updatePostal } from "../../utilities/postal-service";
-import { userProfile } from "../../utilities/users-service";
 import debug from "debug";
-import { useEffect } from "react";
+import postalFirst2Digits from "../../assets/validatePostal";
 
 const log = debug("catneed:components:PostalInput");
 localStorage.debug = "catneed:*";
@@ -16,6 +15,17 @@ export default function PostalInput({
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
+  // const validatePostalCode = (value) => {
+  //   // Check if value is exactly 6 characters long and the first two characters meet the criteria
+  //   if (
+  //     value.length === 6 &&
+  //     postalFirst2Digits.some((twoDigits) => value.startsWith(twoDigits))
+  //   ) {
+  //     return true; // Postal code is valid
+  //   }
+  //   return "Please enter a valid postal code.";
+  // };
+
   const onSubmit = async (event) => {
     log("event %o", event);
 
@@ -24,13 +34,13 @@ export default function PostalInput({
       log("formData %o", formData);
       const postalCode = await updatePostal(formData);
       setPostal(postalCode.postal);
-      log("postalCode.postal %o", postalCode.postal);
+      // log("postalCode.postal %o", postalCode.postal);
 
-      log("postalAlert before %o", postalAlert);
+      // log("postalAlert before %o", postalAlert);
       setPostalAlert(!postalCode.postal);
-      log("postalAlert after %o", postalAlert);
+      // log("postalAlert after %o", postalAlert);
     } catch (error) {
-      console.log("Unable to update postal code", error);
+      // console.log("Unable to update postal code", error);
     }
   };
 

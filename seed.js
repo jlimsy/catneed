@@ -202,7 +202,8 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user3._id,
       name: "Fancy Feast",
       category: "Food and Treats",
-      image: "NA",
+      image:
+        "https://www.purina.com.sg/sites/default/files/2021-11/FF-TenderOcean-Kitten_1.jpg",
       description: "My cats don't like anymore",
       expiry: "2024-09-28",
       condition: "New",
@@ -213,6 +214,8 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user3._id,
       name: "Whiskas",
       category: "Food and Treats",
+      image:
+        "https://www.whiskas.in/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf2051/files/2022-09/18853301006320-product-image-1.png",
       description: "Cat has upgraded its SES",
       expiry: "2024-09-28",
       condition: "New",
@@ -223,8 +226,9 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user4._id,
       name: "Watermelon Bed",
       category: "Bedding and Furniture",
-
-      description: "I love watermelon",
+      image:
+        "https://www.kohepets.com.sg/cdn/shop/products/cattyman-watermelon-cool-feel-cat-bed.jpg?crop=center&height=522&v=1620837972&width=522",
+      description: "Watermelon season is over.",
       expiry: "",
       condition: "Used",
       location: "Bishan",
@@ -234,7 +238,9 @@ const seedLaterDonations = async (user1, user2, user3, user4) => {
       user: user4._id,
       name: "Watermelon Scratchboard",
       category: "Toys and Enrichment",
-      description: "I love watermelon",
+      description: "I love durian more.",
+      image:
+        "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSX2s6UrY-YXURKNBNcqgHtMWuzvBKfd2VxD7FTScyMDX0HPk49_FBqaX26lvizJJG7taIHlKKpQpUUYa7rcx1T1zz29vdWRC2Zy9OtAIeQmzfIDPxXgIipAw&usqp=CAE",
       expiry: "",
       condition: "New",
       location: "Jurong",

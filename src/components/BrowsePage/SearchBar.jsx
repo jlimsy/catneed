@@ -5,17 +5,33 @@ import debug from "debug";
 const log = debug("catneed:pages:BrowsePage");
 localStorage.debug = "catneed:*";
 
-export default function SearchBar({ getSortByDist }) {
+export default function SearchBar({ getSortByDist, filterByCat }) {
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const handleQuery = async () => {
+    // const response = await getQuery();
+    console.log("send query to back end");
+  };
+
   const handleChange = () => {
     getSortByDist();
   };
 
+  const handleCategories = (event) => {
+    filterByCat(event.target.value);
+  };
+
   return (
     <div className="flex flex-col md:flex-row w-1/2">
-      <input type="text" />
+      <input type="text" onChange={handleInputChange} />
       <button
         type="submit"
         className="bg-drab-800 text-ice-100 hover:bg-rust-400 focus:ring-rust-500 mx-2"
+        onClick={handleQuery}
       >
         Search
       </button>
@@ -29,6 +45,7 @@ export default function SearchBar({ getSortByDist }) {
         id="category"
         className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
         defaultValue="Select category"
+        onChange={handleCategories}
       >
         <option value="">Category</option>
         {Object.keys(categories).map((category) => (

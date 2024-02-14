@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:3000/api/donate
+  url: http://localhost:3000/api/donate?name=Whiskas
   body: json
   auth: bearer
+}
+
+query {
+  name: Whiskas
 }
 
 auth:bearer {
