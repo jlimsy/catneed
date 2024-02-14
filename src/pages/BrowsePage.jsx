@@ -14,7 +14,7 @@ import debug from "debug";
 const log = debug("catneed:pages:BrowsePage");
 localStorage.debug = "catneed:*";
 
-export default function BrowsePage({ user }) {
+export default function BrowsePage() {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
 

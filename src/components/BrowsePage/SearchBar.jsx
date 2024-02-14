@@ -1,5 +1,6 @@
 import { useState } from "react";
 import categories from "../../assets/categories";
+import { getQuery } from "../../utilities/donate-service";
 import debug from "debug";
 
 const log = debug("catneed:pages:BrowsePage");
@@ -12,9 +13,11 @@ export default function SearchBar({ getSortByDist, filterByCat }) {
     setQuery(event.target.value);
   };
 
-  const handleQuery = async () => {
-    // const response = await getQuery();
+  const handleQueryClick = async () => {
+    const response = await getQuery(query);
     console.log("send query to back end");
+
+    return response;
   };
 
   const handleChange = () => {
@@ -31,7 +34,7 @@ export default function SearchBar({ getSortByDist, filterByCat }) {
       <button
         type="submit"
         className="bg-drab-800 text-ice-100 hover:bg-rust-400 focus:ring-rust-500 mx-2"
-        onClick={handleQuery}
+        onClick={handleQueryClick}
       >
         Search
       </button>

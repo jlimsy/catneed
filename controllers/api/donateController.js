@@ -109,7 +109,7 @@ async function delItem(req, res) {
   }
 }
 
-async function getItemByCat(req, res) {
+async function getItemsByCat(req, res) {
   const category = req.query.category;
   log("category", category);
   const itemsByCat = await Donate.find({ category: req.query.category });
@@ -118,11 +118,23 @@ async function getItemByCat(req, res) {
   res.json(itemsByCat);
 }
 
+async function getItemsByName(req, res) {
+  const name = req.query.name;
+  log("name", name);
+  log("req.query.name", req.query.name);
+
+  const itemsByName = await Donate.find({
+    name: { $regex: new RegExp(req.query.name, "i") },
+  });
+  res.json(itemsByName);
+}
+
 module.exports = {
   create,
   getListings,
   delItem,
   index,
   getAllWithDist,
-  getItemByCat,
+  getItemsByCat,
+  getItemsByName,
 };

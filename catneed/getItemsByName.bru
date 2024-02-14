@@ -1,17 +1,17 @@
 meta {
-  name: getItemsByCat
+  name: getItemsByName
   type: http
-  seq: 24
+  seq: 25
 }
 
 get {
-  url: http://localhost:3000/api/donate/search/category?category=Food%20and%20Treats
+  url: http://localhost:3000/api/donate/name?name=bed
   body: json
   auth: bearer
 }
 
 query {
-  category: Food%20and%20Treats
+  name: bed
 }
 
 auth:bearer {

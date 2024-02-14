@@ -42,7 +42,7 @@ export async function delDonate(itemId) {
 }
 
 export async function getQuery(itemName) {
-  const getQueryItem = await donateAPI.getItems(itemName);
+  const getQueryItem = await donateAPI.getItemsByName(itemName);
   return getQueryItem;
 }
 

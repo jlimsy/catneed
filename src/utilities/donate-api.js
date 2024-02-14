@@ -69,21 +69,20 @@ export async function delItem(itemId) {
   }
 }
 
-export async function getItems(itemId) {
-  log("itemId %o", itemId);
-  const res = await sendRequest(BASE_URL + `/q?`, "GET");
+export async function getItemsByName(itemName) {
+  const res = await sendRequest(BASE_URL + `/name?name=${itemName}`, "GET");
   log("res %o", res);
 
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("donate-api: Unable to delete listing");
+    throw new Error("donate-api: Unable to etrieve listings by name");
   }
 }
 
 export async function getItemsByCat(category) {
   const res = await sendRequest(
-    BASE_URL + `/search?category=${category}`,
+    BASE_URL + `/category?category=${category}`,
     "GET"
   );
   if (res.ok) {
