@@ -7,7 +7,8 @@ localStorage.debug = "catneed:*";
 const BASE_URL = "/api/messages";
 
 export async function getAllMessages(chatId) {
-  const res = await sendRequest(BASE_URL + `/65cdb5075a83696ad2de2786`, "GET");
+  const res = await sendRequest(BASE_URL + `/${chatId}`, "GET");
+  log("chatId %o", chatId);
 
   if (res.ok) {
     return res.json();

@@ -1,13 +1,15 @@
 import debug from "debug";
+import { useState } from "react";
 const log = debug("catneed:pages:chatpage");
 
-export default function ChatTable({ existingChats, modal, setModal }) {
-  log("existingChats", existingChats);
-
-  const handleOpenChat = (chatId) => {
-    setModal(!modal);
-    console.log("Open chat with ID:", chatId);
-  };
+export default function ChatTable({
+  existingChats,
+  modal,
+  setModal,
+  setChatId,
+  handleOpenChat,
+}) {
+  // const [chatId, setChatId] = useState("");
 
   return (
     <div className="flex flex-col">
@@ -55,9 +57,7 @@ export default function ChatTable({ existingChats, modal, setModal }) {
                       <button
                         type="button"
                         className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
-                        onClick={() =>
-                          handleOpenChat(chat?.latestMessage?.chat)
-                        }
+                        onClick={() => handleOpenChat(chat?._id)}
                       >
                         Chat
                       </button>

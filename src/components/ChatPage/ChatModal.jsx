@@ -5,12 +5,12 @@ import { getAllMessages } from "../../utilities/messages-service";
 import debug from "debug";
 const log = debug("catneed:pages:ChatModal");
 
-export default function ChatModal({ modal, setModal }) {
+export default function ChatModal({ modal, setModal, chatId }) {
   // const [socket, setSocket] = useState(null);
   // const [message, setMessage] = useState("");
 
   const [chat, setChat] = useState([]);
-  const [messages, setMessages] = useState("");
+  const [messages, setMessages] = useState([]);
 
   // useEffect(() => {
   //   setSocket(io());
@@ -27,14 +27,24 @@ export default function ChatModal({ modal, setModal }) {
 
   useEffect(() => {
     const fetchAllMessages = async () => {
-      const allMessages = await getAllMessages();
-      setMessages(allMessages);
-      log("messages %o", messages);
-      log("allMessages %o", allMessages);
+      log("chatId %o", chatId);
+
+      if (chatId) {
+        const allMessages = await getAllMessages(chatId);
+        setMessages(allMessages);
+
+        log("allMessages %o", allMessages);
+      }
     };
 
     fetchAllMessages();
-  }, []);
+  }, [chatId]);
+
+  log("messages %o", messages);
+
+  messages.map((message) => {
+    console.log(message?.content);
+  });
 
   const handleTextInput = (event) => {
     // setMessage(event.target.value);
@@ -66,31 +76,14 @@ export default function ChatModal({ modal, setModal }) {
           </button>
         </div>
         <div id="chatbox" className="p-4 h-80 overflow-y-auto">
-          <div className="mb-2 text-right">
-            <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
-              hello
-            </p>
-          </div>
-          <div className="mb-2">
-            <p className="bg-ice-100 text-ice-700 rounded-lg py-2 px-4 inline-block">
-              This is a response from the chatbot.
-            </p>
-          </div>
-          <div className="mb-2 text-right">
-            <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
-              this example of chat
-            </p>
-          </div>
-          <div className="mb-2">
-            <p className="bg-ice-100 text-ice-700 rounded-lg py-2 px-4 inline-block">
-              This is a response from the chatbot.
-            </p>
-          </div>
-          <div className="mb-2 text-right">
-            <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
-              design with tailwind
-            </p>
-          </div>
+          {messages.map((message, idx) => (
+            <div key={idx} className="mb-2 text-right">
+              <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
+                {message?.content}
+              </p>
+            </div>
+          ))}
+
           <div className="mb-2">
             <p className="bg-ice-100 text-ice-700 rounded-lg py-2 px-4 inline-block">
               This is a response from the chatbot.

@@ -10,7 +10,7 @@ localStorage.debug = "catneed:*";
 
 export default function ChatPage({ modal, setModal }) {
   const [existingChats, setExistingChats] = useState([]);
-  // const [modal, setModal] = useState(false);
+  const [chatId, setChatId] = useState("");
 
   useEffect(() => {
     console.log("fetch existing Chats");
@@ -24,6 +24,13 @@ export default function ChatPage({ modal, setModal }) {
     fetchAllChats();
   }, []);
 
+  const handleOpenChat = (chatId) => {
+    setModal(!modal);
+    setChatId(chatId);
+    log("Open chat with ID:", chatId);
+    log("existingChats", existingChats);
+  };
+
   return (
     <section className="flex justify-center">
       <div className="mx-5 my-10 p-10 bg-sage-300 rounded-lg bg-opacity-50">
@@ -31,8 +38,17 @@ export default function ChatPage({ modal, setModal }) {
           existingChats={existingChats}
           modal={modal}
           setModal={setModal}
+          setChatId={setChatId}
+          handleOpenChat={handleOpenChat}
         />
-        {modal || <ChatModal modal={modal} setModal={setModal} />}
+        {modal || (
+          <ChatModal
+            modal={modal}
+            setModal={setModal}
+            setChatId={setChatId}
+            chatId={chatId}
+          />
+        )}
       </div>
     </section>
   );
