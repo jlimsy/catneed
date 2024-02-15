@@ -35,8 +35,8 @@ app.use("/api/users", require("./routes/api/usersRouter"));
 app.use("/api/donate", require("./routes/api/donateRouter"));
 app.use("/api/request", require("./routes/api/requestRouter"));
 app.use("/api/postal", require("./routes/api/postalRouter"));
-app.use("/api/chats", require("./routes/api/chatRouter"));
-app.use("/api/messages", require("./routes/api/messageRouter"));
+app.use("/api/chats", require("./routes/api/chatsRouter"));
+app.use("/api/messages", require("./routes/api/messagesRouter"));
 
 app.use("/api/test", require("./routes/api/testRouter"));
 

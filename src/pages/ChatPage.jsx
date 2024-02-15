@@ -10,6 +10,7 @@ localStorage.debug = "catneed:*";
 
 export default function ChatPage() {
   const [existingChats, setExistingChats] = useState([]);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     console.log("fetch existing Chats");
@@ -26,8 +27,12 @@ export default function ChatPage() {
   return (
     <section className="flex justify-center">
       <div>
-        <ChatTable existingChats={existingChats} />
-        <ChatModal />
+        <ChatTable
+          existingChats={existingChats}
+          modal={modal}
+          setModal={setModal}
+        />
+        {modal || <ChatModal />}
       </div>
     </section>
   );
