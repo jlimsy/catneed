@@ -3,8 +3,7 @@ const Message = require("../../models/message");
 const User = require("../../models/user");
 const Chat = require("../../models/chat");
 
-/*
-async function create(req, res) {
+async function sendMessage(req, res) {
   const { content, chatId } = req.body;
 
   if (!content || !chatId) {
@@ -21,7 +20,7 @@ async function create(req, res) {
     let message = await Message.create(newMessage);
     message = await message.populate("sender");
     message = await message.populate("chat");
-    message = await User.populate(message, { path: "chat.user" });
+    message = await User.populate(message, { path: "chat.users" });
 
     await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
 
@@ -37,11 +36,12 @@ async function getAll(req, res) {
     const messages = await Message.find({ chatId: req.params.chatId })
       .populate("sender")
       .populate("chat");
+
+    res.json(messages);
   } catch (error) {
     res.status(400);
     throw new Error(error.message);
   }
 }
 
-module.exports = { create, getAll };
-*/
+module.exports = { sendMessage, getAll };

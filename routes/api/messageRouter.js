@@ -3,7 +3,17 @@ const router = express.Router();
 const messageCtrl = require("../../controllers/api/messageController");
 const { checkToken } = require("../../config/checkToken");
 
-// router.post("/", checkToken, messageCtrl.create);
+//* post a new message
+router.post("/", checkToken, messageCtrl.sendMessage);
+
+//* fetch all the messages in a single chat
 // router.get("/:chatId", checkToken, messageCtrl.getAll);
+
+//* ===== TEST ===== //
+/*
+router.get("/", (req, res) => {
+    res.json("hello");
+  });
+  */
 
 module.exports = router;

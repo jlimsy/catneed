@@ -1,0 +1,21 @@
+meta {
+  name: test message api route
+  type: http
+  seq: 26
+}
+
+get {
+  url: http://localhost:3000/api/messages/
+  body: json
+  auth: none
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibWVvdyIsImVtYWlsIjoibWVvd0BtZW93LmNvbSIsInBvc3RhbCI6bnVsbCwiaXNBZG1pbiI6ZmFsc2UsIl9pZCI6IjY1Y2MzNzMzNzVmZGY3ZTZjZDE3M2QxNyIsImNyZWF0ZWRBdCI6IjIwMjQtMDItMTRUMDM6NDQ6NTEuNzMxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDItMTRUMDM6NDQ6NTEuNzMxWiIsIl9fdiI6MH0sImlhdCI6MTcwNzg4MjI5MSwiZXhwIjoxNzA3OTY4NjkxfQ.fcuYd92wqZdpxk-v5z9uPcBApe6shL0nmhmtGAwUiAQ
+}
+
+body:json {
+  {
+    "postal": "320086"
+  }
+}

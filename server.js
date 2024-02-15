@@ -36,7 +36,7 @@ app.use("/api/donate", require("./routes/api/donateRouter"));
 app.use("/api/request", require("./routes/api/requestRouter"));
 app.use("/api/postal", require("./routes/api/postalRouter"));
 app.use("/api/chats", require("./routes/api/chatRouter"));
-// app.use("/api/message", require("./routes/api/messageRouter"));
+app.use("/api/messages", require("./routes/api/messageRouter"));
 
 app.use("/api/test", require("./routes/api/testRouter"));
 
@@ -50,17 +50,17 @@ app.get("/*", function (req, res) {
 // ===== LISTEN BLOCK ===== //
 const port = process.env.PORT || 3000;
 
-io.on("connection", (socket) => {
-  // console.log("a user connected");
-  socket.on("send-message", (data) => {
-    socket.broadcast.emit("message-from-server", data);
-    console.log("message received from client", data);
-  });
+// io.on("connection", (socket) => {
+//   // console.log("a user connected");
+//   socket.on("send-message", (data) => {
+//     socket.broadcast.emit("message-from-server", data);
+//     console.log("message received from client", data);
+//   });
 
-  socket.on("disconnect", (socket) => {
-    console.log("User left.");
-  });
-});
+//   socket.on("disconnect", (socket) => {
+//     console.log("User left.");
+//   });
+// });
 
 server.listen(port, function () {
   console.log(`Express app running on port ${port}`);

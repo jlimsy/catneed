@@ -56,6 +56,8 @@ async function getChats(req, res) {
   const sender = req.user._id;
 
   const existingChats = await Chat.find({ user: sender });
+
+  return res.json(existingChats);
 }
 
 //! Admin-access only

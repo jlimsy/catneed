@@ -1,0 +1,22 @@
+meta {
+  name: sendMessae
+  type: http
+  seq: 27
+}
+
+post {
+  url: http://localhost:3000/api/messages/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YzdhMTk0MjExM2E3OWY4YTgzZGQ2YiIsInVzZXJuYW1lIjoiam9leSIsImVtYWlsIjoiam9leUBqb2V5LmNvbSIsInBvc3RhbCI6eyJfaWQiOiI2NWM4ZTQ3NGRiMDU1MGUyNGM0NGE3M2MiLCJ1c2VyIjoiNjVjN2ExOTQyMTEzYTc5ZjhhODNkZDZiIiwicG9zdGFsIjoiMzIwMDg2IiwibGF0IjoiMS4zMjMxNDU5ODI5NTU5MSIsImxvbmciOiIxMDMuODU1ODc5NjIxMTUxIiwiY3JlYXRlZEF0IjoiMjAyNC0wMi0xMVQxNToxNTowMC4xMTFaIiwidXBkYXRlZEF0IjoiMjAyNC0wMi0xMVQxNToxNTowMC4xMTFaIiwiX192IjowfSwiaXNBZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyNC0wMi0xMFQxNjoxNzoyNC42MzZaIiwidXBkYXRlZEF0IjoiMjAyNC0wMi0xMlQwNzozNTo1NC41NzRaIiwiX192IjowfSwiaWF0IjoxNzA3OTE2MDAxLCJleHAiOjE3MDgwMDI0MDF9.Lthmm6ePfhvkYbX1xfXWlTgAkHk5q_lNKX83pPu3VGg
+}
+
+body:json {
+  {
+    "sender": "65c7a1942113a79f8a83dd6b",
+    "content": "hi"
+  }
+}

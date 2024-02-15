@@ -57,6 +57,12 @@ export async function updatePostal(postalData) {
   return postalCode;
 }
 
+// ===== CHATS ===== //
+export async function allChats() {
+  const chats = await usersAPI.getChats();
+  return chats;
+}
+
 // ===== ADMIN ===== //
 //! Admin-access routes
 

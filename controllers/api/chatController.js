@@ -2,28 +2,34 @@ const log = require("debug")("catneed:controllers:chatController");
 const Message = require("../../models/message");
 const User = require("../../models/user");
 const Chat = require("../../models/chat");
-const { all } = require("../../routes/api/chatRouter");
 
 async function accessChat(req, res) {
   const sender = req.user._id;
-  const recipient = req.body.user;
+  const recipient = "65c9da18c9d307281c297bfe"; // quack
+  log("sender %o", sender);
+  log("recipient %o", req.body.user);
 
-  let isChat = await Chat.find({ user: sender })
+  let chatExists = await Chat.findOne({ users: { $all: [sender, recipient] } })
     .populate("users", "-password")
     .populate("latestMessage");
 
-  isChat = await User.populate(isChat, { path: "latestMessage.sender" });
-
-  if (isChat.length > 0) {
-    res.send(isChat[0]);
+  if (chatExists) {
+    chatExists = await User.populate(chatExists, {
+      path: "latestMessage.sender",
+    });
+    res.send(chatExists);
   } else {
     const chatData = {
-      chatName: "sender",
+      chatName: "test",
       users: [sender, recipient],
     };
 
+    log("chatData %o", chatData);
+
     try {
       const createdChat = await Chat.create(chatData);
+      log("chatData %o", chatData);
+      log("createdChat %o", createdChat);
 
       const fullChat = await Chat.findOne({ _id: createdChat._id }).populate(
         "users",

@@ -63,15 +63,22 @@ export async function updatePostal(postalData) {
   }
 }
 
+//* Chat
+
+export async function getChats() {
+  const res = await sendRequest(BASE_URL + "/chats", "GET");
+
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("users-api: Unable to get chats");
+  }
+}
+
 //! Admin-access routes
 
 export async function allUsers() {
   const res = await sendRequest(BASE_URL + "/all", "GET");
-
-  // const res = await fetch(BASE_URL + "/all", {
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(),
-  // });
 
   if (res.ok) {
     return res.json();

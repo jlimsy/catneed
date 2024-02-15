@@ -16,7 +16,7 @@ router.get("/profile", checkToken, usersCtrl.readProfile);
 router.patch("/profile", checkToken, usersCtrl.updatePostal);
 
 //* ===== CHAT ====== //
-router.get("/chat", checkToken, usersCtrl.getChats);
+router.get("/chats", checkToken, usersCtrl.getChats);
 
 //! admin-access only
 //? if all admins view the same thing, do i still need a checkToken?
