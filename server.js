@@ -51,7 +51,15 @@ app.get("/*", function (req, res) {
 const port = process.env.PORT || 3000;
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
+  // console.log("a user connected");
+  socket.on("send-message", (data) => {
+    socket.broadcast.emit("message-from-server", data);
+    console.log("message received from client", data);
+  });
+
+  socket.on("disconnect", (socket) => {
+    console.log("User left.");
+  });
 });
 
 server.listen(port, function () {
