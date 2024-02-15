@@ -12,6 +12,8 @@ export default function DonateCard({
   browseItem,
   donateListings,
   setDonateListings,
+  modal,
+  setModal,
 }) {
   const handleDelete = async () => {
     try {
@@ -27,12 +29,14 @@ export default function DonateCard({
   const handleChatClick = async () => {
     log("browseItem user._id %o", browseItem?.user._id);
 
-    alert("Open chatModal with user.");
+    // alert("Open chatModal with user.");
 
     const userId = { user: browseItem?.user._id };
     const chat = await accessChat(userId);
     log("chat %o", userId);
     log("chat %o", chat);
+
+    setModal(!modal);
   };
 
   return (

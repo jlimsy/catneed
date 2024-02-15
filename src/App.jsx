@@ -22,6 +22,7 @@ localStorage.debug = "catneed:*";
 function App() {
   const [user, setUser] = useState(getUser());
   const [postalAlert, setPostalAlert] = useState(true);
+  const [modal, setModal] = useState(false);
 
   log("user %o", user);
 
@@ -47,11 +48,19 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           {postalAlert && <PostalAlert />}
           <Routes>
-            <Route path="/browse" element={<BrowsePage user={user} />} />
+            <Route
+              path="/browse"
+              element={
+                <BrowsePage user={user} modal={modal} setModal={setModal} />
+              }
+            />
             <Route path="/donate" element={<DonatePage user={user} />} />
             <Route path="/request" element={<RequestPage user={user} />} />
             <Route path="/listings" element={<ListingsPage user={user} />} />
-            <Route path="/chat" element={<ChatPage />} />
+            <Route
+              path="/chat"
+              element={<ChatPage modal={modal} setModal={setModal} />}
+            />
             {user.isAdmin && (
               <Route path="/dashboard" element={<DashboardPage />} />
             )}

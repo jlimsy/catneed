@@ -11,11 +11,12 @@ import { getAllRequests } from "../utilities/request-service";
 import { sortByDist } from "../utilities/postal-service";
 import SearchBar from "../components/BrowsePage/SearchBar";
 import debug from "debug";
+import ChatModal from "../components/ChatPage/ChatModal";
 
 const log = debug("catneed:pages:BrowsePage");
 localStorage.debug = "catneed:*";
 
-export default function BrowsePage() {
+export default function BrowsePage({ modal, setModal }) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
 
@@ -95,7 +96,12 @@ export default function BrowsePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5">
             {browseItems
               ? browseItems.map((browseItem) => (
-                  <DonateCard key={browseItem._id} browseItem={browseItem} />
+                  <DonateCard
+                    key={browseItem._id}
+                    browseItem={browseItem}
+                    modal={modal}
+                    setModal={setModal}
+                  />
                 ))
               : requestItems.map((requestItem) => (
                   <RequestCard
@@ -106,6 +112,7 @@ export default function BrowsePage() {
           </div>
         </div>
       </div>
+      {modal || <ChatModal modal={modal} setModal={setModal} />}
     </section>
   );
 }

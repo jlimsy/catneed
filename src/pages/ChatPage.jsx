@@ -8,9 +8,9 @@ import { allChats } from "../utilities/chats-service";
 const log = debug("catneed:pages:chatpage");
 localStorage.debug = "catneed:*";
 
-export default function ChatPage() {
+export default function ChatPage({ modal, setModal }) {
   const [existingChats, setExistingChats] = useState([]);
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
 
   useEffect(() => {
     console.log("fetch existing Chats");
@@ -26,13 +26,13 @@ export default function ChatPage() {
 
   return (
     <section className="flex justify-center">
-      <div>
+      <div className="mx-5 my-10 p-10 bg-sage-300 rounded-lg bg-opacity-50">
         <ChatTable
           existingChats={existingChats}
           modal={modal}
           setModal={setModal}
         />
-        {modal || <ChatModal />}
+        {modal || <ChatModal modal={modal} setModal={setModal} />}
       </div>
     </section>
   );
