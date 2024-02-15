@@ -70,7 +70,8 @@ export default function ChatModal({ modal, setModal, chatId }) {
     // console.log(message, "send button clicked!");
     // socket.emit("send-message", { newMessage });
 
-    // setNewMessage("");
+    setNewMessage("");
+    setMessages([...messages], message);
   };
 
   const handleClick = () => {
