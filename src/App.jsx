@@ -25,6 +25,7 @@ function App() {
   const [modal, setModal] = useState(false);
   const [chatId, setChatId] = useState("");
   const [chatUser, setChatUser] = useState("");
+  const [feedback, setFeedback] = useState(false);
 
   log("user %o", user);
 
@@ -64,8 +65,26 @@ function App() {
                 />
               }
             />
-            <Route path="/donate" element={<DonatePage user={user} />} />
-            <Route path="/request" element={<RequestPage user={user} />} />
+            <Route
+              path="/donate"
+              element={
+                <DonatePage
+                  user={user}
+                  feedback={feedback}
+                  setFeedback={setFeedback}
+                />
+              }
+            />
+            <Route
+              path="/request"
+              element={
+                <RequestPage
+                  user={user}
+                  feedback={feedback}
+                  setFeedback={setFeedback}
+                />
+              }
+            />
             <Route path="/listings" element={<ListingsPage user={user} />} />
             <Route
               path="/chat"

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { getAllMessages, postMessage } from "../../utilities/messages-service";
+import ScrollableFeed from "react-scrollable-feed";
 
 import debug from "debug";
 const log = debug("catneed:pages:ChatModal");
@@ -97,21 +98,18 @@ export default function ChatModal({ modal, setModal, chatId, chatUser }) {
           <button id="close-chat" onClick={handleClick}>
             x
           </button>
-        </div>
-        <div id="chatbox" className="p-4 h-80 overflow-y-auto">
-          {messages.map((message, idx) => (
-            <div key={idx} className="mb-2 text-right">
-              <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
-                {message?.content}
-              </p>
-            </div>
-          ))}
-
-          <div className="mb-2">
-            <p className="bg-ice-100 text-ice-700 rounded-lg py-2 px-4 inline-block">
-              This is a response from the chatbot.
-            </p>
-          </div>
+        </div>{" "}
+        <div id="chatbox" className=" h-80">
+          {" "}
+          <ScrollableFeed>
+            {messages.map((message, idx) => (
+              <div key={idx} className="mb-2 mr-2 text-right">
+                <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
+                  {message?.content}
+                </p>
+              </div>
+            ))}
+          </ScrollableFeed>
         </div>
         <div className="p-4 border-t border-sage-400 flex">
           <input
