@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
-import { getAllMessages } from "../../utilities/messages-service";
+import { getAllMessages, postMessage } from "../../utilities/messages-service";
 
 import debug from "debug";
 const log = debug("catneed:pages:ChatModal");
 
 export default function ChatModal({ modal, setModal, chatId }) {
-  // const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState(null);
   // const [message, setMessage] = useState("");
 
   const [chat, setChat] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
 
   // useEffect(() => {
   //   setSocket(io());
+  //   console.log("is this working");
   // }, []);
 
   // useEffect(() => {
   //   if (!socket) return;
-
+  //   socket.emit("setup");
   //   socket.on("message-from-server", (data) => {
   //     setChat((prev) => [...prev, data.message]);
   //     console.log("messaged received from server", data);
@@ -27,36 +29,48 @@ export default function ChatModal({ modal, setModal, chatId }) {
 
   useEffect(() => {
     const fetchAllMessages = async () => {
-      log("chatId %o", chatId);
+      // log("chatId %o", chatId);
 
       if (chatId) {
         const allMessages = await getAllMessages(chatId);
         setMessages(allMessages);
 
-        log("allMessages %o", allMessages);
+        // log("allMessages %o", allMessages);
+
+        // socket.emit("join chat");
       }
     };
 
     fetchAllMessages();
   }, [chatId]);
 
-  log("messages %o", messages);
-
-  messages.map((message) => {
-    console.log(message?.content);
-  });
+  // log("messages %o", messages);
 
   const handleTextInput = (event) => {
-    // setMessage(event.target.value);
+    setNewMessage(event.target.value);
     // console.log(message);
   };
 
-  const handleSend = (event) => {
+  const handleSend = async (event) => {
     event.preventDefault();
-    // console.log(message, "send button clicked!");
-    // socket.emit("send-message", { message });
 
-    // setMessage("");
+    // if (!newMessage.length > 0) {
+    //   alert("Please type a message.");
+    // }
+
+    const chatData = {
+      content: newMessage,
+      chat: chatId,
+    };
+
+    log("chatData %o", chatData);
+    const message = await postMessage(chatData);
+    log("message %o", message);
+
+    // console.log(message, "send button clicked!");
+    // socket.emit("send-message", { newMessage });
+
+    // setNewMessage("");
   };
 
   const handleClick = () => {
@@ -96,10 +110,13 @@ export default function ChatModal({ modal, setModal, chatId }) {
             type="text"
             placeholder="Type a message"
             className="w-full px-3 py-2 border mr-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-sage-500"
+            onChange={handleTextInput}
+            value={newMessage}
           />
           <button
             id="send-button"
             className="bg-rust-500 text-ice-50 px-4 py-2 rounded-r-md hover:bg-sage-600 transition duration-300"
+            onClick={handleSend}
           >
             Send
           </button>

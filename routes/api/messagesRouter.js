@@ -9,11 +9,4 @@ router.post("/", checkToken, messageCtrl.sendMessage);
 //* fetch all the messages in a single chat
 router.get("/:chatId", checkToken, messageCtrl.getAllMessages);
 
-//* ===== TEST ===== //
-/*
-router.get("/", (req, res) => {
-    res.json("hello");
-  });
-  */
-
 module.exports = router;

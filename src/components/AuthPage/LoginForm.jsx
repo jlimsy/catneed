@@ -50,7 +50,9 @@ export default function LoginForm({ setNewUser, setUser }) {
                   },
                 })}
               />
-              {errors.email && <p>{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-rust-600">{errors.email.message}</p>
+              )}
             </div>
 
             <div>
@@ -69,7 +71,9 @@ export default function LoginForm({ setNewUser, setUser }) {
                   },
                 })}
               />
-              {errors.password && <p>{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-rust-600">{errors.password.message}</p>
+              )}
             </div>
 
             <button

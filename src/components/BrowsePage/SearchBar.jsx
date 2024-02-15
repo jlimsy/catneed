@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import categories from "../../assets/categories";
 import debug from "debug";
 
@@ -18,6 +18,7 @@ export default function SearchBar({
 
   const handleQueryClick = () => {
     searchByName(query);
+    setQuery("");
   };
 
   const handleChange = () => {
@@ -30,7 +31,7 @@ export default function SearchBar({
 
   return (
     <div className="flex flex-col md:flex-row w-1/2">
-      <input type="text" onChange={handleInputChange} />
+      <input type="text" onChange={handleInputChange} value={query} />
       <button
         type="submit"
         className="bg-drab-800 text-ice-100 hover:bg-rust-400 focus:ring-rust-500 mx-2"

@@ -62,7 +62,9 @@ export default function SignUpForm({ setNewUser, setUser }) {
                   },
                 })}
               />
-              {errors.username && <p>{errors.username.message}</p>}
+              {errors.username && (
+                <p className="text-rust-800">{errors.username.message}</p>
+              )}
             </div>
 
             <div>
@@ -77,7 +79,9 @@ export default function SignUpForm({ setNewUser, setUser }) {
                   },
                 })}
               />
-              {errors.email && <p>{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-rust-800">{errors.email.message}</p>
+              )}
             </div>
 
             <div>
@@ -96,7 +100,9 @@ export default function SignUpForm({ setNewUser, setUser }) {
                   },
                 })}
               />
-              {errors.password && <p>{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-rust-800">{errors.password.message}</p>
+              )}
             </div>
 
             <div>
@@ -115,7 +121,9 @@ export default function SignUpForm({ setNewUser, setUser }) {
                   },
                 })}
               />
-              {errors.confirm && <p>{errors.confirm.message}</p>}
+              {errors.confirm && (
+                <p className="text-rust-800">{errors.confirm.message}</p>
+              )}
             </div>
 
             <button

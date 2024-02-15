@@ -5,9 +5,9 @@ const logger = require("morgan");
 const debug = require("debug")("catneed:server");
 
 //! ===== SOCKET ===== //
-// const { createServer } = require("node:http");
-// const { join } = require("node:path");
-// const { Server } = require("socket.io");
+const { createServer } = require("node:http");
+const { join } = require("node:path");
+const { Server } = require("socket.io");
 
 //* Database
 require("dotenv").config();
@@ -18,6 +18,7 @@ const app = express();
 //! ===== SOCKET ===== //
 // const server = createServer(app);
 // const io = new Server(server, {
+//   pingTimeout: 60000,
 //   cors: {
 //     origin: ["http://localhost:3000"],
 //   },
@@ -52,22 +53,28 @@ const port = process.env.PORT || 3000;
 
 //! ===== SOCKET ===== //
 // io.on("connection", (socket) => {
-//   // console.log("a user connected");
-//   socket.on("send-message", (data) => {
-//     socket.broadcast.emit("message-from-server", data);
+//   // console.log("A user connected:", socket.id);
+
+//   socket.on("send-message", (userData) => {
+//     socket.join(userData._id);
+//     console.log(userData._id);
+//     socket.emit("connected");
+//     // socket.broadcast.emit("message-from-server", data);
 //     console.log("message received from client", data);
 //   });
 
-//   socket.on("disconnect", (socket) => {
-//     console.log("User left.");
-//   });
+// socket.on("join chat", (room) => {
+//   socket.join(room);
+//   console.log("User joined room" + room);
+// });
+// socket.on("disconnect", (socket) => {
+//   console.log("User left.");
+// });
 // });
 
 // server.listen(port, function () {
 //   console.log(`Express app running on port ${port}`);
 // });
-
-//! ===== SOCKET ===== //
 
 app.listen(port, function () {
   console.log(`Express app running on port ${port}`);

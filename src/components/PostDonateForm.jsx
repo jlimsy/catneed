@@ -74,7 +74,7 @@ export default function PostDonateForm({ user }) {
     <form className="max-w-sm mx-auto" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-5">
         <label htmlFor="name" className="block mb-2">
-          Name
+          Item Name
         </label>
 
         <input
@@ -88,7 +88,7 @@ export default function PostDonateForm({ user }) {
             },
           })}
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && <p className="text-rust-600">{errors.name.message}</p>}
       </div>
 
       <div className="mb-5">
@@ -150,7 +150,9 @@ export default function PostDonateForm({ user }) {
             },
           })}
         />
-        {errors.description && <p>{errors.description.message}</p>}
+        {errors.description && (
+          <p className="text-rust-600">{errors.description.message}</p>
+        )}
       </div>
 
       <div className="mb-5">
@@ -181,26 +183,38 @@ export default function PostDonateForm({ user }) {
         </div>
       </div>
 
-      <div className="flex mb-5">
-        <input
-          {...register("condition", {
-            required: "Please indicate condition of your item.",
-          })}
-          type="radio"
-          value="New"
-        />
-        <label htmlFor="New">New</label>
-        <input
-          {...register("condition", {
-            required: "Please indicate condition of your item.",
-          })}
-          type="radio"
-          value=" Used"
-        />
-        <label htmlFor="Used" className="block mb-2 font-medium text-gray-900">
-          Used
-        </label>
-        <div> {errors.condition && <p>{errors.condition.message}</p>}</div>
+      <div className="flex justify-center">
+        <div className="grid grid-rows-2">
+          <div className="flex items-center">
+            {" "}
+            <input
+              {...register("condition", {
+                required: "Please indicate condition of your item.",
+              })}
+              type="radio"
+              value="New"
+            />
+            <label htmlFor="New" className="mx-2 my-auto">
+              New
+            </label>
+            <input
+              {...register("condition", {
+                required: "Please indicate condition of your item.",
+              })}
+              type="radio"
+              value="Used"
+            />
+            <label htmlFor="Used" className="mx-2 my-auto">
+              Used
+            </label>
+          </div>
+
+          <div>
+            {errors.condition && (
+              <p className="mt-2 text-rust-600">{errors.condition.message}</p>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="mb-5">

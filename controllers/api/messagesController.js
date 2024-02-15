@@ -4,19 +4,24 @@ const User = require("../../models/user");
 const Chat = require("../../models/chat");
 
 async function sendMessage(req, res) {
-  const { content, chatId } = req.body;
+  log("req.user._id", req.user._id);
 
-  if (!content || !chatId) {
+  const { content, chat } = req.body;
+  log("req.body %o", req.body);
+  log("content %o", content);
+  log("chat %o", chat);
+
+  if (!content || !chat) {
     return res.status(400).json({ msg: "No chat found." });
   }
 
-  const newMessage = {
-    sender: req.user._id,
-    content: content,
-    chat: chatId,
-  };
-
   try {
+    const newMessage = {
+      sender: req.user._id,
+      content: content,
+      chat: chat,
+    };
+
     let message = await Message.create(newMessage);
     message = await message.populate("sender");
     message = await message.populate("chat");
@@ -32,7 +37,7 @@ async function sendMessage(req, res) {
 }
 
 async function getAllMessages(req, res) {
-  log("chatId %o", req.params.chatId);
+  // log("chatId %o", req.params.chatId);
 
   try {
     const messages = await Message.find({ chat: req.params.chatId })
