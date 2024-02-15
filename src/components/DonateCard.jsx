@@ -1,5 +1,6 @@
 import { ISOToDateTime, ISOToDate } from "../../controllers/api/dateConverter";
 import { delDonate } from "../utilities/donate-service";
+import { accessChat } from "../utilities/chats-service";
 
 import debug from "debug";
 
@@ -24,8 +25,14 @@ export default function DonateCard({
   };
 
   const handleChatClick = async () => {
+    log("browseItem user._id %o", browseItem?.user._id);
+
     alert("Open chatModal with user.");
-    // await accessChat();
+
+    const userId = { user: browseItem?.user._id };
+    const chat = await accessChat(userId);
+    log("chat %o", userId);
+    log("chat %o", chat);
   };
 
   return (
@@ -89,7 +96,7 @@ export default function DonateCard({
           </span>
           <button
             className="bg-drab-800 text-ice-100 text-xs py-1 px-2 rounded-full"
-            onClick={handleChatClick}
+            onClick={() => handleChatClick(browseItem?.user._id)}
           >
             Chat
           </button>

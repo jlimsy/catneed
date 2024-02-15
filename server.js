@@ -4,10 +4,10 @@ const path = require("path");
 const logger = require("morgan");
 const debug = require("debug")("catneed:server");
 
-//* Chat
-const { createServer } = require("node:http");
-const { join } = require("node:path");
-const { Server } = require("socket.io");
+//! ===== SOCKET ===== //
+// const { createServer } = require("node:http");
+// const { join } = require("node:path");
+// const { Server } = require("socket.io");
 
 //* Database
 require("dotenv").config();
@@ -15,13 +15,13 @@ require("./config/database");
 
 const app = express();
 
-//* Chat
-const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: ["http://localhost:3000"],
-  },
-});
+//! ===== SOCKET ===== //
+// const server = createServer(app);
+// const io = new Server(server, {
+//   cors: {
+//     origin: ["http://localhost:3000"],
+//   },
+// });
 
 // ===== MIDDLEWARE ===== //
 app.use(logger("dev"));
@@ -50,6 +50,7 @@ app.get("/*", function (req, res) {
 // ===== LISTEN BLOCK ===== //
 const port = process.env.PORT || 3000;
 
+//! ===== SOCKET ===== //
 // io.on("connection", (socket) => {
 //   // console.log("a user connected");
 //   socket.on("send-message", (data) => {
@@ -62,6 +63,12 @@ const port = process.env.PORT || 3000;
 //   });
 // });
 
-server.listen(port, function () {
+// server.listen(port, function () {
+//   console.log(`Express app running on port ${port}`);
+// });
+
+//! ===== SOCKET ===== //
+
+app.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });

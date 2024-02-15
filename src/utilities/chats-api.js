@@ -6,13 +6,14 @@ localStorage.debug = "catneed:*";
 
 const BASE_URL = "/api/chats";
 
-export async function getChat() {
-  const res = await sendRequest(BASE_URL, "POST");
+export async function getChat(userId) {
+  log("userId %o", userId);
+  const res = await sendRequest(BASE_URL, "POST", userId);
 
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("donate-api: Unable to get listings");
+    throw new Error("chats-api: Unable to get chat");
   }
 }
 

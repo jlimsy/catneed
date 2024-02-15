@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const chatCtrl = require("../../controllers/api/chatController");
+const chatCtrl = require("../../controllers/api/chatsController");
 const { checkToken } = require("../../config/checkToken");
 
 //? ACCESSING chat or CREATING chat (if !chatExists)

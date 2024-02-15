@@ -1,11 +1,12 @@
 import debug from "debug";
 import * as chatsAPI from "./chats-api";
 
-const log = debug("catneed:utilities:chat-service");
+const log = debug("catneed:utilities:chats-service");
 localStorage.debug = "catneed:*";
 
-export async function accessChat() {
-  const chat = await chatsAPI.getChat();
+export async function accessChat(userId) {
+  log("userId %o", userId);
+  const chat = await chatsAPI.getChat(userId);
   return chat;
 }
 

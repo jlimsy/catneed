@@ -5,9 +5,13 @@ const Chat = require("../../models/chat");
 
 async function accessChat(req, res) {
   const sender = req.user._id;
-  const recipient = "65c9da18c9d307281c297bfe"; // quack
+  const { user } = req.body;
+  log("req.body %o", req.body);
+
+  const recipient = req.body.user; // quack
   log("sender %o", sender);
-  log("recipient %o", req.body.user);
+  log("recipient %o", recipient);
+  log("req.body.user %o", req.body.user);
 
   let chatExists = await Chat.findOne({ users: { $all: [sender, recipient] } })
     .populate("users", "-postal -email -isAdmin")

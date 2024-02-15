@@ -32,8 +32,9 @@ async function sendMessage(req, res) {
 }
 
 async function getAllMessages(req, res) {
+  log("chatId %o", req.params.chatId);
   try {
-    const messages = await Message.find({ chat: req.params.chatId })
+    const messages = await Message.find({ chat: "65cdb5075a83696ad2de2786" })
       .populate("sender")
       .populate("chat");
 
