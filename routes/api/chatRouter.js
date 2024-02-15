@@ -3,7 +3,7 @@ const router = express.Router();
 const chatCtrl = require("../../controllers/api/chatController");
 const { checkToken } = require("../../config/checkToken");
 
-//? Accessing or creating the chat
+//? ACCESSING chat or CREATING chat (if !chatExists)
 router.post("/", checkToken, chatCtrl.accessChat);
 
 //? Get chats for logged in user
