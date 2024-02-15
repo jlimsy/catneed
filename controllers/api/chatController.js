@@ -10,12 +10,13 @@ async function accessChat(req, res) {
   log("recipient %o", req.body.user);
 
   let chatExists = await Chat.findOne({ users: { $all: [sender, recipient] } })
-    .populate("users", "-password")
+    .populate("users", "-postal -email -isAdmin")
     .populate("latestMessage");
 
   if (chatExists) {
     chatExists = await User.populate(chatExists, {
       path: "latestMessage.sender",
+      select: "-email -postal -isAdmin",
     });
     res.send(chatExists);
   } else {
@@ -33,7 +34,7 @@ async function accessChat(req, res) {
 
       const fullChat = await Chat.findOne({ _id: createdChat._id }).populate(
         "users",
-        "-password"
+        "-email -isAdmin -postal"
       );
 
       res.send(fullChat);
@@ -48,7 +49,7 @@ async function getChats(req, res) {
     let allChats = Chat.find({
       users: { $elemMatch: { $eq: req.user._id } },
     })
-      .populate("users")
+      .populate("users", "-email -isAdmin -postal")
       .populate("latestMessage")
       .sort({ updatedAt: -1 });
 

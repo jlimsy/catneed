@@ -1,11 +1,11 @@
 meta {
-  name: createChat
+  name: getAllMessages
   type: http
-  seq: 29
+  seq: 30
 }
 
-post {
-  url: http://localhost:3000/api/chats
+get {
+  url: http://localhost:3000/api/messages/65cdb5075a83696ad2de2786
   body: json
   auth: bearer
 }

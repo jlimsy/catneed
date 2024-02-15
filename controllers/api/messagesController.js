@@ -1,4 +1,4 @@
-const log = require("debug")("catneed:controllers:messageController");
+const log = require("debug")("catneed:controllers:messagesController");
 const Message = require("../../models/message");
 const User = require("../../models/user");
 const Chat = require("../../models/chat");
@@ -31,9 +31,9 @@ async function sendMessage(req, res) {
   }
 }
 
-async function getAll(req, res) {
+async function getAllMessages(req, res) {
   try {
-    const messages = await Message.find({ chatId: req.params.chatId })
+    const messages = await Message.find({ chat: req.params.chatId })
       .populate("sender")
       .populate("chat");
 
@@ -44,4 +44,4 @@ async function getAll(req, res) {
   }
 }
 
-module.exports = { sendMessage, getAll };
+module.exports = { sendMessage, getAllMessages };
