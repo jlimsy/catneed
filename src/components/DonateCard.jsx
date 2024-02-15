@@ -11,7 +11,6 @@ export default function DonateCard({
   browseItem,
   donateListings,
   setDonateListings,
-  dist,
 }) {
   const handleDelete = async () => {
     try {
@@ -22,6 +21,11 @@ export default function DonateCard({
     } catch (error) {
       log("error %o", error);
     }
+  };
+
+  const handleChatClick = async () => {
+    alert("Open chatModal with user.");
+    // await accessChat();
   };
 
   return (
@@ -83,6 +87,12 @@ export default function DonateCard({
             {donateItem?.location}
             {browseItem?.location}
           </span>
+          <button
+            className="bg-drab-800 text-ice-100 text-xs py-1 px-2 rounded-full"
+            onClick={handleChatClick}
+          >
+            Chat
+          </button>
         </div>
 
         <div className="col-span-1 ">

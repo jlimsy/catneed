@@ -11,7 +11,6 @@ localStorage.debug = "catneed:*";
 
 const BUCKET_NAME = "catneed";
 const REGION = "ap-southeast-1";
-const BASE_URL = "/api/image/";
 
 function sanitizeFileName(fileName) {
   return fileName.replace(/[^a-zA-Z0-9-]/g, "_");

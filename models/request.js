@@ -10,7 +10,11 @@ const requestSchema = new Schema(
     },
     name: { type: String, required: true },
     category: { type: String, required: true },
-    image: { type: String },
+    image: {
+      type: String,
+      default:
+        "https://www.wallingtonanimalrescue.com/uploads/9/5/7/1/9571785/testimonial-cat-4_2.png",
+    },
     description: { type: String, required: true },
     location: { type: String, required: true },
   },

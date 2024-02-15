@@ -1,5 +1,6 @@
 const log = require("debug")("catneed:controllers:usersController");
 const User = require("../../models/user");
+const Chat = require("../../models/chat");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -48,7 +49,14 @@ async function readProfile(req, res) {
   return res.json(user);
 }
 
-async function getDistance(req, res) {}
+//* ===== CHAT ====== //
+
+//? fetch existing chats in Chat Page
+async function getChats(req, res) {
+  const sender = req.user._id;
+
+  const existingChats = await Chat.find({ user: sender });
+}
 
 //! Admin-access only
 async function index(req, res) {
@@ -87,4 +95,4 @@ function createJWT(user) {
   );
 }
 
-module.exports = { create, login, readProfile, updatePostal, index };
+module.exports = { create, login, readProfile, updatePostal, index, getChats };

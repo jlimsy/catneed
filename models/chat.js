@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 const chatSchema = new Schema(
   {
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    users: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+    ],
     latestMessage: {
       type: Schema.Types.ObjectId,
       ref: "Message",

@@ -46,7 +46,11 @@ export default function RequestCard({
         </div>
       </div>
 
-      <img className="w-full" src={requestItem?.image} alt="donated-item" />
+      <img
+        className="w-full h-auto"
+        src={requestItem?.image}
+        alt="donated-item"
+      />
       <div className="px-6 py-4 flex-grow">
         <div className="font-bold text-xl mb-2">{requestItem?.name}</div>
         <p>{requestItem?.description}</p>

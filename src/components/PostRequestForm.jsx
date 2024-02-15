@@ -8,9 +8,10 @@ import planningAreas from "../assets/planningAreas";
 const log = debug("catneed:components:PostRequestForm");
 localStorage.debug = "catneed:*";
 
-export default function PostRequestForm({ user }) {
-  // console.log("PostDonateForm | user", user);
+const BUCKET_NAME = "catneed";
+const REGION = "ap-southeast-1";
 
+export default function PostRequestForm({ user }) {
   const form = useForm();
   const {
     register,
@@ -18,17 +19,7 @@ export default function PostRequestForm({ user }) {
     formState: { errors },
     setValue,
   } = form;
-  const [images, setImages] = useState([]);
-
-  // const onImageChange = (event) => {
-  //   const selectedImages = event.target.files;
-  //   setImages(selectedImages);
-  //   console.log(selectedImages);
-  // };
-
-  const handleClick = () => {
-    console.log("add more images?");
-  };
+  const [file, setFile] = useState([]);
 
   const onSubmit = async (data) => {
     try {
@@ -41,35 +32,39 @@ export default function PostRequestForm({ user }) {
   };
 
   useEffect(() => {
-    setValue("status", "Available"); // Set the default value of status to "Available"
+    setValue(
+      "image",
+      "https://img.freepik.com/free-psd/beautiful-cat-portrait-isolated_23-2150186043.jpg"
+    );
   }, [setValue]);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
+  const onImageChange = (event) => {
+    const selectedFile = event.target.files[0];
+    const originalFileName = selectedFile.name;
+    const sanitizedFileName = sanitizeFileName(originalFileName);
 
-  //   if (images.length === 0) {
-  //     alert("Please select an image.");
-  //     return;
-  //   }
+    // Create a new File object with the sanitized file name
+    const sanitizedFile = new File([selectedFile], sanitizedFileName, {
+      type: selectedFile.type,
+    });
 
-  //   if (images.length > 5) {
-  //     alert("Maximum 5 images at a time.");
-  //     return;
-  //   }
+    setFile(sanitizedFile);
+  };
 
-  //   const formData = new FormData();
-  //   for (const image of images) {
-  //     formData.append("s3images", image);
-  //   }
+  const handleUpload = async () => {
+    if (!file) {
+      return alert("Please select an image");
+    }
 
-  //   const result = await fetch(BASE_URL, {
-  //     method: "POST",
-  //     body: formData,
-  //   });
+    const fileData = new FormData();
+    fileData.append("file", file);
 
-  //   const data = await result.json();
-  //   console.log(data);
-  // };
+    const image = await uploadOne(fileData);
+    log("name of selected file %o", file.name);
+    const fileUrl = `https://${BUCKET_NAME}.s3.${REGION}.amazonaws.com/${file.name}`;
+    log("fileUrl %o", fileUrl);
+    setValue("image", fileUrl);
+  };
 
   return (
     <form className="max-w-sm mx-auto" onSubmit={handleSubmit(onSubmit)}>
@@ -91,22 +86,28 @@ export default function PostRequestForm({ user }) {
         />
         {errors.name && <p>{errors.name.message}</p>}
       </div>
+
       <div className="mb-5">
         <label htmlFor="photo">Upload photo of your item:</label>
 
-        <input type="string" id="image" name="image" {...register("image")} />
-
-        {/* <input
+        <div className="flex flex-row">
+          <input
             type="file"
             id="image"
             name="image"
             accept="image/*"
             onChange={onImageChange}
-            {...register("image")}
-          /> */}
-
-        <button onClick={handleClick}>Add</button>
+          />
+          <button
+            type="button"
+            className="bg-sage-600 text-ice-100 hover:bg-rust-400 focus:ring-rust-500 ml-5"
+            onClick={handleUpload}
+          >
+            Upload
+          </button>
+        </div>
       </div>
+
       <div className="mb-5">
         <label
           htmlFor="category"
