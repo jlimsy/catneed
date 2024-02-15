@@ -23,6 +23,8 @@ function App() {
   const [user, setUser] = useState(getUser());
   const [postalAlert, setPostalAlert] = useState(true);
   const [modal, setModal] = useState(false);
+  const [chatId, setChatId] = useState("");
+  const [chatUser, setChatUser] = useState("");
 
   log("user %o", user);
 
@@ -51,7 +53,15 @@ function App() {
             <Route
               path="/browse"
               element={
-                <BrowsePage user={user} modal={modal} setModal={setModal} />
+                <BrowsePage
+                  user={user}
+                  modal={modal}
+                  setModal={setModal}
+                  chatId={chatId}
+                  setChatId={setChatId}
+                  chatUser={chatUser}
+                  setChatUser={setChatUser}
+                />
               }
             />
             <Route path="/donate" element={<DonatePage user={user} />} />
@@ -59,7 +69,16 @@ function App() {
             <Route path="/listings" element={<ListingsPage user={user} />} />
             <Route
               path="/chat"
-              element={<ChatPage modal={modal} setModal={setModal} />}
+              element={
+                <ChatPage
+                  modal={modal}
+                  setModal={setModal}
+                  chatId={chatId}
+                  setChatId={setChatId}
+                  chatUser={chatUser}
+                  setChatUser={setChatUser}
+                />
+              }
             />
             {user.isAdmin && (
               <Route path="/dashboard" element={<DashboardPage />} />

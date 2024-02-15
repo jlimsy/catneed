@@ -8,9 +8,16 @@ import { allChats } from "../utilities/chats-service";
 const log = debug("catneed:pages:chatpage");
 localStorage.debug = "catneed:*";
 
-export default function ChatPage({ modal, setModal }) {
+export default function ChatPage({
+  modal,
+  setModal,
+  chatId,
+  setChatId,
+  chatUser,
+  setChatUser,
+}) {
   const [existingChats, setExistingChats] = useState([]);
-  const [chatId, setChatId] = useState("");
+  // const [chatId, setChatId] = useState("");
 
   useEffect(() => {
     console.log("fetch existing Chats");
@@ -24,10 +31,12 @@ export default function ChatPage({ modal, setModal }) {
     fetchAllChats();
   }, []);
 
-  const handleOpenChat = (chatId) => {
+  const handleOpenChat = (chatId, chatName) => {
     setModal(!modal);
     setChatId(chatId);
+    setChatUser(chatName);
     log("Open chat with ID:", chatId);
+    log("chatUser:", chatUser);
     log("existingChats", existingChats);
   };
 
@@ -47,6 +56,8 @@ export default function ChatPage({ modal, setModal }) {
             setModal={setModal}
             setChatId={setChatId}
             chatId={chatId}
+            chatUser={chatUser}
+            setChatUser={setChatUser}
           />
         )}
       </div>

@@ -3,6 +3,7 @@ import { delDonate } from "../utilities/donate-service";
 import { accessChat } from "../utilities/chats-service";
 
 import debug from "debug";
+import { useState } from "react";
 
 const log = debug("catneed:components:DonateCard");
 
@@ -14,6 +15,9 @@ export default function DonateCard({
   setDonateListings,
   modal,
   setModal,
+  chatId,
+  setChatId,
+  setChatUser,
 }) {
   const handleDelete = async () => {
     try {
@@ -29,12 +33,17 @@ export default function DonateCard({
   const handleChatClick = async () => {
     log("browseItem user._id %o", browseItem?.user._id);
 
-    // alert("Open chatModal with user.");
-
     const userId = { user: browseItem?.user._id };
+    log("userId %o", userId);
+
     const chat = await accessChat(userId);
-    log("chat %o", userId);
     log("chat %o", chat);
+    setChatUser(chat.users[1]?.username);
+    log("chat.users %o", chat.users);
+    log("chat.users.username %o", chat.users[1]?.username);
+
+    setChatId(chat._id);
+    log("chat._id %o", chat._id);
 
     setModal(!modal);
   };
@@ -100,7 +109,7 @@ export default function DonateCard({
           </span>
           <button
             className="bg-drab-800 text-ice-100 text-xs py-1 px-2 rounded-full"
-            onClick={() => handleChatClick(browseItem?.user._id)}
+            onClick={() => handleChatClick(browseItem?.user._id, chatId)}
           >
             Chat
           </button>

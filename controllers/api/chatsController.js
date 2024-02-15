@@ -22,6 +22,7 @@ async function accessChat(req, res) {
       path: "latestMessage.sender",
       select: "-email -postal -isAdmin",
     });
+    log("chatExists %o", chatExists);
     res.send(chatExists);
   } else {
     const chatData = {

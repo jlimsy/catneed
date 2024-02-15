@@ -5,7 +5,7 @@ import { getAllMessages, postMessage } from "../../utilities/messages-service";
 import debug from "debug";
 const log = debug("catneed:pages:ChatModal");
 
-export default function ChatModal({ modal, setModal, chatId }) {
+export default function ChatModal({ modal, setModal, chatId, chatUser }) {
   const [socket, setSocket] = useState(null);
   // const [message, setMessage] = useState("");
 
@@ -29,13 +29,14 @@ export default function ChatModal({ modal, setModal, chatId }) {
 
   useEffect(() => {
     const fetchAllMessages = async () => {
-      // log("chatId %o", chatId);
+      log("chatId %o", chatId);
+      log("chatUser %o", chatUser);
 
       if (chatId) {
         const allMessages = await getAllMessages(chatId);
         setMessages(allMessages);
 
-        // log("allMessages %o", allMessages);
+        log("allMessages %o", allMessages);
 
         // socket.emit("join chat");
       }
@@ -56,13 +57,16 @@ export default function ChatModal({ modal, setModal, chatId }) {
 
     // if (!newMessage.length > 0) {
     //   alert("Please type a message.");
-    // }
+    // }    log("chatId %o", chatId);
+    log("chatId %o", chatId);
 
+    // setChatId(chatId);
     const chatData = {
       content: newMessage,
       chat: chatId,
     };
 
+    log("chatId %o", chatId);
     log("chatData %o", chatData);
     const message = await postMessage(chatData);
     log("message %o", message);
@@ -76,6 +80,8 @@ export default function ChatModal({ modal, setModal, chatId }) {
 
   const handleClick = () => {
     setModal(!modal);
+
+    // setChatUser();
   };
 
   return (
@@ -85,7 +91,9 @@ export default function ChatModal({ modal, setModal, chatId }) {
         className="fixed top-1/2 left-1/2 bg-gradient-to-r from-sage-200 to-rust-200 border-drab-800  rounded-lg transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out"
       >
         <div className="p-4 border-b bg-sage-400 text-white rounded-t-lg flex justify-between items-center">
-          <p className="text-lg font-semibold">Admin Bot</p>
+          <p className="text-lg font-semibold">
+            Chat with <span className="text-ice-50 italic">{chatUser}</span>
+          </p>
           <button id="close-chat" onClick={handleClick}>
             x
           </button>

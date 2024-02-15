@@ -16,7 +16,14 @@ import ChatModal from "../components/ChatPage/ChatModal";
 const log = debug("catneed:pages:BrowsePage");
 localStorage.debug = "catneed:*";
 
-export default function BrowsePage({ modal, setModal }) {
+export default function BrowsePage({
+  modal,
+  setModal,
+  chatId,
+  setChatId,
+  chatUser,
+  setChatUser,
+}) {
   const [browseItems, setBrowseItems] = useState([]);
   const [requestItems, setRequestItems] = useState([]);
 
@@ -101,6 +108,9 @@ export default function BrowsePage({ modal, setModal }) {
                     browseItem={browseItem}
                     modal={modal}
                     setModal={setModal}
+                    chatId={chatId}
+                    setChatId={setChatId}
+                    setChatUser={setChatUser}
                   />
                 ))
               : requestItems.map((requestItem) => (
@@ -112,7 +122,16 @@ export default function BrowsePage({ modal, setModal }) {
           </div>
         </div>
       </div>
-      {modal || <ChatModal modal={modal} setModal={setModal} />}
+      {modal || (
+        <ChatModal
+          modal={modal}
+          setModal={setModal}
+          chatId={chatId}
+          setChatId={setChatId}
+          browseItems={browseItems}
+          chatUser={chatUser}
+        />
+      )}
     </section>
   );
 }

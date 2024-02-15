@@ -22,6 +22,8 @@ async function sendMessage(req, res) {
       chat: chat,
     };
 
+    log("newMessage %o", newMessage);
+
     let message = await Message.create(newMessage);
     message = await message.populate("sender");
     message = await message.populate("chat");
