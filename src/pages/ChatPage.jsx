@@ -2,13 +2,18 @@ import ChatTable from "../components/ChatPage/ChatTable";
 import ChatModal from "../components/ChatPage/ChatModal";
 import debug from "debug";
 import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+
 // import { allChats } from "../utilities/users-service";
 import { allChats } from "../utilities/chats-service";
 
 const log = debug("catneed:pages:chatpage");
 localStorage.debug = "catneed:*";
 
+let socket, selectedChatCompare;
+
 export default function ChatPage({
+  user,
   modal,
   setModal,
   chatId,
@@ -17,7 +22,14 @@ export default function ChatPage({
   setChatUser,
 }) {
   const [existingChats, setExistingChats] = useState([]);
-  // const [chatId, setChatId] = useState("");
+
+  // useEffect(() => {
+  //   socket = io();
+  //   socket.emit("setup", user);
+  //   socket.on("connection", () => {
+  //     setSocketConnected(true);
+  //   });
+  // }, []);
 
   useEffect(() => {
     console.log("fetch existing Chats");
@@ -29,12 +41,12 @@ export default function ChatPage({
     };
 
     fetchAllChats();
-  }, []);
+  }, [chatId]);
 
-  const handleOpenChat = (chatId, chatName) => {
+  const handleOpenChat = (chatId, chatUser) => {
     setModal(!modal);
     setChatId(chatId);
-    setChatUser(chatName);
+    setChatUser(chatUser);
     log("Open chat with ID:", chatId);
     log("chatUser:", chatUser);
     log("existingChats", existingChats);
@@ -44,6 +56,7 @@ export default function ChatPage({
     <section className="flex justify-center">
       <div className="mx-5 my-10 p-10 bg-sage-300 rounded-lg bg-opacity-50">
         <ChatTable
+          user={user}
           existingChats={existingChats}
           modal={modal}
           setModal={setModal}
@@ -52,6 +65,7 @@ export default function ChatPage({
         />
         {modal || (
           <ChatModal
+            user={user}
             modal={modal}
             setModal={setModal}
             setChatId={setChatId}

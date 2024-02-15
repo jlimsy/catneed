@@ -90,6 +90,7 @@ function App() {
               path="/chat"
               element={
                 <ChatPage
+                  user={user}
                   modal={modal}
                   setModal={setModal}
                   chatId={chatId}

@@ -6,18 +6,24 @@ import ScrollableFeed from "react-scrollable-feed";
 import debug from "debug";
 const log = debug("catneed:pages:ChatModal");
 
-export default function ChatModal({ modal, setModal, chatId, chatUser }) {
-  const [socket, setSocket] = useState(null);
-  // const [message, setMessage] = useState("");
+let socket;
+
+export default function ChatModal({ user, modal, setModal, chatId, chatUser }) {
+  // const [socket, setSocket] = useState(null);
+  // // const [message, setMessage] = useState("");
 
   const [chat, setChat] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [socketConnected, setSocketConnected] = useState(false);
 
-  // useEffect(() => {
-  //   setSocket(io());
-  //   console.log("is this working");
-  // }, []);
+  useEffect(() => {
+    socket = io();
+    socket.emit("setup", user);
+    socket.on("connection", () => {
+      setSocketConnected(true);
+    });
+  }, []);
 
   // useEffect(() => {
   //   if (!socket) return;
@@ -42,9 +48,15 @@ export default function ChatModal({ modal, setModal, chatId, chatUser }) {
         // socket.emit("join chat");
       }
     };
-
+    socket.emit("join chat", chatId);
     fetchAllMessages();
   }, [chatId]);
+
+  useEffect(() => {
+    socket.on("message received", (newMessage) => {
+      setMessages([...messages, newMessage]);
+    });
+  });
 
   // log("messages %o", messages);
 
@@ -73,7 +85,7 @@ export default function ChatModal({ modal, setModal, chatId, chatUser }) {
     log("message %o", message);
 
     // console.log(message, "send button clicked!");
-    // socket.emit("send-message", { newMessage });
+    socket.emit("new message", data);
 
     setNewMessage("");
     setMessages([...messages], message);

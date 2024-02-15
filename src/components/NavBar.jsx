@@ -14,7 +14,7 @@ export default function NavBar({ user, setUser }) {
         <div>
           <NavLink to="/browse">
             {" "}
-            <h1>CatNeed</h1>
+            <h1 className="font-bold">CatNeed</h1>
           </NavLink>
         </div>
         <p className="font-bold italic">Welcome, {user.username}!</p>

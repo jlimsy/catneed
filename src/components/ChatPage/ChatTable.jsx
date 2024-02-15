@@ -2,7 +2,9 @@ import debug from "debug";
 import { useState } from "react";
 const log = debug("catneed:pages:chatpage");
 
-export default function ChatTable({ existingChats, handleOpenChat }) {
+export default function ChatTable({ user, existingChats, handleOpenChat }) {
+  log("user %o", user);
+
   return (
     <div className="flex flex-col">
       <div className="-m-1.5 overflow-x-auto">
@@ -40,7 +42,9 @@ export default function ChatTable({ existingChats, handleOpenChat }) {
                     className="hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                      {chat?.users[1].username}
+                      {user.username === chat?.users[1].username
+                        ? chat?.users[0].username
+                        : chat?.users[1].username}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">
                       {chat?.latestMessage?.content}
@@ -50,7 +54,12 @@ export default function ChatTable({ existingChats, handleOpenChat }) {
                         type="button"
                         className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
                         onClick={() =>
-                          handleOpenChat(chat?._id, chat?.users[1].username)
+                          handleOpenChat(
+                            chat?._id,
+                            user.username === chat?.users[1].username
+                              ? chat?.users[0].username
+                              : chat?.users[1].username
+                          )
                         }
                       >
                         Chat

@@ -16,13 +16,13 @@ require("./config/database");
 const app = express();
 
 //! ===== SOCKET ===== //
-// const server = createServer(app);
-// const io = new Server(server, {
-//   pingTimeout: 60000,
-//   cors: {
-//     origin: ["http://localhost:3000"],
-//   },
-// });
+const server = createServer(app);
+const io = new Server(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: ["http://localhost:3000"],
+  },
+});
 
 // ===== MIDDLEWARE ===== //
 app.use(logger("dev"));
@@ -52,30 +52,41 @@ app.get("/*", function (req, res) {
 const port = process.env.PORT || 3000;
 
 //! ===== SOCKET ===== //
-// io.on("connection", (socket) => {
-//   // console.log("A user connected:", socket.id);
+io.on("connection", (socket) => {
+  console.log("connected to socket.io");
+  //   // console.log("A user connected:", socket.id);
+  socket.on("setup", (userData) => {
+    socket.join(userData);
+    console.log("userData", userData?._id);
+    socket.emit("connected");
+    // socket.broadcast.emit("message-from-server", data);
+  });
 
-//   socket.on("send-message", (userData) => {
-//     socket.join(userData._id);
-//     console.log(userData._id);
-//     socket.emit("connected");
-//     // socket.broadcast.emit("message-from-server", data);
-//     console.log("message received from client", data);
-//   });
+  socket.on("join chat", (chatId) => {
+    socket.join(chatId);
+    console.log("User joined room" + chatId);
+  });
 
-// socket.on("join chat", (room) => {
-//   socket.join(room);
-//   console.log("User joined room" + room);
-// });
-// socket.on("disconnect", (socket) => {
-//   console.log("User left.");
-// });
-// });
+  socket.on("new message", (newMessage) => {
+    const chat = newMessage.chat;
 
-// server.listen(port, function () {
-//   console.log(`Express app running on port ${port}`);
-// });
+    if (!chat.users) return console.log("chat.users not defined");
 
-app.listen(port, function () {
+    chat.users.forEach((user) => {
+      if (user.id === newMessage.sender._id) return;
+      socket.in(user._id).emit("message received", newMessage);
+    });
+  });
+
+  // socket.on("disconnect", (socket) => {
+  //   console.log("User left.");
+  // });
+});
+
+server.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });
+
+// app.listen(port, function () {
+//   console.log(`Express app running on port ${port}`);
+// });
