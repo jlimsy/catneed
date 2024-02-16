@@ -115,7 +115,7 @@ export default function ChatModal({ user, modal, setModal, chatId, chatUser }) {
           {" "}
           <ScrollableFeed>
             {messages.map((message, idx) => (
-              <div key={idx} className="mb-2 mr-2 text-right">
+              <div key={idx} className="mt-2 mb-2 mr-2 text-right">
                 <p className="bg-sage-300 text-white rounded-lg py-2 px-4 inline-block">
                   {message?.content}
                 </p>
