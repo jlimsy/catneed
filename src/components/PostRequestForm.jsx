@@ -12,6 +12,10 @@ localStorage.debug = "catneed:*";
 const BUCKET_NAME = "catneed";
 const REGION = "ap-southeast-1";
 
+function sanitizeFileName(fileName) {
+  return fileName.replace(/[^a-zA-Z0-9-]/g, "_");
+}
+
 export default function PostRequestForm({ feedback, setFeedback }) {
   const form = useForm();
   const {

@@ -43,6 +43,10 @@ export default function ChatPage({
     fetchAllChats();
   }, [chatId]);
 
+  useEffect(() => {
+    setModal(false);
+  }, [setModal]);
+
   const handleOpenChat = (chatId, chatUser) => {
     setModal(!modal);
     setChatId(chatId);
@@ -63,7 +67,7 @@ export default function ChatPage({
           setChatId={setChatId}
           handleOpenChat={handleOpenChat}
         />
-        {modal || (
+        {modal && (
           <ChatModal
             user={user}
             modal={modal}

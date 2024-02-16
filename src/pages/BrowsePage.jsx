@@ -43,6 +43,10 @@ export default function BrowsePage({
     fetchAll(); // Call the function to fetch donate listings when the component mounts
   }, []);
 
+  useEffect(() => {
+    setModal(false);
+  }, [setModal]);
+
   const getSortByDist = async () => {
     const sorted = await sortByDist();
     log("response %o", sorted);
@@ -122,7 +126,7 @@ export default function BrowsePage({
           </div>
         </div>
       </div>
-      {modal || (
+      {modal && (
         <ChatModal
           modal={modal}
           setModal={setModal}
